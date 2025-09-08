@@ -101,7 +101,8 @@ func run() error {
 	mux.HandleFunc("/api/v1/auth/signout", func(w http.ResponseWriter, r *http.Request) {
 		proxy.ServeHTTP(w, r)
 	})
-	mux.HandleFunc("/api/v1/users", func(w http.ResponseWriter, r *http.Request) {
+	// Don't forget to put / at the end to get all subpath such as /users/{id} /username/{username}
+	mux.HandleFunc("/api/v1/users/", func(w http.ResponseWriter, r *http.Request) {
 		proxy.ServeHTTP(w, r)
 	})
 	mux.HandleFunc("/api/v1/me", func(w http.ResponseWriter, r *http.Request) {
