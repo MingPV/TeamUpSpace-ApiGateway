@@ -61,19 +61,15 @@ func run() error {
 
 	// ========== User Service REST endpoints ==========
 	mux.HandleFunc("/api/v1/auth/google/login", func(w http.ResponseWriter, r *http.Request) {
-		r.URL.Path = "/api/v1/auth/google/login"
 		proxy.ServeHTTP(w, r)
 	})
 	mux.HandleFunc("/auth/google/callback", func(w http.ResponseWriter, r *http.Request) {
-		r.URL.Path = "/auth/google/callback"
 		proxy.ServeHTTP(w, r)
 	})
 	mux.HandleFunc("/api/v1/users/", func(w http.ResponseWriter, r *http.Request) {
-		r.URL.Path = r.URL.Path[len("/api/v1/users/")-1:] // keep the trailing slash
 		proxy.ServeHTTP(w, r)
 	})
 	mux.HandleFunc("/api/v1/me", func(w http.ResponseWriter, r *http.Request) {
-		r.URL.Path = "/api/v1/me"
 		proxy.ServeHTTP(w, r)
 	})
 	// ================================================
