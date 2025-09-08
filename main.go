@@ -4,6 +4,8 @@ import (
 	"context"
 	"log"
 	"net/http"
+	"net/http/httputil"
+	"net/url"
 	"os"
 
 	"github.com/grpc-ecosystem/grpc-gateway/v2/runtime"
@@ -28,28 +30,59 @@ func run() error {
 
 	userServiceEndpoint := getEnv("USER_SERVICE_ENDPOINT", "localhost:50061")
 	postServiceEndpoint := getEnv("POST_SERVICE_ENDPOINT", "localhost:50062")
-	// eventServiceEndpoint := getEnv("POST_SERVICE_ENDPOINT", "localhost:50062")
-	// chatServiceEndpoint := getEnv("POST_SERVICE_ENDPOINT", "localhost:50062")
-	// notificationServiceEndpoint := getEnv("POST_SERVICE_ENDPOINT", "localhost:50062")
+	userServiceREST := getEnv("USER_SERVICE_REST", "http://localhost:8001") // REST port
 	httpPort := getEnv("HTTP_PORT", "8080")
 
-	mux := runtime.NewServeMux()
+	// grpc-gateway ServeMux
+	gwMux := runtime.NewServeMux()
 	opts := []grpc.DialOption{grpc.WithTransportCredentials(insecure.NewCredentials())}
 
-	// Register profile UserService
-	if err := profilepb.RegisterProfileServiceHandlerFromEndpoint(ctx, mux, userServiceEndpoint, opts); err != nil {
+	// ===== Register User Service =====
+	if err := profilepb.RegisterProfileServiceHandlerFromEndpoint(ctx, gwMux, userServiceEndpoint, opts); err != nil {
 		return err
 	}
 
-	// Register post PostService
-	if err := postpb.RegisterPostServiceHandlerFromEndpoint(ctx, mux, postServiceEndpoint, opts); err != nil {
+	// ===== Register Post Service =====
+	if err := postpb.RegisterPostServiceHandlerFromEndpoint(ctx, gwMux, postServiceEndpoint, opts); err != nil {
 		return err
 	}
+
+	// http.ServeMux for normal routes
+	mux := http.NewServeMux()
+
+	// create ReverseProxy for User Service REST endpoint
+	userServiceURL, _ := url.Parse(userServiceREST)
+	proxy := httputil.NewSingleHostReverseProxy(userServiceURL)
+	// If you want to adjust path before forward
+	proxy.ModifyResponse = func(resp *http.Response) error {
+		// you can adjust header or body response here
+		return nil
+	}
+
+	// ========== User Service REST endpoints ==========
+	mux.HandleFunc("/api/v1/auth/google/login", func(w http.ResponseWriter, r *http.Request) {
+		r.URL.Path = "/api/v1/auth/google/login"
+		proxy.ServeHTTP(w, r)
+	})
+	mux.HandleFunc("/auth/google/callback", func(w http.ResponseWriter, r *http.Request) {
+		r.URL.Path = "/auth/google/callback"
+		proxy.ServeHTTP(w, r)
+	})
+	mux.HandleFunc("/api/v1/users/", func(w http.ResponseWriter, r *http.Request) {
+		r.URL.Path = r.URL.Path[len("/api/v1/users/")-1:] // keep the trailing slash
+		proxy.ServeHTTP(w, r)
+	})
+	mux.HandleFunc("/api/v1/me", func(w http.ResponseWriter, r *http.Request) {
+		r.URL.Path = "/api/v1/me"
+		proxy.ServeHTTP(w, r)
+	})
+	// ================================================
+
+	// ========== gRPC ==========
+	// other Routes go to grpc-gateway
+	mux.Handle("/", gwMux)
 
 	log.Printf("Starting HTTP server on port %s", httpPort)
-	log.Printf("Proxying requests to userService server at %s", userServiceEndpoint)
-	log.Printf("Proxying requests to postService server at %s", postServiceEndpoint)
-
 	return http.ListenAndServe(":"+httpPort, mux)
 }
 
