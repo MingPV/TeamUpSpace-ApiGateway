@@ -1,0 +1,107 @@
+syntax = "proto3";
+
+package post;
+
+import "google/protobuf/timestamp.proto";
+import "google/api/annotations.proto";
+
+option go_package = "proto/post";
+
+message Post {
+    int32 id = 1;
+    string post_by = 2;        
+    string title = 3;
+    string detail = 4;
+    string image_url = 5;
+    int32 event_id = 6;
+    string status = 7;
+    int32 comments_count = 8;
+    int32 likes_count = 9;
+    google.protobuf.Timestamp created_at = 10;     
+    google.protobuf.Timestamp updated_at = 11;     
+}
+
+message CreatePostRequest {
+    string post_by = 1;
+    string title = 2;
+    string detail = 3;
+    string image_url = 4;
+    int32 event_id = 5;
+    string status = 6;
+}
+
+message CreatePostResponse {
+    Post post = 1;
+}
+
+message FindPostByIDRequest {
+    int32 id = 1;
+}
+
+message FindPostByIDResponse {
+    Post post = 1;
+}
+
+message FindAllPostsRequest {}
+
+message FindAllPostsResponse {
+    repeated Post posts = 1;
+}
+
+message PatchPostRequest {
+    int32 id = 1;
+    string post_by = 2;         
+    string title = 3;
+    string detail = 4;
+    string image_url = 5;
+    int32 event_id = 6;
+    string status = 7;
+    int32 comments_count = 8;
+    int32 likes_count = 9;
+}
+
+message PatchPostResponse {
+  Post post = 1;
+}
+
+message DeletePostRequest {
+  int32 id = 1;
+}
+
+message DeletePostResponse {
+  string message = 1;
+}
+
+service PostService {
+  rpc CreatePost(CreatePostRequest) returns (CreatePostResponse) {
+    option (google.api.http) = {
+      post: "/api/v1/posts"
+      body: "*"
+    };
+  }
+  rpc FindPostByID(FindPostByIDRequest) returns (FindPostByIDResponse) {
+    option (google.api.http) = {
+      get: "/api/v1/posts/{id}"
+    };
+  }
+  rpc FindAllPosts(FindAllPostsRequest) returns (FindAllPostsResponse) {
+    option (google.api.http) = {
+      get: "/api/v1/posts"
+    };
+  }
+  rpc PatchPost(PatchPostRequest) returns (PatchPostResponse) {
+    option (google.api.http) = {
+      patch: "/api/v1/posts/{id}"
+      body: "*"
+    };
+  }
+  rpc DeletePost(DeletePostRequest) returns (DeletePostResponse) {
+    option (google.api.http) = {
+      delete: "/api/v1/posts/{id}"
+    };
+  }
+}
+
+  
+
+

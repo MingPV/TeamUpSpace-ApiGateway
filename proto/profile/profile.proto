@@ -1,0 +1,113 @@
+syntax = "proto3";
+
+package profile;
+
+import "google/protobuf/timestamp.proto";
+import "google/api/annotations.proto";
+
+option go_package = "proto/profile";
+
+
+message Profile {
+  string user_id = 1;
+  string display_name = 2;
+  string description = 3;
+  int32 age = 4;
+  string university = 5;
+  int32 year = 6;
+  bool is_graduated = 7;
+  string profile_url = 8;
+  string background_url = 9;
+  string location = 10;
+  string country = 11;
+  google.protobuf.Timestamp created_at = 12;
+  google.protobuf.Timestamp updated_at = 13;
+}
+
+message CreateProfileRequest {
+  string user_id = 1;
+  string display_name = 2;
+  string description = 3;
+  int32 age = 4;
+  string university = 5;
+  int32 year = 6;
+  bool is_graduated = 7;
+  string profile_url = 8;
+  string background_url = 9;
+  string location = 10;
+  string country = 11;
+}
+
+message CreateProfileResponse {
+  Profile profile = 1;
+}
+
+message FindProfileByIDRequest {
+  string user_id = 1;
+}
+
+message FindProfileByIDResponse {
+  Profile profile = 1;
+}
+
+message FindAllProfilesRequest {}
+
+message FindAllProfilesResponse {
+  repeated Profile profiles = 1;
+}
+
+message PatchProfileRequest {
+  string user_id = 1;
+  string display_name = 2;
+  string description = 3;
+  int32 age = 4;
+  string university = 5;
+  int32 year = 6;
+  bool is_graduated = 7;
+  string profile_url = 8;
+  string background_url = 9;
+  string location = 10;
+  string country = 11;
+}
+
+message PatchProfileResponse {
+  Profile profile = 1;
+}
+
+message DeleteProfileRequest {
+  string user_id = 1;
+}
+
+message DeleteProfileResponse {
+  string message = 1;
+}
+
+service ProfileService {
+  rpc CreateProfile(CreateProfileRequest) returns (CreateProfileResponse){
+    option (google.api.http) = {
+      post: "/api/v1/profiles"
+      body: "*"
+    };
+  }
+  rpc FindProfileByID(FindProfileByIDRequest) returns (FindProfileByIDResponse){
+    option (google.api.http) = {
+      get: "/api/v1/profiles/{user_id}"
+    };
+  }
+  rpc FindAllProfiles(FindAllProfilesRequest) returns (FindAllProfilesResponse){
+    option (google.api.http) = {
+      get: "/api/v1/profiles"
+    };
+  }
+  rpc PatchProfile(PatchProfileRequest) returns (PatchProfileResponse){
+    option (google.api.http) = {
+      patch: "/api/v1/profiles/{user_id}"
+      body: "*"
+    };
+  }
+  rpc DeleteProfile(DeleteProfileRequest) returns (DeleteProfileResponse){
+    option (google.api.http) = {
+      delete: "/api/v1/profiles/{user_id}"
+    };
+  }
+}
