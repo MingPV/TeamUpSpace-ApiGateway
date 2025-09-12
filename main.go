@@ -12,8 +12,13 @@ import (
 	"google.golang.org/grpc"
 	"google.golang.org/grpc/credentials/insecure"
 
+	eventpb "github.com/MingPV/ApiGateway/proto/event"
+	eventtagpb "github.com/MingPV/ApiGateway/proto/eventTag"
+
+	// notificationpb "github.com/MingPV/ApiGateway/proto/notification"
 	postpb "github.com/MingPV/ApiGateway/proto/post"
 	profilepb "github.com/MingPV/ApiGateway/proto/profile"
+	tagpb "github.com/MingPV/ApiGateway/proto/tag"
 )
 
 func getEnv(key, fallback string) string {
@@ -52,6 +57,8 @@ func run() error {
 
 	userServiceEndpoint := getEnv("USER_SERVICE_ENDPOINT", "localhost:50061")
 	postServiceEndpoint := getEnv("POST_SERVICE_ENDPOINT", "localhost:50062")
+	eventServiceEndpoint := getEnv("EVENT_SERVICE_ENDPOINT", "localhost:50063")
+	// notificationServiceEndpoint := getEnv("NOTIFICATION_SERVICE_ENDPOINT", "localhost:50065")
 	userServiceREST := getEnv("USER_SERVICE_REST", "http://localhost:8001") // REST port
 	httpPort := getEnv("HTTP_PORT", "8080")
 
@@ -59,15 +66,31 @@ func run() error {
 	gwMux := runtime.NewServeMux()
 	opts := []grpc.DialOption{grpc.WithTransportCredentials(insecure.NewCredentials())}
 
-	// ===== Register User Service =====
+	// ===== Register gRPC User Service =====
 	if err := profilepb.RegisterProfileServiceHandlerFromEndpoint(ctx, gwMux, userServiceEndpoint, opts); err != nil {
 		return err
 	}
 
-	// ===== Register Post Service =====
+	// ===== Register gRPC Post Service =====
 	if err := postpb.RegisterPostServiceHandlerFromEndpoint(ctx, gwMux, postServiceEndpoint, opts); err != nil {
 		return err
 	}
+
+	// ===== Register gRPC Event Service =====
+	if err := eventpb.RegisterEventServiceHandlerFromEndpoint(ctx, gwMux, eventServiceEndpoint, opts); err != nil {
+		return err
+	}
+	if err := eventtagpb.RegisterEventTagServiceHandlerFromEndpoint(ctx, gwMux, eventServiceEndpoint, opts); err != nil {
+		return err
+	}
+	if err := tagpb.RegisterTagServiceHandlerFromEndpoint(ctx, gwMux, eventServiceEndpoint, opts); err != nil {
+		return err
+	}
+
+	// ===== Register gRPC Notification Service =====
+	// if err := notificationpb.RegisterNotificationServiceHandlerFromEndpoint(ctx, gwMux, notificationServiceEndpoint, opts); err != nil {
+	// 	return err
+	// }
 
 	// http.ServeMux for normal routes
 	mux := http.NewServeMux()

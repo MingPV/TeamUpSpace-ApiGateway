@@ -1,0 +1,277 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "title": "proto/tag/tag.proto",
+    "version": "version not set"
+  },
+  "tags": [
+    {
+      "name": "TagService"
+    }
+  ],
+  "consumes": [
+    "application/json"
+  ],
+  "produces": [
+    "application/json"
+  ],
+  "paths": {
+    "/api/v1/tags": {
+      "get": {
+        "operationId": "TagService_FindAllTags",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/tagFindAllTagsResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "tags": [
+          "TagService"
+        ]
+      },
+      "post": {
+        "operationId": "TagService_CreateTag",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/tagCreateTagResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/tagCreateTagRequest"
+            }
+          }
+        ],
+        "tags": [
+          "TagService"
+        ]
+      }
+    },
+    "/api/v1/tags/{id}": {
+      "get": {
+        "operationId": "TagService_FindTagByID",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/tagFindTagByIDResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "integer",
+            "format": "int64"
+          }
+        ],
+        "tags": [
+          "TagService"
+        ]
+      },
+      "delete": {
+        "operationId": "TagService_DeleteTag",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/tagDeleteTagResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "integer",
+            "format": "int64"
+          }
+        ],
+        "tags": [
+          "TagService"
+        ]
+      },
+      "patch": {
+        "operationId": "TagService_PatchTag",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/tagPatchTagResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "integer",
+            "format": "int64"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/TagServicePatchTagBody"
+            }
+          }
+        ],
+        "tags": [
+          "TagService"
+        ]
+      }
+    }
+  },
+  "definitions": {
+    "TagServicePatchTagBody": {
+      "type": "object",
+      "properties": {
+        "tagName": {
+          "type": "string"
+        }
+      }
+    },
+    "protobufAny": {
+      "type": "object",
+      "properties": {
+        "@type": {
+          "type": "string"
+        }
+      },
+      "additionalProperties": {}
+    },
+    "rpcStatus": {
+      "type": "object",
+      "properties": {
+        "code": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "message": {
+          "type": "string"
+        },
+        "details": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/protobufAny"
+          }
+        }
+      }
+    },
+    "tagCreateTagRequest": {
+      "type": "object",
+      "properties": {
+        "tagName": {
+          "type": "string"
+        }
+      }
+    },
+    "tagCreateTagResponse": {
+      "type": "object",
+      "properties": {
+        "tag": {
+          "$ref": "#/definitions/tagTag"
+        }
+      }
+    },
+    "tagDeleteTagResponse": {
+      "type": "object",
+      "properties": {
+        "message": {
+          "type": "string"
+        }
+      }
+    },
+    "tagFindAllTagsResponse": {
+      "type": "object",
+      "properties": {
+        "tags": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/tagTag"
+          }
+        }
+      }
+    },
+    "tagFindTagByIDResponse": {
+      "type": "object",
+      "properties": {
+        "tag": {
+          "$ref": "#/definitions/tagTag"
+        }
+      }
+    },
+    "tagPatchTagResponse": {
+      "type": "object",
+      "properties": {
+        "tag": {
+          "$ref": "#/definitions/tagTag"
+        }
+      }
+    },
+    "tagTag": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "tagName": {
+          "type": "string"
+        },
+        "createdAt": {
+          "type": "string"
+        },
+        "updatedAt": {
+          "type": "string"
+        }
+      }
+    }
+  }
+}

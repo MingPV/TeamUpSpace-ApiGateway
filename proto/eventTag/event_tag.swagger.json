@@ -1,0 +1,330 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "title": "proto/eventTag/event_tag.proto",
+    "version": "version not set"
+  },
+  "tags": [
+    {
+      "name": "EventTagService"
+    }
+  ],
+  "consumes": [
+    "application/json"
+  ],
+  "produces": [
+    "application/json"
+  ],
+  "paths": {
+    "/api/v1/eventTags": {
+      "get": {
+        "operationId": "EventTagService_FindAllEventTags",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/event_tagFindAllEventTagsResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "tags": [
+          "EventTagService"
+        ]
+      },
+      "post": {
+        "operationId": "EventTagService_CreateEventTag",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/event_tagCreateEventTagResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/event_tagCreateEventTagRequest"
+            }
+          }
+        ],
+        "tags": [
+          "EventTagService"
+        ]
+      }
+    },
+    "/api/v1/eventTags/event/{eventId}": {
+      "get": {
+        "operationId": "EventTagService_FindByEventID",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/event_tagFindByEventIDResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "eventId",
+            "in": "path",
+            "required": true,
+            "type": "integer",
+            "format": "int64"
+          }
+        ],
+        "tags": [
+          "EventTagService"
+        ]
+      }
+    },
+    "/api/v1/eventTags/tag/{tagId}": {
+      "get": {
+        "operationId": "EventTagService_FindByTagID",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/event_tagFindByTagIDResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "tagId",
+            "in": "path",
+            "required": true,
+            "type": "integer",
+            "format": "int64"
+          }
+        ],
+        "tags": [
+          "EventTagService"
+        ]
+      }
+    },
+    "/api/v1/eventTags/{eventId}/{tagId}": {
+      "get": {
+        "operationId": "EventTagService_FindByEventAndTagID",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/event_tagFindByEventAndTagIDResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "eventId",
+            "in": "path",
+            "required": true,
+            "type": "integer",
+            "format": "int64"
+          },
+          {
+            "name": "tagId",
+            "in": "path",
+            "required": true,
+            "type": "integer",
+            "format": "int64"
+          }
+        ],
+        "tags": [
+          "EventTagService"
+        ]
+      },
+      "delete": {
+        "operationId": "EventTagService_DeleteEventTag",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/event_tagDeleteEventTagResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "eventId",
+            "in": "path",
+            "required": true,
+            "type": "integer",
+            "format": "int64"
+          },
+          {
+            "name": "tagId",
+            "in": "path",
+            "required": true,
+            "type": "integer",
+            "format": "int64"
+          }
+        ],
+        "tags": [
+          "EventTagService"
+        ]
+      }
+    }
+  },
+  "definitions": {
+    "event_tagCreateEventTagRequest": {
+      "type": "object",
+      "properties": {
+        "eventId": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "tagId": {
+          "type": "integer",
+          "format": "int64"
+        }
+      }
+    },
+    "event_tagCreateEventTagResponse": {
+      "type": "object",
+      "properties": {
+        "eventTag": {
+          "$ref": "#/definitions/event_tagEventTag"
+        }
+      }
+    },
+    "event_tagDeleteEventTagResponse": {
+      "type": "object",
+      "properties": {
+        "message": {
+          "type": "string"
+        }
+      }
+    },
+    "event_tagEventTag": {
+      "type": "object",
+      "properties": {
+        "eventId": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "tagId": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "createdAt": {
+          "type": "string"
+        },
+        "updatedAt": {
+          "type": "string"
+        }
+      }
+    },
+    "event_tagFindAllEventTagsResponse": {
+      "type": "object",
+      "properties": {
+        "eventTags": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/event_tagEventTag"
+          }
+        }
+      }
+    },
+    "event_tagFindByEventAndTagIDResponse": {
+      "type": "object",
+      "properties": {
+        "eventTag": {
+          "$ref": "#/definitions/event_tagEventTag"
+        }
+      }
+    },
+    "event_tagFindByEventIDResponse": {
+      "type": "object",
+      "properties": {
+        "eventTags": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/event_tagEventTag"
+          }
+        }
+      }
+    },
+    "event_tagFindByTagIDResponse": {
+      "type": "object",
+      "properties": {
+        "eventTags": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/event_tagEventTag"
+          }
+        }
+      }
+    },
+    "protobufAny": {
+      "type": "object",
+      "properties": {
+        "@type": {
+          "type": "string"
+        }
+      },
+      "additionalProperties": {}
+    },
+    "rpcStatus": {
+      "type": "object",
+      "properties": {
+        "code": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "message": {
+          "type": "string"
+        },
+        "details": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/protobufAny"
+          }
+        }
+      }
+    }
+  }
+}

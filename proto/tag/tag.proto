@@ -1,0 +1,83 @@
+syntax = "proto3";
+
+package tag;
+
+import "google/api/annotations.proto";
+
+option go_package = "proto/tag";
+
+message Tag {
+	uint32 id = 1;
+	string tag_name = 2;
+	string created_at = 3;
+	string updated_at = 4;
+}
+
+message CreateTagRequest {
+	string tag_name = 1;
+}
+
+message CreateTagResponse {
+  Tag tag = 1;
+}
+
+message FindTagByIDRequest {
+  uint32 id = 1;
+}
+
+message FindTagByIDResponse {
+  Tag tag = 1;
+}
+
+message FindAllTagsRequest {}
+
+message FindAllTagsResponse {
+  repeated Tag tags = 1;
+}
+
+message PatchTagRequest {
+	uint32 id = 1;
+  string tag_name = 2;
+}
+
+message PatchTagResponse {
+  Tag tag = 1;
+}
+
+message DeleteTagRequest {
+  uint32 id = 1;
+}
+
+message DeleteTagResponse {
+  string message = 1;
+}
+
+service TagService {
+  rpc CreateTag(CreateTagRequest) returns (CreateTagResponse){
+    option (google.api.http) = {
+      post: "/api/v1/tags"
+      body: "*"
+    };
+  }
+  rpc FindTagByID(FindTagByIDRequest) returns (FindTagByIDResponse){
+    option (google.api.http) = {
+      get: "/api/v1/tags/{id}"
+    };
+  }
+  rpc FindAllTags(FindAllTagsRequest) returns (FindAllTagsResponse){
+    option (google.api.http) = {
+      get: "/api/v1/tags"
+    };
+  }
+  rpc PatchTag(PatchTagRequest) returns (PatchTagResponse){
+    option (google.api.http) = {
+      patch: "/api/v1/tags/{id}"
+      body: "*"
+    };
+  }
+  rpc DeleteTag(DeleteTagRequest) returns (DeleteTagResponse){
+    option (google.api.http) = {
+      delete: "/api/v1/tags/{id}"
+    };
+  }
+}
