@@ -25,7 +25,6 @@ import (
 	postpb "github.com/MingPV/ApiGateway/proto/post"
 	profilepb "github.com/MingPV/ApiGateway/proto/profile"
 	tagpb "github.com/MingPV/ApiGateway/proto/tag"
-)
 
 	messagepb "github.com/MingPV/ApiGateway/proto/message"
 	"github.com/gorilla/websocket"
@@ -42,10 +41,10 @@ func handleWebSocketConnection(conn *websocket.Conn, roomID int, chatClient mess
 	defer icancel()
 
 	stream, err := chatClient.Chat(ictx)
-	if err != nil { 
+	if err != nil {
 		log.Printf("WS: chat connect error: %v", err)
 		conn.WriteMessage(websocket.TextMessage, []byte("stream connect error"))
-		return 
+		return
 	}
 	defer stream.CloseSend()
 
@@ -72,17 +71,17 @@ func handleWebSocketConnection(conn *websocket.Conn, roomID int, chatClient mess
 				return
 			}
 			var in inbound
-			if err := json.Unmarshal(data, &in); err != nil { 
+			if err := json.Unmarshal(data, &in); err != nil {
 				log.Printf("WS: room=%d unmarshal error: %v", roomID, err)
-				continue 
+				continue
 			}
-			if in.SentAt == 0 { 
-				in.SentAt = time.Now().Unix() 
+			if in.SentAt == 0 {
+				in.SentAt = time.Now().Unix()
 			}
-			if err := stream.Send(&messagepb.ClientEvent{Payload: &messagepb.ClientEvent_Send{Send: &messagepb.SendMessage{ 
-				RoomId: uint32(roomID), 
-				Text: in.Message, 
-				SenderId: in.Sender, 
+			if err := stream.Send(&messagepb.ClientEvent{Payload: &messagepb.ClientEvent_Send{Send: &messagepb.SendMessage{
+				RoomId:     uint32(roomID),
+				Text:       in.Message,
+				SenderId:   in.Sender,
 				SentAtUnix: in.SentAt,
 			}}}); err != nil {
 				log.Printf("WS: room=%d send error: %v", roomID, err)
@@ -240,11 +239,11 @@ func run() error {
 			http.Error(w, "invalid room id", http.StatusBadRequest)
 			return
 		}
-		upgrader := websocket.Upgrader{ CheckOrigin: func(r *http.Request) bool { return true } }
+		upgrader := websocket.Upgrader{CheckOrigin: func(r *http.Request) bool { return true }}
 		conn, err := upgrader.Upgrade(w, r, nil)
-		if err != nil { 
+		if err != nil {
 			log.Printf("WS: upgrade error: %v", err)
-			return 
+			return
 		}
 
 		log.Printf("WS: room=%d connect", roomID)
@@ -260,7 +259,7 @@ func run() error {
 	// ==========================
 
 	handlerWithCORS := corsMiddleware(mux)
-	
+
 	// Create HTTP server with timeouts
 	server := &http.Server{
 		Addr:         ":" + httpPort,
