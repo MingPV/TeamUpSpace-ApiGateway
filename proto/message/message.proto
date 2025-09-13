@@ -1,0 +1,50 @@
+syntax = "proto3";
+
+package message;
+
+option go_package = "github.com/MingPV/ChatService/proto/message;messagepb";
+
+message ClientEvent {
+  oneof payload {
+    JoinRoom join = 1;
+    SendMessage send = 2;
+  }
+}
+
+message JoinRoom {
+  uint32 room_id = 1;
+  string user_id = 2; // uuid string
+}
+
+message SendMessage {
+  uint32 room_id = 1;
+  string text = 2;
+  string sender_id = 3; // uuid string
+  int64 sent_at_unix = 4; // unix seconds
+}
+
+message ServerEvent {
+  oneof payload {
+    StreamAck ack = 1;
+    MessageDelivered delivered = 2;
+    ErrorEvent error = 3;
+  }
+}
+
+message StreamAck { string message = 1; }
+
+message MessageDelivered {
+  uint32 id = 1;
+  uint32 room_id = 2;
+  string text = 3;
+  string sender_id = 4; // uuid string
+  int64 created_at_unix = 5;
+}
+
+message ErrorEvent { string message = 1; }
+
+service MessageService {
+  rpc Chat(stream ClientEvent) returns (stream ServerEvent);
+}
+
+
