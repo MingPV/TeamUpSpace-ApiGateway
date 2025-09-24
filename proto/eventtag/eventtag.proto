@@ -1,0 +1,97 @@
+syntax = "proto3";
+
+package eventtag;
+
+import "google/api/annotations.proto";
+
+option go_package = "proto/eventtag";
+
+message EventTag {
+	uint32 event_id = 1;
+  uint32 tag_id = 2;
+	string created_at = 3;
+	string updated_at = 4;
+}
+
+message CreateEventTagRequest {
+  uint32 event_id = 1;
+	uint32 tag_id = 2;
+}
+
+message CreateEventTagResponse {
+  EventTag event_tag = 1;
+}
+
+message FindByEventAndTagIDRequest {
+  uint32 event_id = 1;
+	uint32 tag_id = 2;
+}
+
+message FindByEventAndTagIDResponse {
+  EventTag event_tag = 1;
+}
+
+message FindByEventIDRequest {
+  uint32 event_id = 1;
+}
+
+message FindByEventIDResponse {
+  repeated EventTag event_tags = 1;
+}
+
+message FindByTagIDRequest {
+  uint32 tag_id = 1;
+}
+
+message FindByTagIDResponse {
+  repeated EventTag event_tags = 1;
+}
+
+message FindAllEventTagsRequest {}
+
+message FindAllEventTagsResponse {
+  repeated EventTag event_tags = 1;
+}
+
+message DeleteEventTagRequest {
+  uint32 event_id = 1;
+	uint32 tag_id = 2;
+}
+
+message DeleteEventTagResponse {
+  string message = 1;
+}
+
+service EventTagService {
+  rpc CreateEventTag(CreateEventTagRequest) returns (CreateEventTagResponse){
+    option (google.api.http) = {
+      post: "/api/v1/eventTags"
+      body: "*"
+    };
+  }
+  rpc FindByEventAndTagID(FindByEventAndTagIDRequest) returns (FindByEventAndTagIDResponse){
+    option (google.api.http) = {
+      get: "/api/v1/eventTags/{event_id}/{tag_id}"
+    };
+  }
+  rpc FindByEventID(FindByEventIDRequest) returns (FindByEventIDResponse){
+    option (google.api.http) = {
+      get: "/api/v1/eventTags/event/{event_id}"
+    };
+  }
+  rpc FindByTagID(FindByTagIDRequest) returns (FindByTagIDResponse){
+    option (google.api.http) = {
+      get: "/api/v1/eventTags/tag/{tag_id}"
+    };
+  }
+  rpc FindAllEventTags(FindAllEventTagsRequest) returns (FindAllEventTagsResponse){
+    option (google.api.http) = {
+      get: "/api/v1/eventTags"
+    };
+  }
+  rpc DeleteEventTag(DeleteEventTagRequest) returns (DeleteEventTagResponse){
+    option (google.api.http) = {
+      delete: "/api/v1/eventTags/{event_id}/{tag_id}"
+    };
+  }
+}
