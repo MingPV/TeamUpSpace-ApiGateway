@@ -19,7 +19,7 @@ import (
 	"google.golang.org/grpc/credentials/insecure"
 
 	eventpb "github.com/MingPV/ApiGateway/proto/event"
-	eventtagpb "github.com/MingPV/ApiGateway/proto/eventTag"
+	eventtagpb "github.com/MingPV/ApiGateway/proto/eventtag"
 
 	notificationpb "github.com/MingPV/ApiGateway/proto/notification"
 	postpb "github.com/MingPV/ApiGateway/proto/post"
