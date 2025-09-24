@@ -1,0 +1,248 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "title": "proto/postLike/postlike.proto",
+    "version": "version not set"
+  },
+  "tags": [
+    {
+      "name": "PostLikeService"
+    }
+  ],
+  "consumes": [
+    "application/json"
+  ],
+  "produces": [
+    "application/json"
+  ],
+  "paths": {
+    "/api/v1/postLikes": {
+      "post": {
+        "operationId": "PostLikeService_CreatePostLike",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/postLikeCreatePostLikeResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/postLikeCreatePostLikeRequest"
+            }
+          }
+        ],
+        "tags": [
+          "PostLikeService"
+        ]
+      }
+    },
+    "/api/v1/postLikes/{postId}": {
+      "post": {
+        "operationId": "PostLikeService_FindAllPostLikesByPostID",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/postLikeFindAllPostLikesByPostIDResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "postId",
+            "in": "path",
+            "required": true,
+            "type": "integer",
+            "format": "int32"
+          }
+        ],
+        "tags": [
+          "PostLikeService"
+        ]
+      }
+    },
+    "/api/v1/postLikes/{postId}/{userId}": {
+      "post": {
+        "operationId": "PostLikeService_DeletePostLike",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/postLikeDeletePostLikeResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "postId",
+            "in": "path",
+            "required": true,
+            "type": "integer",
+            "format": "int32"
+          },
+          {
+            "name": "userId",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "PostLikeService"
+        ]
+      }
+    },
+    "/api/v1/postLikes/{userId}": {
+      "post": {
+        "operationId": "PostLikeService_FindAllPostLikesByUserID",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/postLikeFindAllPostLikesByUserIDResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "userId",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "PostLikeService"
+        ]
+      }
+    }
+  },
+  "definitions": {
+    "postLikeCreatePostLikeRequest": {
+      "type": "object",
+      "properties": {
+        "postId": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "userId": {
+          "type": "string"
+        }
+      }
+    },
+    "postLikeCreatePostLikeResponse": {
+      "type": "object",
+      "properties": {
+        "postlike": {
+          "$ref": "#/definitions/postLikePostLike"
+        }
+      }
+    },
+    "postLikeDeletePostLikeResponse": {
+      "type": "object",
+      "properties": {
+        "message": {
+          "type": "string"
+        }
+      }
+    },
+    "postLikeFindAllPostLikesByPostIDResponse": {
+      "type": "object",
+      "properties": {
+        "postlikes": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/postLikePostLike"
+          }
+        }
+      }
+    },
+    "postLikeFindAllPostLikesByUserIDResponse": {
+      "type": "object",
+      "properties": {
+        "postlikes": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/postLikePostLike"
+          }
+        }
+      }
+    },
+    "postLikePostLike": {
+      "type": "object",
+      "properties": {
+        "postId": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "userId": {
+          "type": "string"
+        },
+        "createdAt": {
+          "type": "string",
+          "format": "date-time"
+        }
+      }
+    },
+    "protobufAny": {
+      "type": "object",
+      "properties": {
+        "@type": {
+          "type": "string"
+        }
+      },
+      "additionalProperties": {}
+    },
+    "rpcStatus": {
+      "type": "object",
+      "properties": {
+        "code": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "message": {
+          "type": "string"
+        },
+        "details": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/protobufAny"
+          }
+        }
+      }
+    }
+  }
+}

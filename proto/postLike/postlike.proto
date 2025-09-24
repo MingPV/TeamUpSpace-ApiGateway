@@ -1,0 +1,72 @@
+syntax = "proto3";
+
+package postLike;
+
+import "google/protobuf/timestamp.proto";
+import "google/api/annotations.proto";
+
+option go_package = "proto/postLike";
+
+message PostLike {
+    int32 post_id = 1;
+    string user_id = 2;
+    google.protobuf.Timestamp created_at = 3;  
+}
+
+message CreatePostLikeRequest {
+    int32 post_id = 1;
+    string user_id = 2;
+}
+
+message CreatePostLikeResponse {
+    PostLike postlike = 1;
+}
+
+message FindAllPostLikesByPostIDRequest {
+    int32 post_id = 1;
+}
+
+message FindAllPostLikesByPostIDResponse {
+    repeated PostLike postlikes = 1;
+}
+
+message FindAllPostLikesByUserIDRequest {
+    string user_id = 1;
+}
+
+message FindAllPostLikesByUserIDResponse {
+    repeated PostLike postlikes = 1;
+}
+
+message DeletePostLikeRequest {
+    int32 post_id = 1;
+    string user_id = 2;
+}
+
+message DeletePostLikeResponse {
+    string message = 1;
+}
+
+service PostLikeService {
+    rpc CreatePostLike(CreatePostLikeRequest) returns (CreatePostLikeResponse){
+    option (google.api.http) = {
+      post: "/api/v1/postLikes"
+      body: "*"
+    };
+  }
+    rpc FindAllPostLikesByPostID(FindAllPostLikesByPostIDRequest) returns (FindAllPostLikesByPostIDResponse){
+    option (google.api.http) = {
+      post: "/api/v1/postLikes/{post_id}"
+    };
+  }
+    rpc FindAllPostLikesByUserID(FindAllPostLikesByUserIDRequest) returns (FindAllPostLikesByUserIDResponse){
+    option (google.api.http) = {
+      post: "/api/v1/postLikes/{user_id}"
+    };
+  }
+    rpc DeletePostLike(DeletePostLikeRequest) returns (DeletePostLikeResponse){
+    option (google.api.http) = {
+      post: "/api/v1/postLikes/{post_id}/{user_id}"
+    };
+  }
+}

@@ -1,0 +1,376 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "title": "proto/userReport/userreport.proto",
+    "version": "version not set"
+  },
+  "tags": [
+    {
+      "name": "UserReportService"
+    }
+  ],
+  "consumes": [
+    "application/json"
+  ],
+  "produces": [
+    "application/json"
+  ],
+  "paths": {
+    "/api/v1/userReports": {
+      "get": {
+        "operationId": "UserReportService_FindAllUserReports",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/userReportFindAllUserReportsResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "tags": [
+          "UserReportService"
+        ]
+      },
+      "post": {
+        "operationId": "UserReportService_CreateUserReport",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/userReportCreateUserReportResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/userReportCreateUserReportRequest"
+            }
+          }
+        ],
+        "tags": [
+          "UserReportService"
+        ]
+      }
+    },
+    "/api/v1/userReports/{id}": {
+      "get": {
+        "operationId": "UserReportService_FindUserReportByID",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/userReportFindUserReportByIDResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "integer",
+            "format": "int32"
+          }
+        ],
+        "tags": [
+          "UserReportService"
+        ]
+      },
+      "delete": {
+        "operationId": "UserReportService_DeleteUserReport",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/userReportDeleteUserReportResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "integer",
+            "format": "int32"
+          }
+        ],
+        "tags": [
+          "UserReportService"
+        ]
+      },
+      "patch": {
+        "operationId": "UserReportService_PatchUserReport",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/userReportPatchUserReportResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "integer",
+            "format": "int32"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/UserReportServicePatchUserReportBody"
+            }
+          }
+        ],
+        "tags": [
+          "UserReportService"
+        ]
+      }
+    },
+    "/api/v1/userReports/{reportTo}": {
+      "get": {
+        "operationId": "UserReportService_FindAllByReportTo",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/userReportFindAllByReportToResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "reportTo",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "UserReportService"
+        ]
+      }
+    },
+    "/api/v1/userReports/{reporter}": {
+      "get": {
+        "operationId": "UserReportService_FindAllByReporter",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/userReportFindAllByReporterResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "reporter",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "UserReportService"
+        ]
+      }
+    }
+  },
+  "definitions": {
+    "UserReportServicePatchUserReportBody": {
+      "type": "object",
+      "properties": {
+        "detail": {
+          "type": "string"
+        },
+        "status": {
+          "type": "string"
+        }
+      }
+    },
+    "protobufAny": {
+      "type": "object",
+      "properties": {
+        "@type": {
+          "type": "string"
+        }
+      },
+      "additionalProperties": {}
+    },
+    "rpcStatus": {
+      "type": "object",
+      "properties": {
+        "code": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "message": {
+          "type": "string"
+        },
+        "details": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/protobufAny"
+          }
+        }
+      }
+    },
+    "userReportCreateUserReportRequest": {
+      "type": "object",
+      "properties": {
+        "reporter": {
+          "type": "string"
+        },
+        "reportTo": {
+          "type": "string"
+        },
+        "detail": {
+          "type": "string"
+        },
+        "status": {
+          "type": "string"
+        }
+      }
+    },
+    "userReportCreateUserReportResponse": {
+      "type": "object",
+      "properties": {
+        "userReport": {
+          "$ref": "#/definitions/userReportUserReport"
+        }
+      }
+    },
+    "userReportDeleteUserReportResponse": {
+      "type": "object",
+      "properties": {
+        "message": {
+          "type": "string"
+        }
+      }
+    },
+    "userReportFindAllByReportToResponse": {
+      "type": "object",
+      "properties": {
+        "userReports": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/userReportUserReport"
+          }
+        }
+      }
+    },
+    "userReportFindAllByReporterResponse": {
+      "type": "object",
+      "properties": {
+        "userReports": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/userReportUserReport"
+          }
+        }
+      }
+    },
+    "userReportFindAllUserReportsResponse": {
+      "type": "object",
+      "properties": {
+        "userReports": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/userReportUserReport"
+          }
+        }
+      }
+    },
+    "userReportFindUserReportByIDResponse": {
+      "type": "object",
+      "properties": {
+        "userReport": {
+          "$ref": "#/definitions/userReportUserReport"
+        }
+      }
+    },
+    "userReportPatchUserReportResponse": {
+      "type": "object",
+      "properties": {
+        "userReport": {
+          "$ref": "#/definitions/userReportUserReport"
+        }
+      }
+    },
+    "userReportUserReport": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "reporter": {
+          "type": "string"
+        },
+        "reportTo": {
+          "type": "string"
+        },
+        "detail": {
+          "type": "string"
+        },
+        "status": {
+          "type": "string"
+        }
+      }
+    }
+  }
+}

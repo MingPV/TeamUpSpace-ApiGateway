@@ -21,12 +21,20 @@ import (
 	eventpb "github.com/MingPV/ApiGateway/proto/event"
 	eventtagpb "github.com/MingPV/ApiGateway/proto/eventTag"
 
-	// notificationpb "github.com/MingPV/ApiGateway/proto/notification"
+	notificationpb "github.com/MingPV/ApiGateway/proto/notification"
 	postpb "github.com/MingPV/ApiGateway/proto/post"
 	profilepb "github.com/MingPV/ApiGateway/proto/profile"
 	tagpb "github.com/MingPV/ApiGateway/proto/tag"
 
 	messagepb "github.com/MingPV/ApiGateway/proto/message"
+
+	answerpb "github.com/MingPV/ApiGateway/proto/answer"
+	commentpb "github.com/MingPV/ApiGateway/proto/comment"
+	postlikepb "github.com/MingPV/ApiGateway/proto/postLike"
+	postreportpb "github.com/MingPV/ApiGateway/proto/postReport"
+	questionpb "github.com/MingPV/ApiGateway/proto/question"
+	userreportpb "github.com/MingPV/ApiGateway/proto/userReport"
+
 	"github.com/gorilla/websocket"
 )
 
@@ -148,7 +156,7 @@ func run() error {
 	userServiceEndpoint := getEnv("USER_SERVICE_ENDPOINT", "localhost:50061")
 	postServiceEndpoint := getEnv("POST_SERVICE_ENDPOINT", "localhost:50062")
 	eventServiceEndpoint := getEnv("EVENT_SERVICE_ENDPOINT", "localhost:50063")
-	// notificationServiceEndpoint := getEnv("NOTIFICATION_SERVICE_ENDPOINT", "localhost:50065")
+	notificationServiceEndpoint := getEnv("NOTIFICATION_SERVICE_ENDPOINT", "localhost:50065")
 	userServiceREST := getEnv("USER_SERVICE_REST", "http://localhost:8001") // REST port
 	chatServiceEndpoint := getEnv("CHAT_SERVICE_ENDPOINT", "localhost:50064")
 	httpPort := getEnv("HTTP_PORT", "8080")
@@ -161,9 +169,27 @@ func run() error {
 	if err := profilepb.RegisterProfileServiceHandlerFromEndpoint(ctx, gwMux, userServiceEndpoint, opts); err != nil {
 		return err
 	}
+	if err := userreportpb.RegisterUserReportServiceHandlerFromEndpoint(ctx, gwMux, userServiceEndpoint, opts); err != nil {
+		return err
+	}
 
 	// ===== Register gRPC Post Service =====
 	if err := postpb.RegisterPostServiceHandlerFromEndpoint(ctx, gwMux, postServiceEndpoint, opts); err != nil {
+		return err
+	}
+	if err := commentpb.RegisterCommentServiceHandlerFromEndpoint(ctx, gwMux, postServiceEndpoint, opts); err != nil {
+		return err
+	}
+	if err := postlikepb.RegisterPostLikeServiceHandlerFromEndpoint(ctx, gwMux, postServiceEndpoint, opts); err != nil {
+		return err
+	}
+	if err := postreportpb.RegisterPostReportServiceHandlerFromEndpoint(ctx, gwMux, postServiceEndpoint, opts); err != nil {
+		return err
+	}
+	if err := questionpb.RegisterQuestionServiceHandlerFromEndpoint(ctx, gwMux, postServiceEndpoint, opts); err != nil {
+		return err
+	}
+	if err := answerpb.RegisterAnswerServiceHandlerFromEndpoint(ctx, gwMux, postServiceEndpoint, opts); err != nil {
 		return err
 	}
 
@@ -179,9 +205,9 @@ func run() error {
 	}
 
 	// ===== Register gRPC Notification Service =====
-	// if err := notificationpb.RegisterNotificationServiceHandlerFromEndpoint(ctx, gwMux, notificationServiceEndpoint, opts); err != nil {
-	// 	return err
-	// }
+	if err := notificationpb.RegisterNotificationServiceHandlerFromEndpoint(ctx, gwMux, notificationServiceEndpoint, opts); err != nil {
+		return err
+	}
 
 	// http.ServeMux for normal routes
 	mux := http.NewServeMux()
@@ -274,6 +300,8 @@ func run() error {
 	log.Printf("Post Service gRPC endpoint: %s", postServiceEndpoint)
 	log.Printf("User Service REST endpoint: %s", userServiceREST)
 	log.Printf("Chat Service gRPC endpoint: %s", chatServiceEndpoint)
+	log.Printf("Event Service gRPC endpoint: %s", eventServiceEndpoint)
+	log.Printf("Notification Service gRPC endpoint: %s", notificationServiceEndpoint)
 
 	// Start server in a goroutine
 	go func() {

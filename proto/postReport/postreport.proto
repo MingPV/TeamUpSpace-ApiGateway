@@ -1,0 +1,96 @@
+syntax = "proto3";
+
+package postReport;
+
+import "google/protobuf/timestamp.proto";
+import "google/api/annotations.proto";
+
+option go_package = "proto/postReport";
+
+message PostReport {
+    int32 id = 1;
+    int32 post_id = 2;
+    string reporter = 3;
+    string report_to = 4;
+    string detail = 5;
+    string status = 6;
+    google.protobuf.Timestamp created_at = 7;
+    google.protobuf.Timestamp updated_at = 8;
+}
+
+message CreatePostReportRequest {
+    int32 post_id = 1;
+    string reporter = 2;
+    string report_to = 3;
+    string detail = 4;
+    string status = 5;
+}
+
+message CreatePostReportResponse {
+    PostReport post_report = 1;
+}
+
+message FindPostReportByIDRequest {
+    int32 id = 1;
+}
+
+message FindPostReportByIDResponse {
+    PostReport post_report = 1;
+}
+
+message FindAllPostReportsRequest {}
+
+message FindAllPostReportsResponse {
+    repeated PostReport post_reports = 1;
+}
+
+message PatchPostReportRequest {
+    int32 id = 1;
+    int32 post_id = 2;
+    string reporter = 3;
+    string report_to = 4;
+    string detail = 5;
+    string status = 6;
+}
+
+message PatchPostReportResponse {
+    PostReport post_report = 1;
+}
+
+message DeletePostReportRequest {
+    int32 id = 1;
+}
+
+message DeletePostReportResponse {
+    string message = 1;
+}
+
+service PostReportService {
+    rpc CreatePostReport(CreatePostReportRequest) returns (CreatePostReportResponse){
+    option (google.api.http) = {
+      post: "/api/v1/postreports"
+      body: "*"
+    };
+  }
+    rpc FindPostReportByID(FindPostReportByIDRequest) returns (FindPostReportByIDResponse){
+    option (google.api.http) = {
+      get: "/api/v1/postreports/{id}"
+    };
+  }
+    rpc FindAllPostReports(FindAllPostReportsRequest) returns (FindAllPostReportsResponse){
+    option (google.api.http) = {
+      get: "/api/v1/postreports"
+    };
+  }
+    rpc PatchPostReport(PatchPostReportRequest) returns (PatchPostReportResponse){
+    option (google.api.http) = {
+      patch: "/api/v1/postreports/{id}"
+      body: "*"
+    };
+  }
+    rpc DeletePostReport(DeletePostReportRequest) returns (DeletePostReportResponse){
+    option (google.api.http) = {
+      delete: "/api/v1/postreports/{id}"
+    };
+  }
+}

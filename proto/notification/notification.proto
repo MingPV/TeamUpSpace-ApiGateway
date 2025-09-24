@@ -1,0 +1,90 @@
+syntax = "proto3";
+
+package notification;
+
+import "google/protobuf/timestamp.proto";
+import "google/api/annotations.proto";
+
+option go_package = "proto/notification";
+
+message Notification {
+  int32 id = 1;
+  string send_to = 2;
+  string type = 3;
+  string message = 4;
+  google.protobuf.Timestamp created_at = 5;
+  google.protobuf.Timestamp updated_at = 6;
+}
+
+message CreateNotificationRequest {
+  string send_to = 1;
+  string type = 2;
+  string message = 3;
+}
+
+message CreateNotificationResponse {
+  Notification notification = 1;
+}
+
+message FindNotificationByIDRequest {
+  int32 id = 1;
+}
+
+message FindNotificationByIDResponse {
+  Notification notification = 1;
+}
+
+message FindAllNotificationsRequest {}
+
+message FindAllNotificationsResponse {
+  repeated Notification notifications = 1;
+}
+
+message PatchNotificationRequest {
+  int32 id = 1;
+  string send_to = 2;
+  string type = 3;
+  string message = 4;
+}
+
+message PatchNotificationResponse {
+  Notification notification = 1;
+}
+
+message DeleteNotificationRequest {
+  int32 id = 1;
+}
+
+message DeleteNotificationResponse {
+  string message = 1;
+}
+
+service NotificationService {
+  rpc CreateNotification(CreateNotificationRequest) returns (CreateNotificationResponse){
+    option (google.api.http) = {
+      post: "/api/v1/notifications"
+      body: "*"
+    };
+  }
+  rpc FindNotificationByID(FindNotificationByIDRequest) returns (FindNotificationByIDResponse){
+    option (google.api.http) = {
+      get: "/api/v1/notifications/{id}"
+    };
+  }
+  rpc FindAllNotifications(FindAllNotificationsRequest) returns (FindAllNotificationsResponse){
+    option (google.api.http) = {
+      get: "/api/v1/notifications"
+    };
+  }
+  rpc PatchNotification(PatchNotificationRequest) returns (PatchNotificationResponse){
+    option (google.api.http) = {
+      patch: "/api/v1/notifications/{id}"
+      body: "*"
+    };
+  }
+  rpc DeleteNotification(DeleteNotificationRequest) returns (DeleteNotificationResponse){
+    option (google.api.http) = {
+      delete: "/api/v1/notifications/{id}"
+    };
+  }
+}

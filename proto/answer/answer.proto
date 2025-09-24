@@ -1,0 +1,87 @@
+syntax = "proto3";
+
+package answer;
+
+import "google/protobuf/timestamp.proto";
+import "google/api/annotations.proto";
+
+option go_package = "proto/answer";
+
+message Answer {
+    int32 id = 1;
+    int32 post_id = 2;
+    string user_id = 3;
+    string question = 4;
+    string answer = 5;
+    google.protobuf.Timestamp created_at = 6;
+}
+
+message CreateAnswerRequest {
+    int32 post_id = 1;
+    string user_id = 2;
+    string question = 3;
+    string answer = 4;
+}
+
+message CreateAnswerResponse {
+    Answer answer = 1;
+}
+
+message FindAnswerByIDRequest {
+    int32 id = 1;
+}
+
+message FindAnswerByIDResponse {
+    Answer answer = 1;
+}
+
+message FindAllAnswersRequest {}
+
+message FindAllAnswersResponse {
+    repeated Answer answers = 1;
+}
+
+message FindAllAnswersByPostIDRequest {
+    int32 post_id = 1;
+}
+
+message FindAllAnswersByPostIDResponse {
+    repeated Answer answers = 1;
+}
+
+message DeleteAnswerRequest {
+    int32 id = 1;
+}
+
+message DeleteAnswerResponse {
+    string message = 1;
+}
+
+service AnswerService {
+    rpc CreateAnswer(CreateAnswerRequest) returns (CreateAnswerResponse){
+    option (google.api.http) = {
+      post: "/api/v1/answers"
+      body: "*"
+    };
+  }
+    rpc FindAnswerByID(FindAnswerByIDRequest) returns (FindAnswerByIDResponse){
+    option (google.api.http) = {
+      get: "/api/v1/answers/{id}"
+    };
+  }
+    rpc FindAllAnswersByPostID(FindAllAnswersByPostIDRequest) returns (FindAllAnswersByPostIDResponse){
+    option (google.api.http) = {
+      get: "/api/v1/answers/{post_id}"
+    };
+  }
+    rpc FindAllAnswers(FindAllAnswersRequest) returns (FindAllAnswersResponse){
+    option (google.api.http) = {
+      get: "/api/v1/answers"
+    };
+  }
+    rpc DeleteAnswer(DeleteAnswerRequest) returns (DeleteAnswerResponse){
+    option (google.api.http) = {
+      delete: "/api/v1/answers/{id}"
+    };
+  }
+}

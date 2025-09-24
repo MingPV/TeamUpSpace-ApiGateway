@@ -1,0 +1,129 @@
+syntax = "proto3";
+
+package comment;
+
+import "google/api/annotations.proto";
+
+option go_package = "proto/comment";
+
+
+message Comment {
+  int32 comment_id = 1;
+  int32 post_id = 2;
+  string comment_by = 3;
+  int32 parent_id = 4;
+  string detail = 5;
+  string created_at = 6;
+  string updated_at = 7;
+}
+
+message CreateCommentRequest {
+  int32 post_id = 1;
+  string comment_by = 2;
+  int32 parent_id = 3;
+  string detail = 4;
+}
+
+message CreateCommentResponse {
+  Comment comment = 1;
+}
+
+message FindCommentByIDRequest {
+  int32 id = 1;
+}
+
+message FindCommentByIDResponse {
+  Comment comment = 1;
+}
+
+message FindCommentsByPostIDRequest {
+	int32 post_id = 1;
+}
+
+message FindCommentsByPostIDResponse {
+	repeated Comment comments = 1;
+}
+
+message FindCommentsByUserIDRequest {
+	string user_id = 1;
+}
+
+message FindCommentsByUserIDResponse {
+	repeated Comment comments = 1;
+}
+
+message FindCommentsByParentIDRequest {
+	int32 parent_id = 1;
+}
+
+message FindCommentsByParentIDResponse {
+	repeated Comment comments = 1;
+}
+
+message FindAllCommentsRequest {}
+
+message FindAllCommentsResponse {
+  repeated Comment comments = 1;
+}
+
+message PatchCommentRequest {
+  int32 id = 1;
+  string detail = 2;
+}
+
+message PatchCommentResponse {
+  Comment comment = 1;
+}
+
+message DeleteCommentRequest {
+  int32 id = 1;
+}
+
+message DeleteCommentResponse {
+  string message = 1;
+}
+
+service CommentService {
+  rpc CreateComment(CreateCommentRequest) returns (CreateCommentResponse){
+    option (google.api.http) = {
+      post: "/api/v1/comments"
+      body: "*"
+    };
+  }
+  rpc FindCommentByID(FindCommentByIDRequest) returns (FindCommentByIDResponse){
+    option (google.api.http) = {
+      get: "/api/v1/comments/{id}"
+    };
+  }
+	rpc FindCommentsByPostID(FindCommentsByPostIDRequest) returns (FindCommentsByPostIDResponse){
+    option (google.api.http) = {
+      get: "/api/v1/comments/{post_id}"
+    };
+  }
+	// rpc FindCommentsByUserID(FindCommentsByUserIDRequest) returns (FindCommentsByUserIDResponse){
+  //   option (google.api.http) = {
+  //     get: "/api/v1/comments"
+  //   };
+  // }
+	rpc FindCommentsByParentID(FindCommentsByParentIDRequest) returns (FindCommentsByParentIDResponse){
+    option (google.api.http) = {
+      get: "/api/v1/comments/{parent_id}"
+    };
+  }
+  rpc FindAllComments(FindAllCommentsRequest) returns (FindAllCommentsResponse){
+    option (google.api.http) = {
+      get: "/api/v1/comments"
+    };
+  }
+  rpc PatchComment(PatchCommentRequest) returns (PatchCommentResponse){
+    option (google.api.http) = {
+      patch: "/api/v1/comments/{id}"
+      body: "*"
+    };
+  }
+  rpc DeleteComment(DeleteCommentRequest) returns (DeleteCommentResponse){
+    option (google.api.http) = {
+      delete: "/api/v1/comments/{id}"
+    };
+  }
+}
