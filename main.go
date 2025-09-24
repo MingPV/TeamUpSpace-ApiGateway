@@ -154,7 +154,7 @@ func run() error {
 	defer cancel()
 
 	userServiceEndpoint := getEnv("USER_SERVICE_ENDPOINT", "localhost:50061")
-	postServiceEndpoint := getEnv("POST_SERVICE_ENDPOINT", "localhost:50062")
+	postServiceEndpoint := getEnv("POST_SERVICE_ENDPOINT", "localhost:50066")
 	eventServiceEndpoint := getEnv("EVENT_SERVICE_ENDPOINT", "localhost:50063")
 	notificationServiceEndpoint := getEnv("NOTIFICATION_SERVICE_ENDPOINT", "localhost:50065")
 	userServiceREST := getEnv("USER_SERVICE_REST", "http://localhost:8001") // REST port
