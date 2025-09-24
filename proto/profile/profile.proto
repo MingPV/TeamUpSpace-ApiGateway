@@ -15,6 +15,7 @@ message Profile {
   int32 age = 4;
   string university = 5;
   int32 year = 6;
+  string major = 14;
   bool is_graduated = 7;
   string profile_url = 8;
   string background_url = 9;
@@ -31,6 +32,7 @@ message CreateProfileRequest {
   int32 age = 4;
   string university = 5;
   int32 year = 6;
+  string major = 14;
   bool is_graduated = 7;
   string profile_url = 8;
   string background_url = 9;
@@ -63,6 +65,7 @@ message PatchProfileRequest {
   int32 age = 4;
   string university = 5;
   int32 year = 6;
+  string major = 14;
   bool is_graduated = 7;
   string profile_url = 8;
   string background_url = 9;

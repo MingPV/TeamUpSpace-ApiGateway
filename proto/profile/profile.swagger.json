@@ -184,6 +184,9 @@
           "type": "integer",
           "format": "int32"
         },
+        "major": {
+          "type": "string"
+        },
         "isGraduated": {
           "type": "boolean"
         },
@@ -223,6 +226,9 @@
         "year": {
           "type": "integer",
           "format": "int32"
+        },
+        "major": {
+          "type": "string"
         },
         "isGraduated": {
           "type": "boolean"
@@ -307,6 +313,9 @@
         "year": {
           "type": "integer",
           "format": "int32"
+        },
+        "major": {
+          "type": "string"
         },
         "isGraduated": {
           "type": "boolean"
