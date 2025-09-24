@@ -336,7 +336,7 @@ func RegisterUserReportServiceHandlerServer(ctx context.Context, mux *runtime.Se
 		var stream runtime.ServerTransportStream
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/userreport.UserReportService/FindAllByReporter", runtime.WithHTTPPathPattern("/api/v1/userReports/{reporter}"))
+		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/userreport.UserReportService/FindAllByReporter", runtime.WithHTTPPathPattern("/api/v1/userReports/reporter/{reporter}"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -356,7 +356,7 @@ func RegisterUserReportServiceHandlerServer(ctx context.Context, mux *runtime.Se
 		var stream runtime.ServerTransportStream
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/userreport.UserReportService/FindAllByReportTo", runtime.WithHTTPPathPattern("/api/v1/userReports/{report_to}"))
+		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/userreport.UserReportService/FindAllByReportTo", runtime.WithHTTPPathPattern("/api/v1/userReports/reportTo/{report_to}"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -508,7 +508,7 @@ func RegisterUserReportServiceHandlerClient(ctx context.Context, mux *runtime.Se
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/userreport.UserReportService/FindAllByReporter", runtime.WithHTTPPathPattern("/api/v1/userReports/{reporter}"))
+		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/userreport.UserReportService/FindAllByReporter", runtime.WithHTTPPathPattern("/api/v1/userReports/reporter/{reporter}"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -525,7 +525,7 @@ func RegisterUserReportServiceHandlerClient(ctx context.Context, mux *runtime.Se
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/userreport.UserReportService/FindAllByReportTo", runtime.WithHTTPPathPattern("/api/v1/userReports/{report_to}"))
+		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/userreport.UserReportService/FindAllByReportTo", runtime.WithHTTPPathPattern("/api/v1/userReports/reportTo/{report_to}"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -595,8 +595,8 @@ func RegisterUserReportServiceHandlerClient(ctx context.Context, mux *runtime.Se
 var (
 	pattern_UserReportService_CreateUserReport_0   = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2}, []string{"api", "v1", "userReports"}, ""))
 	pattern_UserReportService_FindUserReportByID_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 1, 0, 4, 1, 5, 3}, []string{"api", "v1", "userReports", "id"}, ""))
-	pattern_UserReportService_FindAllByReporter_0  = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 1, 0, 4, 1, 5, 3}, []string{"api", "v1", "userReports", "reporter"}, ""))
-	pattern_UserReportService_FindAllByReportTo_0  = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 1, 0, 4, 1, 5, 3}, []string{"api", "v1", "userReports", "report_to"}, ""))
+	pattern_UserReportService_FindAllByReporter_0  = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 2, 3, 1, 0, 4, 1, 5, 3}, []string{"api", "v1", "userReports", "reporter"}, ""))
+	pattern_UserReportService_FindAllByReportTo_0  = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 2, 3, 1, 0, 4, 1, 5, 4}, []string{"api", "v1", "userReports", "reportTo", "report_to"}, ""))
 	pattern_UserReportService_FindAllUserReports_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2}, []string{"api", "v1", "userReports"}, ""))
 	pattern_UserReportService_PatchUserReport_0    = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 1, 0, 4, 1, 5, 3}, []string{"api", "v1", "userReports", "id"}, ""))
 	pattern_UserReportService_DeleteUserReport_0   = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 1, 0, 4, 1, 5, 3}, []string{"api", "v1", "userReports", "id"}, ""))

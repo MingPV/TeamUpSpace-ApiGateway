@@ -88,12 +88,12 @@ service UserReportService {
   }
   rpc FindAllByReporter(FindAllByReporterRequest) returns (FindAllByReporterResponse){
     option (google.api.http) = {
-      get: "/api/v1/userReports/{reporter}"
+      get: "/api/v1/userReports/reporter/{reporter}"
     };
   }
   rpc FindAllByReportTo(FindAllByReportToRequest) returns (FindAllByReportToResponse){
     option (google.api.http) = {
-      get: "/api/v1/userReports/{report_to}"
+      get: "/api/v1/userReports/reportTo/{report_to}"
     };
   }
   rpc FindAllUserReports(FindAllUserReportsRequest) returns (FindAllUserReportsResponse){

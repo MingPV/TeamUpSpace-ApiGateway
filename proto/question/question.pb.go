@@ -681,12 +681,12 @@ const file_proto_question_question_proto_rawDesc = "" +
 	"\x15DeleteQuestionRequest\x12\x0e\n" +
 	"\x02id\x18\x01 \x01(\x05R\x02id\"2\n" +
 	"\x16DeleteQuestionResponse\x12\x18\n" +
-	"\amessage\x18\x01 \x01(\tR\amessage2\xf8\x05\n" +
+	"\amessage\x18\x01 \x01(\tR\amessage2\xfd\x05\n" +
 	"\x0fQuestionService\x12q\n" +
 	"\x0eCreateQuestion\x12\x1f.question.CreateQuestionRequest\x1a .question.CreateQuestionResponse\"\x1c\x82\xd3\xe4\x93\x02\x16:\x01*\"\x11/api/v1/questions\x12y\n" +
 	"\x10FindQuestionByID\x12!.question.FindQuestionByIDRequest\x1a\".question.FindQuestionByIDResponse\"\x1e\x82\xd3\xe4\x93\x02\x18\x12\x16/api/v1/questions/{id}\x12t\n" +
-	"\x10FindAllQuestions\x12!.question.FindAllQuestionsRequest\x1a\".question.FindAllQuestionsResponse\"\x19\x82\xd3\xe4\x93\x02\x13\x12\x11/api/v1/questions\x12\x96\x01\n" +
-	"\x18FindAllQuestionsByPostID\x12).question.FindAllQuestionsByPostIDRequest\x1a*.question.FindAllQuestionsByPostIDResponse\"#\x82\xd3\xe4\x93\x02\x1d\x12\x1b/api/v1/questions/{post_id}\x12s\n" +
+	"\x10FindAllQuestions\x12!.question.FindAllQuestionsRequest\x1a\".question.FindAllQuestionsResponse\"\x19\x82\xd3\xe4\x93\x02\x13\x12\x11/api/v1/questions\x12\x9b\x01\n" +
+	"\x18FindAllQuestionsByPostID\x12).question.FindAllQuestionsByPostIDRequest\x1a*.question.FindAllQuestionsByPostIDResponse\"(\x82\xd3\xe4\x93\x02\"\x12 /api/v1/questions/post/{post_id}\x12s\n" +
 	"\rPatchQuestion\x12\x1e.question.PatchQuestionRequest\x1a\x1f.question.PatchQuestionResponse\"!\x82\xd3\xe4\x93\x02\x1b:\x01*2\x16/api/v1/questions/{id}\x12s\n" +
 	"\x0eDeleteQuestion\x12\x1f.question.DeleteQuestionRequest\x1a .question.DeleteQuestionResponse\"\x1e\x82\xd3\xe4\x93\x02\x18*\x16/api/v1/questions/{id}B\x10Z\x0eproto/questionb\x06proto3"
 

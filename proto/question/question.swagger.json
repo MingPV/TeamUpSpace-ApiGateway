@@ -68,6 +68,37 @@
         ]
       }
     },
+    "/api/v1/questions/post/{postId}": {
+      "get": {
+        "operationId": "QuestionService_FindAllQuestionsByPostID",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/questionFindAllQuestionsByPostIDResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "postId",
+            "in": "path",
+            "required": true,
+            "type": "integer",
+            "format": "int32"
+          }
+        ],
+        "tags": [
+          "QuestionService"
+        ]
+      }
+    },
     "/api/v1/questions/{id}": {
       "get": {
         "operationId": "QuestionService_FindQuestionByID",
@@ -158,37 +189,6 @@
             "schema": {
               "$ref": "#/definitions/QuestionServicePatchQuestionBody"
             }
-          }
-        ],
-        "tags": [
-          "QuestionService"
-        ]
-      }
-    },
-    "/api/v1/questions/{postId}": {
-      "get": {
-        "operationId": "QuestionService_FindAllQuestionsByPostID",
-        "responses": {
-          "200": {
-            "description": "A successful response.",
-            "schema": {
-              "$ref": "#/definitions/questionFindAllQuestionsByPostIDResponse"
-            }
-          },
-          "default": {
-            "description": "An unexpected error response.",
-            "schema": {
-              "$ref": "#/definitions/rpcStatus"
-            }
-          }
-        },
-        "parameters": [
-          {
-            "name": "postId",
-            "in": "path",
-            "required": true,
-            "type": "integer",
-            "format": "int32"
           }
         ],
         "tags": [

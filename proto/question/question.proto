@@ -83,7 +83,7 @@ service QuestionService {
   }
     rpc FindAllQuestionsByPostID(FindAllQuestionsByPostIDRequest) returns (FindAllQuestionsByPostIDResponse){
     option (google.api.http) = {
-      get: "/api/v1/questions/{post_id}"
+      get: "/api/v1/questions/post/{post_id}"
     };
   }
     rpc PatchQuestion(PatchQuestionRequest) returns (PatchQuestionResponse){

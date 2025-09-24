@@ -68,6 +68,66 @@
         ]
       }
     },
+    "/api/v1/userReports/reportTo/{reportTo}": {
+      "get": {
+        "operationId": "UserReportService_FindAllByReportTo",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/userreportFindAllByReportToResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "reportTo",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "UserReportService"
+        ]
+      }
+    },
+    "/api/v1/userReports/reporter/{reporter}": {
+      "get": {
+        "operationId": "UserReportService_FindAllByReporter",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/userreportFindAllByReporterResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "reporter",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "UserReportService"
+        ]
+      }
+    },
     "/api/v1/userReports/{id}": {
       "get": {
         "operationId": "UserReportService_FindUserReportByID",
@@ -158,66 +218,6 @@
             "schema": {
               "$ref": "#/definitions/UserReportServicePatchUserReportBody"
             }
-          }
-        ],
-        "tags": [
-          "UserReportService"
-        ]
-      }
-    },
-    "/api/v1/userReports/{reportTo}": {
-      "get": {
-        "operationId": "UserReportService_FindAllByReportTo",
-        "responses": {
-          "200": {
-            "description": "A successful response.",
-            "schema": {
-              "$ref": "#/definitions/userreportFindAllByReportToResponse"
-            }
-          },
-          "default": {
-            "description": "An unexpected error response.",
-            "schema": {
-              "$ref": "#/definitions/rpcStatus"
-            }
-          }
-        },
-        "parameters": [
-          {
-            "name": "reportTo",
-            "in": "path",
-            "required": true,
-            "type": "string"
-          }
-        ],
-        "tags": [
-          "UserReportService"
-        ]
-      }
-    },
-    "/api/v1/userReports/{reporter}": {
-      "get": {
-        "operationId": "UserReportService_FindAllByReporter",
-        "responses": {
-          "200": {
-            "description": "A successful response.",
-            "schema": {
-              "$ref": "#/definitions/userreportFindAllByReporterResponse"
-            }
-          },
-          "default": {
-            "description": "An unexpected error response.",
-            "schema": {
-              "$ref": "#/definitions/rpcStatus"
-            }
-          }
-        },
-        "parameters": [
-          {
-            "name": "reporter",
-            "in": "path",
-            "required": true,
-            "type": "string"
           }
         ],
         "tags": [

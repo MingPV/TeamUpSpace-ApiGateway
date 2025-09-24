@@ -796,12 +796,12 @@ const file_proto_userreport_userreport_proto_rawDesc = "" +
 	"\x17DeleteUserReportRequest\x12\x0e\n" +
 	"\x02id\x18\x01 \x01(\x05R\x02id\"4\n" +
 	"\x18DeleteUserReportResponse\x12\x18\n" +
-	"\amessage\x18\x01 \x01(\tR\amessage2\xb6\a\n" +
+	"\amessage\x18\x01 \x01(\tR\amessage2\xc8\a\n" +
 	"\x11UserReportService\x12}\n" +
 	"\x10CreateUserReport\x12#.userreport.CreateUserReportRequest\x1a$.userreport.CreateUserReportResponse\"\x1e\x82\xd3\xe4\x93\x02\x18:\x01*\"\x13/api/v1/userReports\x12\x85\x01\n" +
-	"\x12FindUserReportByID\x12%.userreport.FindUserReportByIDRequest\x1a&.userreport.FindUserReportByIDResponse\" \x82\xd3\xe4\x93\x02\x1a\x12\x18/api/v1/userReports/{id}\x12\x88\x01\n" +
-	"\x11FindAllByReporter\x12$.userreport.FindAllByReporterRequest\x1a%.userreport.FindAllByReporterResponse\"&\x82\xd3\xe4\x93\x02 \x12\x1e/api/v1/userReports/{reporter}\x12\x89\x01\n" +
-	"\x11FindAllByReportTo\x12$.userreport.FindAllByReportToRequest\x1a%.userreport.FindAllByReportToResponse\"'\x82\xd3\xe4\x93\x02!\x12\x1f/api/v1/userReports/{report_to}\x12\x80\x01\n" +
+	"\x12FindUserReportByID\x12%.userreport.FindUserReportByIDRequest\x1a&.userreport.FindUserReportByIDResponse\" \x82\xd3\xe4\x93\x02\x1a\x12\x18/api/v1/userReports/{id}\x12\x91\x01\n" +
+	"\x11FindAllByReporter\x12$.userreport.FindAllByReporterRequest\x1a%.userreport.FindAllByReporterResponse\"/\x82\xd3\xe4\x93\x02)\x12'/api/v1/userReports/reporter/{reporter}\x12\x92\x01\n" +
+	"\x11FindAllByReportTo\x12$.userreport.FindAllByReportToRequest\x1a%.userreport.FindAllByReportToResponse\"0\x82\xd3\xe4\x93\x02*\x12(/api/v1/userReports/reportTo/{report_to}\x12\x80\x01\n" +
 	"\x12FindAllUserReports\x12%.userreport.FindAllUserReportsRequest\x1a&.userreport.FindAllUserReportsResponse\"\x1b\x82\xd3\xe4\x93\x02\x15\x12\x13/api/v1/userReports\x12\x7f\n" +
 	"\x0fPatchUserReport\x12\".userreport.PatchUserReportRequest\x1a#.userreport.PatchUserReportResponse\"#\x82\xd3\xe4\x93\x02\x1d:\x01*2\x18/api/v1/userReports/{id}\x12\x7f\n" +
 	"\x10DeleteUserReport\x12#.userreport.DeleteUserReportRequest\x1a$.userreport.DeleteUserReportResponse\" \x82\xd3\xe4\x93\x02\x1a*\x18/api/v1/userReports/{id}B\x12Z\x10proto/userreportb\x06proto3"
