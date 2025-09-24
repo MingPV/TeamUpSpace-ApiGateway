@@ -48,7 +48,7 @@
         ]
       }
     },
-    "/api/v1/postLikes/{postId}": {
+    "/api/v1/postLikes/post/{postId}": {
       "get": {
         "operationId": "PostLikeService_FindAllPostLikesByPostID",
         "responses": {
@@ -72,6 +72,36 @@
             "required": true,
             "type": "integer",
             "format": "int32"
+          }
+        ],
+        "tags": [
+          "PostLikeService"
+        ]
+      }
+    },
+    "/api/v1/postLikes/user/{userId}": {
+      "get": {
+        "operationId": "PostLikeService_FindAllPostLikesByUserID",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/postlikeFindAllPostLikesByUserIDResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "userId",
+            "in": "path",
+            "required": true,
+            "type": "string"
           }
         ],
         "tags": [
@@ -104,36 +134,6 @@
             "type": "integer",
             "format": "int32"
           },
-          {
-            "name": "userId",
-            "in": "path",
-            "required": true,
-            "type": "string"
-          }
-        ],
-        "tags": [
-          "PostLikeService"
-        ]
-      }
-    },
-    "/api/v1/postLikes/{userId}": {
-      "get": {
-        "operationId": "PostLikeService_FindAllPostLikesByUserID",
-        "responses": {
-          "200": {
-            "description": "A successful response.",
-            "schema": {
-              "$ref": "#/definitions/postlikeFindAllPostLikesByUserIDResponse"
-            }
-          },
-          "default": {
-            "description": "An unexpected error response.",
-            "schema": {
-              "$ref": "#/definitions/rpcStatus"
-            }
-          }
-        },
-        "parameters": [
           {
             "name": "userId",
             "in": "path",

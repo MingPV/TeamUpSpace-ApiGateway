@@ -56,12 +56,12 @@ service PostLikeService {
   }
     rpc FindAllPostLikesByPostID(FindAllPostLikesByPostIDRequest) returns (FindAllPostLikesByPostIDResponse){
     option (google.api.http) = {
-      get: "/api/v1/postLikes/{post_id}"
+      get: "/api/v1/postLikes/post/{post_id}"
     };
   }
     rpc FindAllPostLikesByUserID(FindAllPostLikesByUserIDRequest) returns (FindAllPostLikesByUserIDResponse){
     option (google.api.http) = {
-      get: "/api/v1/postLikes/{user_id}"
+      get: "/api/v1/postLikes/user/{user_id}"
     };
   }
     rpc DeletePostLike(DeletePostLikeRequest) returns (DeletePostLikeResponse){

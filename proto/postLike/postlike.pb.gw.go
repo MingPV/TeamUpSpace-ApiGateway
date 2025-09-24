@@ -227,7 +227,7 @@ func RegisterPostLikeServiceHandlerServer(ctx context.Context, mux *runtime.Serv
 		var stream runtime.ServerTransportStream
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/postlike.PostLikeService/FindAllPostLikesByPostID", runtime.WithHTTPPathPattern("/api/v1/postLikes/{post_id}"))
+		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/postlike.PostLikeService/FindAllPostLikesByPostID", runtime.WithHTTPPathPattern("/api/v1/postLikes/post/{post_id}"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -247,7 +247,7 @@ func RegisterPostLikeServiceHandlerServer(ctx context.Context, mux *runtime.Serv
 		var stream runtime.ServerTransportStream
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/postlike.PostLikeService/FindAllPostLikesByUserID", runtime.WithHTTPPathPattern("/api/v1/postLikes/{user_id}"))
+		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/postlike.PostLikeService/FindAllPostLikesByUserID", runtime.WithHTTPPathPattern("/api/v1/postLikes/user/{user_id}"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -342,7 +342,7 @@ func RegisterPostLikeServiceHandlerClient(ctx context.Context, mux *runtime.Serv
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/postlike.PostLikeService/FindAllPostLikesByPostID", runtime.WithHTTPPathPattern("/api/v1/postLikes/{post_id}"))
+		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/postlike.PostLikeService/FindAllPostLikesByPostID", runtime.WithHTTPPathPattern("/api/v1/postLikes/post/{post_id}"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -359,7 +359,7 @@ func RegisterPostLikeServiceHandlerClient(ctx context.Context, mux *runtime.Serv
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/postlike.PostLikeService/FindAllPostLikesByUserID", runtime.WithHTTPPathPattern("/api/v1/postLikes/{user_id}"))
+		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/postlike.PostLikeService/FindAllPostLikesByUserID", runtime.WithHTTPPathPattern("/api/v1/postLikes/user/{user_id}"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -394,8 +394,8 @@ func RegisterPostLikeServiceHandlerClient(ctx context.Context, mux *runtime.Serv
 
 var (
 	pattern_PostLikeService_CreatePostLike_0           = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2}, []string{"api", "v1", "postLikes"}, ""))
-	pattern_PostLikeService_FindAllPostLikesByPostID_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 1, 0, 4, 1, 5, 3}, []string{"api", "v1", "postLikes", "post_id"}, ""))
-	pattern_PostLikeService_FindAllPostLikesByUserID_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 1, 0, 4, 1, 5, 3}, []string{"api", "v1", "postLikes", "user_id"}, ""))
+	pattern_PostLikeService_FindAllPostLikesByPostID_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 2, 3, 1, 0, 4, 1, 5, 4}, []string{"api", "v1", "postLikes", "post", "post_id"}, ""))
+	pattern_PostLikeService_FindAllPostLikesByUserID_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 2, 3, 1, 0, 4, 1, 5, 4}, []string{"api", "v1", "postLikes", "user", "user_id"}, ""))
 	pattern_PostLikeService_DeletePostLike_0           = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 1, 0, 4, 1, 5, 3, 1, 0, 4, 1, 5, 4}, []string{"api", "v1", "postLikes", "post_id", "user_id"}, ""))
 )
 

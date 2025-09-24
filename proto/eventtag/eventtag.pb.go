@@ -2,7 +2,7 @@
 // versions:
 // 	protoc-gen-go v1.36.9
 // 	protoc        v6.32.0
-// source: proto/eventTag/eventtag.proto
+// source: proto/eventtag/eventtag.proto
 
 package eventtag
 
@@ -34,7 +34,7 @@ type EventTag struct {
 
 func (x *EventTag) Reset() {
 	*x = EventTag{}
-	mi := &file_proto_eventTag_eventtag_proto_msgTypes[0]
+	mi := &file_proto_eventtag_eventtag_proto_msgTypes[0]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -46,7 +46,7 @@ func (x *EventTag) String() string {
 func (*EventTag) ProtoMessage() {}
 
 func (x *EventTag) ProtoReflect() protoreflect.Message {
-	mi := &file_proto_eventTag_eventtag_proto_msgTypes[0]
+	mi := &file_proto_eventtag_eventtag_proto_msgTypes[0]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -59,7 +59,7 @@ func (x *EventTag) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use EventTag.ProtoReflect.Descriptor instead.
 func (*EventTag) Descriptor() ([]byte, []int) {
-	return file_proto_eventTag_eventtag_proto_rawDescGZIP(), []int{0}
+	return file_proto_eventtag_eventtag_proto_rawDescGZIP(), []int{0}
 }
 
 func (x *EventTag) GetEventId() uint32 {
@@ -100,7 +100,7 @@ type CreateEventTagRequest struct {
 
 func (x *CreateEventTagRequest) Reset() {
 	*x = CreateEventTagRequest{}
-	mi := &file_proto_eventTag_eventtag_proto_msgTypes[1]
+	mi := &file_proto_eventtag_eventtag_proto_msgTypes[1]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -112,7 +112,7 @@ func (x *CreateEventTagRequest) String() string {
 func (*CreateEventTagRequest) ProtoMessage() {}
 
 func (x *CreateEventTagRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_proto_eventTag_eventtag_proto_msgTypes[1]
+	mi := &file_proto_eventtag_eventtag_proto_msgTypes[1]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -125,7 +125,7 @@ func (x *CreateEventTagRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use CreateEventTagRequest.ProtoReflect.Descriptor instead.
 func (*CreateEventTagRequest) Descriptor() ([]byte, []int) {
-	return file_proto_eventTag_eventtag_proto_rawDescGZIP(), []int{1}
+	return file_proto_eventtag_eventtag_proto_rawDescGZIP(), []int{1}
 }
 
 func (x *CreateEventTagRequest) GetEventId() uint32 {
@@ -151,7 +151,7 @@ type CreateEventTagResponse struct {
 
 func (x *CreateEventTagResponse) Reset() {
 	*x = CreateEventTagResponse{}
-	mi := &file_proto_eventTag_eventtag_proto_msgTypes[2]
+	mi := &file_proto_eventtag_eventtag_proto_msgTypes[2]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -163,7 +163,7 @@ func (x *CreateEventTagResponse) String() string {
 func (*CreateEventTagResponse) ProtoMessage() {}
 
 func (x *CreateEventTagResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_proto_eventTag_eventtag_proto_msgTypes[2]
+	mi := &file_proto_eventtag_eventtag_proto_msgTypes[2]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -176,7 +176,7 @@ func (x *CreateEventTagResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use CreateEventTagResponse.ProtoReflect.Descriptor instead.
 func (*CreateEventTagResponse) Descriptor() ([]byte, []int) {
-	return file_proto_eventTag_eventtag_proto_rawDescGZIP(), []int{2}
+	return file_proto_eventtag_eventtag_proto_rawDescGZIP(), []int{2}
 }
 
 func (x *CreateEventTagResponse) GetEventTag() *EventTag {
@@ -196,7 +196,7 @@ type FindByEventAndTagIDRequest struct {
 
 func (x *FindByEventAndTagIDRequest) Reset() {
 	*x = FindByEventAndTagIDRequest{}
-	mi := &file_proto_eventTag_eventtag_proto_msgTypes[3]
+	mi := &file_proto_eventtag_eventtag_proto_msgTypes[3]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -208,7 +208,7 @@ func (x *FindByEventAndTagIDRequest) String() string {
 func (*FindByEventAndTagIDRequest) ProtoMessage() {}
 
 func (x *FindByEventAndTagIDRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_proto_eventTag_eventtag_proto_msgTypes[3]
+	mi := &file_proto_eventtag_eventtag_proto_msgTypes[3]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -221,7 +221,7 @@ func (x *FindByEventAndTagIDRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use FindByEventAndTagIDRequest.ProtoReflect.Descriptor instead.
 func (*FindByEventAndTagIDRequest) Descriptor() ([]byte, []int) {
-	return file_proto_eventTag_eventtag_proto_rawDescGZIP(), []int{3}
+	return file_proto_eventtag_eventtag_proto_rawDescGZIP(), []int{3}
 }
 
 func (x *FindByEventAndTagIDRequest) GetEventId() uint32 {
@@ -247,7 +247,7 @@ type FindByEventAndTagIDResponse struct {
 
 func (x *FindByEventAndTagIDResponse) Reset() {
 	*x = FindByEventAndTagIDResponse{}
-	mi := &file_proto_eventTag_eventtag_proto_msgTypes[4]
+	mi := &file_proto_eventtag_eventtag_proto_msgTypes[4]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -259,7 +259,7 @@ func (x *FindByEventAndTagIDResponse) String() string {
 func (*FindByEventAndTagIDResponse) ProtoMessage() {}
 
 func (x *FindByEventAndTagIDResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_proto_eventTag_eventtag_proto_msgTypes[4]
+	mi := &file_proto_eventtag_eventtag_proto_msgTypes[4]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -272,7 +272,7 @@ func (x *FindByEventAndTagIDResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use FindByEventAndTagIDResponse.ProtoReflect.Descriptor instead.
 func (*FindByEventAndTagIDResponse) Descriptor() ([]byte, []int) {
-	return file_proto_eventTag_eventtag_proto_rawDescGZIP(), []int{4}
+	return file_proto_eventtag_eventtag_proto_rawDescGZIP(), []int{4}
 }
 
 func (x *FindByEventAndTagIDResponse) GetEventTag() *EventTag {
@@ -291,7 +291,7 @@ type FindByEventIDRequest struct {
 
 func (x *FindByEventIDRequest) Reset() {
 	*x = FindByEventIDRequest{}
-	mi := &file_proto_eventTag_eventtag_proto_msgTypes[5]
+	mi := &file_proto_eventtag_eventtag_proto_msgTypes[5]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -303,7 +303,7 @@ func (x *FindByEventIDRequest) String() string {
 func (*FindByEventIDRequest) ProtoMessage() {}
 
 func (x *FindByEventIDRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_proto_eventTag_eventtag_proto_msgTypes[5]
+	mi := &file_proto_eventtag_eventtag_proto_msgTypes[5]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -316,7 +316,7 @@ func (x *FindByEventIDRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use FindByEventIDRequest.ProtoReflect.Descriptor instead.
 func (*FindByEventIDRequest) Descriptor() ([]byte, []int) {
-	return file_proto_eventTag_eventtag_proto_rawDescGZIP(), []int{5}
+	return file_proto_eventtag_eventtag_proto_rawDescGZIP(), []int{5}
 }
 
 func (x *FindByEventIDRequest) GetEventId() uint32 {
@@ -335,7 +335,7 @@ type FindByEventIDResponse struct {
 
 func (x *FindByEventIDResponse) Reset() {
 	*x = FindByEventIDResponse{}
-	mi := &file_proto_eventTag_eventtag_proto_msgTypes[6]
+	mi := &file_proto_eventtag_eventtag_proto_msgTypes[6]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -347,7 +347,7 @@ func (x *FindByEventIDResponse) String() string {
 func (*FindByEventIDResponse) ProtoMessage() {}
 
 func (x *FindByEventIDResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_proto_eventTag_eventtag_proto_msgTypes[6]
+	mi := &file_proto_eventtag_eventtag_proto_msgTypes[6]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -360,7 +360,7 @@ func (x *FindByEventIDResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use FindByEventIDResponse.ProtoReflect.Descriptor instead.
 func (*FindByEventIDResponse) Descriptor() ([]byte, []int) {
-	return file_proto_eventTag_eventtag_proto_rawDescGZIP(), []int{6}
+	return file_proto_eventtag_eventtag_proto_rawDescGZIP(), []int{6}
 }
 
 func (x *FindByEventIDResponse) GetEventTags() []*EventTag {
@@ -379,7 +379,7 @@ type FindByTagIDRequest struct {
 
 func (x *FindByTagIDRequest) Reset() {
 	*x = FindByTagIDRequest{}
-	mi := &file_proto_eventTag_eventtag_proto_msgTypes[7]
+	mi := &file_proto_eventtag_eventtag_proto_msgTypes[7]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -391,7 +391,7 @@ func (x *FindByTagIDRequest) String() string {
 func (*FindByTagIDRequest) ProtoMessage() {}
 
 func (x *FindByTagIDRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_proto_eventTag_eventtag_proto_msgTypes[7]
+	mi := &file_proto_eventtag_eventtag_proto_msgTypes[7]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -404,7 +404,7 @@ func (x *FindByTagIDRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use FindByTagIDRequest.ProtoReflect.Descriptor instead.
 func (*FindByTagIDRequest) Descriptor() ([]byte, []int) {
-	return file_proto_eventTag_eventtag_proto_rawDescGZIP(), []int{7}
+	return file_proto_eventtag_eventtag_proto_rawDescGZIP(), []int{7}
 }
 
 func (x *FindByTagIDRequest) GetTagId() uint32 {
@@ -423,7 +423,7 @@ type FindByTagIDResponse struct {
 
 func (x *FindByTagIDResponse) Reset() {
 	*x = FindByTagIDResponse{}
-	mi := &file_proto_eventTag_eventtag_proto_msgTypes[8]
+	mi := &file_proto_eventtag_eventtag_proto_msgTypes[8]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -435,7 +435,7 @@ func (x *FindByTagIDResponse) String() string {
 func (*FindByTagIDResponse) ProtoMessage() {}
 
 func (x *FindByTagIDResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_proto_eventTag_eventtag_proto_msgTypes[8]
+	mi := &file_proto_eventtag_eventtag_proto_msgTypes[8]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -448,7 +448,7 @@ func (x *FindByTagIDResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use FindByTagIDResponse.ProtoReflect.Descriptor instead.
 func (*FindByTagIDResponse) Descriptor() ([]byte, []int) {
-	return file_proto_eventTag_eventtag_proto_rawDescGZIP(), []int{8}
+	return file_proto_eventtag_eventtag_proto_rawDescGZIP(), []int{8}
 }
 
 func (x *FindByTagIDResponse) GetEventTags() []*EventTag {
@@ -466,7 +466,7 @@ type FindAllEventTagsRequest struct {
 
 func (x *FindAllEventTagsRequest) Reset() {
 	*x = FindAllEventTagsRequest{}
-	mi := &file_proto_eventTag_eventtag_proto_msgTypes[9]
+	mi := &file_proto_eventtag_eventtag_proto_msgTypes[9]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -478,7 +478,7 @@ func (x *FindAllEventTagsRequest) String() string {
 func (*FindAllEventTagsRequest) ProtoMessage() {}
 
 func (x *FindAllEventTagsRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_proto_eventTag_eventtag_proto_msgTypes[9]
+	mi := &file_proto_eventtag_eventtag_proto_msgTypes[9]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -491,7 +491,7 @@ func (x *FindAllEventTagsRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use FindAllEventTagsRequest.ProtoReflect.Descriptor instead.
 func (*FindAllEventTagsRequest) Descriptor() ([]byte, []int) {
-	return file_proto_eventTag_eventtag_proto_rawDescGZIP(), []int{9}
+	return file_proto_eventtag_eventtag_proto_rawDescGZIP(), []int{9}
 }
 
 type FindAllEventTagsResponse struct {
@@ -503,7 +503,7 @@ type FindAllEventTagsResponse struct {
 
 func (x *FindAllEventTagsResponse) Reset() {
 	*x = FindAllEventTagsResponse{}
-	mi := &file_proto_eventTag_eventtag_proto_msgTypes[10]
+	mi := &file_proto_eventtag_eventtag_proto_msgTypes[10]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -515,7 +515,7 @@ func (x *FindAllEventTagsResponse) String() string {
 func (*FindAllEventTagsResponse) ProtoMessage() {}
 
 func (x *FindAllEventTagsResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_proto_eventTag_eventtag_proto_msgTypes[10]
+	mi := &file_proto_eventtag_eventtag_proto_msgTypes[10]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -528,7 +528,7 @@ func (x *FindAllEventTagsResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use FindAllEventTagsResponse.ProtoReflect.Descriptor instead.
 func (*FindAllEventTagsResponse) Descriptor() ([]byte, []int) {
-	return file_proto_eventTag_eventtag_proto_rawDescGZIP(), []int{10}
+	return file_proto_eventtag_eventtag_proto_rawDescGZIP(), []int{10}
 }
 
 func (x *FindAllEventTagsResponse) GetEventTags() []*EventTag {
@@ -548,7 +548,7 @@ type DeleteEventTagRequest struct {
 
 func (x *DeleteEventTagRequest) Reset() {
 	*x = DeleteEventTagRequest{}
-	mi := &file_proto_eventTag_eventtag_proto_msgTypes[11]
+	mi := &file_proto_eventtag_eventtag_proto_msgTypes[11]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -560,7 +560,7 @@ func (x *DeleteEventTagRequest) String() string {
 func (*DeleteEventTagRequest) ProtoMessage() {}
 
 func (x *DeleteEventTagRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_proto_eventTag_eventtag_proto_msgTypes[11]
+	mi := &file_proto_eventtag_eventtag_proto_msgTypes[11]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -573,7 +573,7 @@ func (x *DeleteEventTagRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use DeleteEventTagRequest.ProtoReflect.Descriptor instead.
 func (*DeleteEventTagRequest) Descriptor() ([]byte, []int) {
-	return file_proto_eventTag_eventtag_proto_rawDescGZIP(), []int{11}
+	return file_proto_eventtag_eventtag_proto_rawDescGZIP(), []int{11}
 }
 
 func (x *DeleteEventTagRequest) GetEventId() uint32 {
@@ -599,7 +599,7 @@ type DeleteEventTagResponse struct {
 
 func (x *DeleteEventTagResponse) Reset() {
 	*x = DeleteEventTagResponse{}
-	mi := &file_proto_eventTag_eventtag_proto_msgTypes[12]
+	mi := &file_proto_eventtag_eventtag_proto_msgTypes[12]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -611,7 +611,7 @@ func (x *DeleteEventTagResponse) String() string {
 func (*DeleteEventTagResponse) ProtoMessage() {}
 
 func (x *DeleteEventTagResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_proto_eventTag_eventtag_proto_msgTypes[12]
+	mi := &file_proto_eventtag_eventtag_proto_msgTypes[12]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -624,7 +624,7 @@ func (x *DeleteEventTagResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use DeleteEventTagResponse.ProtoReflect.Descriptor instead.
 func (*DeleteEventTagResponse) Descriptor() ([]byte, []int) {
-	return file_proto_eventTag_eventtag_proto_rawDescGZIP(), []int{12}
+	return file_proto_eventtag_eventtag_proto_rawDescGZIP(), []int{12}
 }
 
 func (x *DeleteEventTagResponse) GetMessage() string {
@@ -634,11 +634,11 @@ func (x *DeleteEventTagResponse) GetMessage() string {
 	return ""
 }
 
-var File_proto_eventTag_eventtag_proto protoreflect.FileDescriptor
+var File_proto_eventtag_eventtag_proto protoreflect.FileDescriptor
 
-const file_proto_eventTag_eventtag_proto_rawDesc = "" +
+const file_proto_eventtag_eventtag_proto_rawDesc = "" +
 	"\n" +
-	"\x1dproto/eventTag/eventtag.proto\x12\beventtag\x1a\x1cgoogle/api/annotations.proto\"z\n" +
+	"\x1dproto/eventtag/eventtag.proto\x12\beventtag\x1a\x1cgoogle/api/annotations.proto\"z\n" +
 	"\bEventTag\x12\x19\n" +
 	"\bevent_id\x18\x01 \x01(\rR\aeventId\x12\x15\n" +
 	"\x06tag_id\x18\x02 \x01(\rR\x05tagId\x12\x1d\n" +
@@ -684,19 +684,19 @@ const file_proto_eventTag_eventtag_proto_rawDesc = "" +
 	"\x0eDeleteEventTag\x12\x1f.eventtag.DeleteEventTagRequest\x1a .eventtag.DeleteEventTagResponse\"-\x82\xd3\xe4\x93\x02'*%/api/v1/eventTags/{event_id}/{tag_id}B\x10Z\x0eproto/eventtagb\x06proto3"
 
 var (
-	file_proto_eventTag_eventtag_proto_rawDescOnce sync.Once
-	file_proto_eventTag_eventtag_proto_rawDescData []byte
+	file_proto_eventtag_eventtag_proto_rawDescOnce sync.Once
+	file_proto_eventtag_eventtag_proto_rawDescData []byte
 )
 
-func file_proto_eventTag_eventtag_proto_rawDescGZIP() []byte {
-	file_proto_eventTag_eventtag_proto_rawDescOnce.Do(func() {
-		file_proto_eventTag_eventtag_proto_rawDescData = protoimpl.X.CompressGZIP(unsafe.Slice(unsafe.StringData(file_proto_eventTag_eventtag_proto_rawDesc), len(file_proto_eventTag_eventtag_proto_rawDesc)))
+func file_proto_eventtag_eventtag_proto_rawDescGZIP() []byte {
+	file_proto_eventtag_eventtag_proto_rawDescOnce.Do(func() {
+		file_proto_eventtag_eventtag_proto_rawDescData = protoimpl.X.CompressGZIP(unsafe.Slice(unsafe.StringData(file_proto_eventtag_eventtag_proto_rawDesc), len(file_proto_eventtag_eventtag_proto_rawDesc)))
 	})
-	return file_proto_eventTag_eventtag_proto_rawDescData
+	return file_proto_eventtag_eventtag_proto_rawDescData
 }
 
-var file_proto_eventTag_eventtag_proto_msgTypes = make([]protoimpl.MessageInfo, 13)
-var file_proto_eventTag_eventtag_proto_goTypes = []any{
+var file_proto_eventtag_eventtag_proto_msgTypes = make([]protoimpl.MessageInfo, 13)
+var file_proto_eventtag_eventtag_proto_goTypes = []any{
 	(*EventTag)(nil),                    // 0: eventtag.EventTag
 	(*CreateEventTagRequest)(nil),       // 1: eventtag.CreateEventTagRequest
 	(*CreateEventTagResponse)(nil),      // 2: eventtag.CreateEventTagResponse
@@ -711,7 +711,7 @@ var file_proto_eventTag_eventtag_proto_goTypes = []any{
 	(*DeleteEventTagRequest)(nil),       // 11: eventtag.DeleteEventTagRequest
 	(*DeleteEventTagResponse)(nil),      // 12: eventtag.DeleteEventTagResponse
 }
-var file_proto_eventTag_eventtag_proto_depIdxs = []int32{
+var file_proto_eventtag_eventtag_proto_depIdxs = []int32{
 	0,  // 0: eventtag.CreateEventTagResponse.event_tag:type_name -> eventtag.EventTag
 	0,  // 1: eventtag.FindByEventAndTagIDResponse.event_tag:type_name -> eventtag.EventTag
 	0,  // 2: eventtag.FindByEventIDResponse.event_tags:type_name -> eventtag.EventTag
@@ -736,26 +736,26 @@ var file_proto_eventTag_eventtag_proto_depIdxs = []int32{
 	0,  // [0:5] is the sub-list for field type_name
 }
 
-func init() { file_proto_eventTag_eventtag_proto_init() }
-func file_proto_eventTag_eventtag_proto_init() {
-	if File_proto_eventTag_eventtag_proto != nil {
+func init() { file_proto_eventtag_eventtag_proto_init() }
+func file_proto_eventtag_eventtag_proto_init() {
+	if File_proto_eventtag_eventtag_proto != nil {
 		return
 	}
 	type x struct{}
 	out := protoimpl.TypeBuilder{
 		File: protoimpl.DescBuilder{
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
-			RawDescriptor: unsafe.Slice(unsafe.StringData(file_proto_eventTag_eventtag_proto_rawDesc), len(file_proto_eventTag_eventtag_proto_rawDesc)),
+			RawDescriptor: unsafe.Slice(unsafe.StringData(file_proto_eventtag_eventtag_proto_rawDesc), len(file_proto_eventtag_eventtag_proto_rawDesc)),
 			NumEnums:      0,
 			NumMessages:   13,
 			NumExtensions: 0,
 			NumServices:   1,
 		},
-		GoTypes:           file_proto_eventTag_eventtag_proto_goTypes,
-		DependencyIndexes: file_proto_eventTag_eventtag_proto_depIdxs,
-		MessageInfos:      file_proto_eventTag_eventtag_proto_msgTypes,
+		GoTypes:           file_proto_eventtag_eventtag_proto_goTypes,
+		DependencyIndexes: file_proto_eventtag_eventtag_proto_depIdxs,
+		MessageInfos:      file_proto_eventtag_eventtag_proto_msgTypes,
 	}.Build()
-	File_proto_eventTag_eventtag_proto = out.File
-	file_proto_eventTag_eventtag_proto_goTypes = nil
-	file_proto_eventTag_eventtag_proto_depIdxs = nil
+	File_proto_eventtag_eventtag_proto = out.File
+	file_proto_eventtag_eventtag_proto_goTypes = nil
+	file_proto_eventtag_eventtag_proto_depIdxs = nil
 }

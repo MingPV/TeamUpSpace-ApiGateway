@@ -478,11 +478,11 @@ const file_proto_postlike_postlike_proto_rawDesc = "" +
 	"\apost_id\x18\x01 \x01(\x05R\x06postId\x12\x17\n" +
 	"\auser_id\x18\x02 \x01(\tR\x06userId\"2\n" +
 	"\x16DeletePostLikeResponse\x12\x18\n" +
-	"\amessage\x18\x01 \x01(\tR\amessage2\xbb\x04\n" +
+	"\amessage\x18\x01 \x01(\tR\amessage2\xc5\x04\n" +
 	"\x0fPostLikeService\x12q\n" +
-	"\x0eCreatePostLike\x12\x1f.postlike.CreatePostLikeRequest\x1a .postlike.CreatePostLikeResponse\"\x1c\x82\xd3\xe4\x93\x02\x16:\x01*\"\x11/api/v1/postLikes\x12\x96\x01\n" +
-	"\x18FindAllPostLikesByPostID\x12).postlike.FindAllPostLikesByPostIDRequest\x1a*.postlike.FindAllPostLikesByPostIDResponse\"#\x82\xd3\xe4\x93\x02\x1d\x12\x1b/api/v1/postLikes/{post_id}\x12\x96\x01\n" +
-	"\x18FindAllPostLikesByUserID\x12).postlike.FindAllPostLikesByUserIDRequest\x1a*.postlike.FindAllPostLikesByUserIDResponse\"#\x82\xd3\xe4\x93\x02\x1d\x12\x1b/api/v1/postLikes/{user_id}\x12\x82\x01\n" +
+	"\x0eCreatePostLike\x12\x1f.postlike.CreatePostLikeRequest\x1a .postlike.CreatePostLikeResponse\"\x1c\x82\xd3\xe4\x93\x02\x16:\x01*\"\x11/api/v1/postLikes\x12\x9b\x01\n" +
+	"\x18FindAllPostLikesByPostID\x12).postlike.FindAllPostLikesByPostIDRequest\x1a*.postlike.FindAllPostLikesByPostIDResponse\"(\x82\xd3\xe4\x93\x02\"\x12 /api/v1/postLikes/post/{post_id}\x12\x9b\x01\n" +
+	"\x18FindAllPostLikesByUserID\x12).postlike.FindAllPostLikesByUserIDRequest\x1a*.postlike.FindAllPostLikesByUserIDResponse\"(\x82\xd3\xe4\x93\x02\"\x12 /api/v1/postLikes/user/{user_id}\x12\x82\x01\n" +
 	"\x0eDeletePostLike\x12\x1f.postlike.DeletePostLikeRequest\x1a .postlike.DeletePostLikeResponse\"-\x82\xd3\xe4\x93\x02'\"%/api/v1/postLikes/{post_id}/{user_id}B\x10Z\x0eproto/postlikeb\x06proto3"
 
 var (
