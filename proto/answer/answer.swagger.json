@@ -68,6 +68,37 @@
         ]
       }
     },
+    "/api/v1/answers/post/{postId}": {
+      "get": {
+        "operationId": "AnswerService_FindAllAnswersByPostID",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/answerFindAllAnswersByPostIDResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "postId",
+            "in": "path",
+            "required": true,
+            "type": "integer",
+            "format": "int32"
+          }
+        ],
+        "tags": [
+          "AnswerService"
+        ]
+      }
+    },
     "/api/v1/answers/{id}": {
       "get": {
         "operationId": "AnswerService_FindAnswerByID",
@@ -117,37 +148,6 @@
         "parameters": [
           {
             "name": "id",
-            "in": "path",
-            "required": true,
-            "type": "integer",
-            "format": "int32"
-          }
-        ],
-        "tags": [
-          "AnswerService"
-        ]
-      }
-    },
-    "/api/v1/answers/{postId}": {
-      "get": {
-        "operationId": "AnswerService_FindAllAnswersByPostID",
-        "responses": {
-          "200": {
-            "description": "A successful response.",
-            "schema": {
-              "$ref": "#/definitions/answerFindAllAnswersByPostIDResponse"
-            }
-          },
-          "default": {
-            "description": "An unexpected error response.",
-            "schema": {
-              "$ref": "#/definitions/rpcStatus"
-            }
-          }
-        },
-        "parameters": [
-          {
-            "name": "postId",
             "in": "path",
             "required": true,
             "type": "integer",

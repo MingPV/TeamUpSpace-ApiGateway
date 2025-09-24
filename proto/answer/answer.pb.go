@@ -597,11 +597,11 @@ const file_proto_answer_answer_proto_rawDesc = "" +
 	"\x13DeleteAnswerRequest\x12\x0e\n" +
 	"\x02id\x18\x01 \x01(\x05R\x02id\"0\n" +
 	"\x14DeleteAnswerResponse\x12\x18\n" +
-	"\amessage\x18\x01 \x01(\tR\amessage2\xc5\x04\n" +
+	"\amessage\x18\x01 \x01(\tR\amessage2\xca\x04\n" +
 	"\rAnswerService\x12e\n" +
 	"\fCreateAnswer\x12\x1b.answer.CreateAnswerRequest\x1a\x1c.answer.CreateAnswerResponse\"\x1a\x82\xd3\xe4\x93\x02\x14:\x01*\"\x0f/api/v1/answers\x12m\n" +
-	"\x0eFindAnswerByID\x12\x1d.answer.FindAnswerByIDRequest\x1a\x1e.answer.FindAnswerByIDResponse\"\x1c\x82\xd3\xe4\x93\x02\x16\x12\x14/api/v1/answers/{id}\x12\x8a\x01\n" +
-	"\x16FindAllAnswersByPostID\x12%.answer.FindAllAnswersByPostIDRequest\x1a&.answer.FindAllAnswersByPostIDResponse\"!\x82\xd3\xe4\x93\x02\x1b\x12\x19/api/v1/answers/{post_id}\x12h\n" +
+	"\x0eFindAnswerByID\x12\x1d.answer.FindAnswerByIDRequest\x1a\x1e.answer.FindAnswerByIDResponse\"\x1c\x82\xd3\xe4\x93\x02\x16\x12\x14/api/v1/answers/{id}\x12\x8f\x01\n" +
+	"\x16FindAllAnswersByPostID\x12%.answer.FindAllAnswersByPostIDRequest\x1a&.answer.FindAllAnswersByPostIDResponse\"&\x82\xd3\xe4\x93\x02 \x12\x1e/api/v1/answers/post/{post_id}\x12h\n" +
 	"\x0eFindAllAnswers\x12\x1d.answer.FindAllAnswersRequest\x1a\x1e.answer.FindAllAnswersResponse\"\x17\x82\xd3\xe4\x93\x02\x11\x12\x0f/api/v1/answers\x12g\n" +
 	"\fDeleteAnswer\x12\x1b.answer.DeleteAnswerRequest\x1a\x1c.answer.DeleteAnswerResponse\"\x1c\x82\xd3\xe4\x93\x02\x16*\x14/api/v1/answers/{id}B\x0eZ\fproto/answerb\x06proto3"
 

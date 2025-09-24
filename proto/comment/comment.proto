@@ -97,7 +97,7 @@ service CommentService {
   }
 	rpc FindCommentsByPostID(FindCommentsByPostIDRequest) returns (FindCommentsByPostIDResponse){
     option (google.api.http) = {
-      get: "/api/v1/comments/{post_id}"
+      get: "/api/v1/comments/post/{post_id}"
     };
   }
 	// rpc FindCommentsByUserID(FindCommentsByUserIDRequest) returns (FindCommentsByUserIDResponse){
@@ -107,7 +107,7 @@ service CommentService {
   // }
 	rpc FindCommentsByParentID(FindCommentsByParentIDRequest) returns (FindCommentsByParentIDResponse){
     option (google.api.http) = {
-      get: "/api/v1/comments/{parent_id}"
+      get: "/api/v1/comments/parent/{parent_id}"
     };
   }
   rpc FindAllComments(FindAllCommentsRequest) returns (FindAllCommentsResponse){

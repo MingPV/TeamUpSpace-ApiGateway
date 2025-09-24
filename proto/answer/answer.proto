@@ -71,7 +71,7 @@ service AnswerService {
   }
     rpc FindAllAnswersByPostID(FindAllAnswersByPostIDRequest) returns (FindAllAnswersByPostIDResponse){
     option (google.api.http) = {
-      get: "/api/v1/answers/{post_id}"
+      get: "/api/v1/answers/post/{post_id}"
     };
   }
     rpc FindAllAnswers(FindAllAnswersRequest) returns (FindAllAnswersResponse){

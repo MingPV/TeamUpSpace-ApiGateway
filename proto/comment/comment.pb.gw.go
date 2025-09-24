@@ -336,7 +336,7 @@ func RegisterCommentServiceHandlerServer(ctx context.Context, mux *runtime.Serve
 		var stream runtime.ServerTransportStream
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/comment.CommentService/FindCommentsByPostID", runtime.WithHTTPPathPattern("/api/v1/comments/{post_id}"))
+		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/comment.CommentService/FindCommentsByPostID", runtime.WithHTTPPathPattern("/api/v1/comments/post/{post_id}"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -356,7 +356,7 @@ func RegisterCommentServiceHandlerServer(ctx context.Context, mux *runtime.Serve
 		var stream runtime.ServerTransportStream
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/comment.CommentService/FindCommentsByParentID", runtime.WithHTTPPathPattern("/api/v1/comments/{parent_id}"))
+		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/comment.CommentService/FindCommentsByParentID", runtime.WithHTTPPathPattern("/api/v1/comments/parent/{parent_id}"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -508,7 +508,7 @@ func RegisterCommentServiceHandlerClient(ctx context.Context, mux *runtime.Serve
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/comment.CommentService/FindCommentsByPostID", runtime.WithHTTPPathPattern("/api/v1/comments/{post_id}"))
+		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/comment.CommentService/FindCommentsByPostID", runtime.WithHTTPPathPattern("/api/v1/comments/post/{post_id}"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -525,7 +525,7 @@ func RegisterCommentServiceHandlerClient(ctx context.Context, mux *runtime.Serve
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/comment.CommentService/FindCommentsByParentID", runtime.WithHTTPPathPattern("/api/v1/comments/{parent_id}"))
+		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/comment.CommentService/FindCommentsByParentID", runtime.WithHTTPPathPattern("/api/v1/comments/parent/{parent_id}"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -595,8 +595,8 @@ func RegisterCommentServiceHandlerClient(ctx context.Context, mux *runtime.Serve
 var (
 	pattern_CommentService_CreateComment_0          = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2}, []string{"api", "v1", "comments"}, ""))
 	pattern_CommentService_FindCommentByID_0        = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 1, 0, 4, 1, 5, 3}, []string{"api", "v1", "comments", "id"}, ""))
-	pattern_CommentService_FindCommentsByPostID_0   = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 1, 0, 4, 1, 5, 3}, []string{"api", "v1", "comments", "post_id"}, ""))
-	pattern_CommentService_FindCommentsByParentID_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 1, 0, 4, 1, 5, 3}, []string{"api", "v1", "comments", "parent_id"}, ""))
+	pattern_CommentService_FindCommentsByPostID_0   = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 2, 3, 1, 0, 4, 1, 5, 4}, []string{"api", "v1", "comments", "post", "post_id"}, ""))
+	pattern_CommentService_FindCommentsByParentID_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 2, 3, 1, 0, 4, 1, 5, 4}, []string{"api", "v1", "comments", "parent", "parent_id"}, ""))
 	pattern_CommentService_FindAllComments_0        = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2}, []string{"api", "v1", "comments"}, ""))
 	pattern_CommentService_PatchComment_0           = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 1, 0, 4, 1, 5, 3}, []string{"api", "v1", "comments", "id"}, ""))
 	pattern_CommentService_DeleteComment_0          = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 1, 0, 4, 1, 5, 3}, []string{"api", "v1", "comments", "id"}, ""))

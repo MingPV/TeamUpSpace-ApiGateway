@@ -252,7 +252,7 @@ func RegisterAnswerServiceHandlerServer(ctx context.Context, mux *runtime.ServeM
 		var stream runtime.ServerTransportStream
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/answer.AnswerService/FindAllAnswersByPostID", runtime.WithHTTPPathPattern("/api/v1/answers/{post_id}"))
+		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/answer.AnswerService/FindAllAnswersByPostID", runtime.WithHTTPPathPattern("/api/v1/answers/post/{post_id}"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -384,7 +384,7 @@ func RegisterAnswerServiceHandlerClient(ctx context.Context, mux *runtime.ServeM
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/answer.AnswerService/FindAllAnswersByPostID", runtime.WithHTTPPathPattern("/api/v1/answers/{post_id}"))
+		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/answer.AnswerService/FindAllAnswersByPostID", runtime.WithHTTPPathPattern("/api/v1/answers/post/{post_id}"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -437,7 +437,7 @@ func RegisterAnswerServiceHandlerClient(ctx context.Context, mux *runtime.ServeM
 var (
 	pattern_AnswerService_CreateAnswer_0           = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2}, []string{"api", "v1", "answers"}, ""))
 	pattern_AnswerService_FindAnswerByID_0         = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 1, 0, 4, 1, 5, 3}, []string{"api", "v1", "answers", "id"}, ""))
-	pattern_AnswerService_FindAllAnswersByPostID_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 1, 0, 4, 1, 5, 3}, []string{"api", "v1", "answers", "post_id"}, ""))
+	pattern_AnswerService_FindAllAnswersByPostID_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 2, 3, 1, 0, 4, 1, 5, 4}, []string{"api", "v1", "answers", "post", "post_id"}, ""))
 	pattern_AnswerService_FindAllAnswers_0         = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2}, []string{"api", "v1", "answers"}, ""))
 	pattern_AnswerService_DeleteAnswer_0           = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 1, 0, 4, 1, 5, 3}, []string{"api", "v1", "answers", "id"}, ""))
 )

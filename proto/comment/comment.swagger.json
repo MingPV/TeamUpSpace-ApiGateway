@@ -68,6 +68,69 @@
         ]
       }
     },
+    "/api/v1/comments/parent/{parentId}": {
+      "get": {
+        "summary": "rpc FindCommentsByUserID(FindCommentsByUserIDRequest) returns (FindCommentsByUserIDResponse){\n  option (google.api.http) = {\n    get: \"/api/v1/comments\"\n  };\n}",
+        "operationId": "CommentService_FindCommentsByParentID",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/commentFindCommentsByParentIDResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "parentId",
+            "in": "path",
+            "required": true,
+            "type": "integer",
+            "format": "int32"
+          }
+        ],
+        "tags": [
+          "CommentService"
+        ]
+      }
+    },
+    "/api/v1/comments/post/{postId}": {
+      "get": {
+        "operationId": "CommentService_FindCommentsByPostID",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/commentFindCommentsByPostIDResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "postId",
+            "in": "path",
+            "required": true,
+            "type": "integer",
+            "format": "int32"
+          }
+        ],
+        "tags": [
+          "CommentService"
+        ]
+      }
+    },
     "/api/v1/comments/{id}": {
       "get": {
         "operationId": "CommentService_FindCommentByID",
@@ -158,69 +221,6 @@
             "schema": {
               "$ref": "#/definitions/CommentServicePatchCommentBody"
             }
-          }
-        ],
-        "tags": [
-          "CommentService"
-        ]
-      }
-    },
-    "/api/v1/comments/{parentId}": {
-      "get": {
-        "summary": "rpc FindCommentsByUserID(FindCommentsByUserIDRequest) returns (FindCommentsByUserIDResponse){\n  option (google.api.http) = {\n    get: \"/api/v1/comments\"\n  };\n}",
-        "operationId": "CommentService_FindCommentsByParentID",
-        "responses": {
-          "200": {
-            "description": "A successful response.",
-            "schema": {
-              "$ref": "#/definitions/commentFindCommentsByParentIDResponse"
-            }
-          },
-          "default": {
-            "description": "An unexpected error response.",
-            "schema": {
-              "$ref": "#/definitions/rpcStatus"
-            }
-          }
-        },
-        "parameters": [
-          {
-            "name": "parentId",
-            "in": "path",
-            "required": true,
-            "type": "integer",
-            "format": "int32"
-          }
-        ],
-        "tags": [
-          "CommentService"
-        ]
-      }
-    },
-    "/api/v1/comments/{postId}": {
-      "get": {
-        "operationId": "CommentService_FindCommentsByPostID",
-        "responses": {
-          "200": {
-            "description": "A successful response.",
-            "schema": {
-              "$ref": "#/definitions/commentFindCommentsByPostIDResponse"
-            }
-          },
-          "default": {
-            "description": "An unexpected error response.",
-            "schema": {
-              "$ref": "#/definitions/rpcStatus"
-            }
-          }
-        },
-        "parameters": [
-          {
-            "name": "postId",
-            "in": "path",
-            "required": true,
-            "type": "integer",
-            "format": "int32"
           }
         ],
         "tags": [

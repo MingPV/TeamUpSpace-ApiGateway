@@ -894,12 +894,12 @@ const file_proto_comment_comment_proto_rawDesc = "" +
 	"\x14DeleteCommentRequest\x12\x0e\n" +
 	"\x02id\x18\x01 \x01(\x05R\x02id\"1\n" +
 	"\x15DeleteCommentResponse\x12\x18\n" +
-	"\amessage\x18\x01 \x01(\tR\amessage2\xdc\x06\n" +
+	"\amessage\x18\x01 \x01(\tR\amessage2\xe8\x06\n" +
 	"\x0eCommentService\x12k\n" +
 	"\rCreateComment\x12\x1d.comment.CreateCommentRequest\x1a\x1e.comment.CreateCommentResponse\"\x1b\x82\xd3\xe4\x93\x02\x15:\x01*\"\x10/api/v1/comments\x12s\n" +
-	"\x0fFindCommentByID\x12\x1f.comment.FindCommentByIDRequest\x1a .comment.FindCommentByIDResponse\"\x1d\x82\xd3\xe4\x93\x02\x17\x12\x15/api/v1/comments/{id}\x12\x87\x01\n" +
-	"\x14FindCommentsByPostID\x12$.comment.FindCommentsByPostIDRequest\x1a%.comment.FindCommentsByPostIDResponse\"\"\x82\xd3\xe4\x93\x02\x1c\x12\x1a/api/v1/comments/{post_id}\x12\x8f\x01\n" +
-	"\x16FindCommentsByParentID\x12&.comment.FindCommentsByParentIDRequest\x1a'.comment.FindCommentsByParentIDResponse\"$\x82\xd3\xe4\x93\x02\x1e\x12\x1c/api/v1/comments/{parent_id}\x12n\n" +
+	"\x0fFindCommentByID\x12\x1f.comment.FindCommentByIDRequest\x1a .comment.FindCommentByIDResponse\"\x1d\x82\xd3\xe4\x93\x02\x17\x12\x15/api/v1/comments/{id}\x12\x8c\x01\n" +
+	"\x14FindCommentsByPostID\x12$.comment.FindCommentsByPostIDRequest\x1a%.comment.FindCommentsByPostIDResponse\"'\x82\xd3\xe4\x93\x02!\x12\x1f/api/v1/comments/post/{post_id}\x12\x96\x01\n" +
+	"\x16FindCommentsByParentID\x12&.comment.FindCommentsByParentIDRequest\x1a'.comment.FindCommentsByParentIDResponse\"+\x82\xd3\xe4\x93\x02%\x12#/api/v1/comments/parent/{parent_id}\x12n\n" +
 	"\x0fFindAllComments\x12\x1f.comment.FindAllCommentsRequest\x1a .comment.FindAllCommentsResponse\"\x18\x82\xd3\xe4\x93\x02\x12\x12\x10/api/v1/comments\x12m\n" +
 	"\fPatchComment\x12\x1c.comment.PatchCommentRequest\x1a\x1d.comment.PatchCommentResponse\" \x82\xd3\xe4\x93\x02\x1a:\x01*2\x15/api/v1/comments/{id}\x12m\n" +
 	"\rDeleteComment\x12\x1d.comment.DeleteCommentRequest\x1a\x1e.comment.DeleteCommentResponse\"\x1d\x82\xd3\xe4\x93\x02\x17*\x15/api/v1/comments/{id}B\x0fZ\rproto/commentb\x06proto3"
