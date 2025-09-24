@@ -30,10 +30,10 @@ import (
 
 	answerpb "github.com/MingPV/ApiGateway/proto/answer"
 	commentpb "github.com/MingPV/ApiGateway/proto/comment"
-	postlikepb "github.com/MingPV/ApiGateway/proto/postLike"
-	postreportpb "github.com/MingPV/ApiGateway/proto/postReport"
+	postlikepb "github.com/MingPV/ApiGateway/proto/postlike"
+	postreportpb "github.com/MingPV/ApiGateway/proto/postreport"
 	questionpb "github.com/MingPV/ApiGateway/proto/question"
-	userreportpb "github.com/MingPV/ApiGateway/proto/userReport"
+	userreportpb "github.com/MingPV/ApiGateway/proto/userreport"
 
 	"github.com/gorilla/websocket"
 )
@@ -154,7 +154,7 @@ func run() error {
 	defer cancel()
 
 	userServiceEndpoint := getEnv("USER_SERVICE_ENDPOINT", "localhost:50061")
-	postServiceEndpoint := getEnv("POST_SERVICE_ENDPOINT", "localhost:50066")
+	postServiceEndpoint := getEnv("POST_SERVICE_ENDPOINT", "localhost:50062")
 	eventServiceEndpoint := getEnv("EVENT_SERVICE_ENDPOINT", "localhost:50063")
 	notificationServiceEndpoint := getEnv("NOTIFICATION_SERVICE_ENDPOINT", "localhost:50065")
 	userServiceREST := getEnv("USER_SERVICE_REST", "http://localhost:8001") // REST port

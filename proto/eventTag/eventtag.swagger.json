@@ -1,7 +1,7 @@
 {
   "swagger": "2.0",
   "info": {
-    "title": "proto/eventTag/event_tag.proto",
+    "title": "proto/eventTag/eventtag.proto",
     "version": "version not set"
   },
   "tags": [
@@ -23,7 +23,7 @@
           "200": {
             "description": "A successful response.",
             "schema": {
-              "$ref": "#/definitions/event_tagFindAllEventTagsResponse"
+              "$ref": "#/definitions/eventtagFindAllEventTagsResponse"
             }
           },
           "default": {
@@ -43,7 +43,7 @@
           "200": {
             "description": "A successful response.",
             "schema": {
-              "$ref": "#/definitions/event_tagCreateEventTagResponse"
+              "$ref": "#/definitions/eventtagCreateEventTagResponse"
             }
           },
           "default": {
@@ -59,7 +59,7 @@
             "in": "body",
             "required": true,
             "schema": {
-              "$ref": "#/definitions/event_tagCreateEventTagRequest"
+              "$ref": "#/definitions/eventtagCreateEventTagRequest"
             }
           }
         ],
@@ -75,7 +75,7 @@
           "200": {
             "description": "A successful response.",
             "schema": {
-              "$ref": "#/definitions/event_tagFindByEventIDResponse"
+              "$ref": "#/definitions/eventtagFindByEventIDResponse"
             }
           },
           "default": {
@@ -106,7 +106,7 @@
           "200": {
             "description": "A successful response.",
             "schema": {
-              "$ref": "#/definitions/event_tagFindByTagIDResponse"
+              "$ref": "#/definitions/eventtagFindByTagIDResponse"
             }
           },
           "default": {
@@ -137,7 +137,7 @@
           "200": {
             "description": "A successful response.",
             "schema": {
-              "$ref": "#/definitions/event_tagFindByEventAndTagIDResponse"
+              "$ref": "#/definitions/eventtagFindByEventAndTagIDResponse"
             }
           },
           "default": {
@@ -173,7 +173,7 @@
           "200": {
             "description": "A successful response.",
             "schema": {
-              "$ref": "#/definitions/event_tagDeleteEventTagResponse"
+              "$ref": "#/definitions/eventtagDeleteEventTagResponse"
             }
           },
           "default": {
@@ -206,7 +206,7 @@
     }
   },
   "definitions": {
-    "event_tagCreateEventTagRequest": {
+    "eventtagCreateEventTagRequest": {
       "type": "object",
       "properties": {
         "eventId": {
@@ -219,15 +219,15 @@
         }
       }
     },
-    "event_tagCreateEventTagResponse": {
+    "eventtagCreateEventTagResponse": {
       "type": "object",
       "properties": {
         "eventTag": {
-          "$ref": "#/definitions/event_tagEventTag"
+          "$ref": "#/definitions/eventtagEventTag"
         }
       }
     },
-    "event_tagDeleteEventTagResponse": {
+    "eventtagDeleteEventTagResponse": {
       "type": "object",
       "properties": {
         "message": {
@@ -235,7 +235,7 @@
         }
       }
     },
-    "event_tagEventTag": {
+    "eventtagEventTag": {
       "type": "object",
       "properties": {
         "eventId": {
@@ -254,46 +254,46 @@
         }
       }
     },
-    "event_tagFindAllEventTagsResponse": {
+    "eventtagFindAllEventTagsResponse": {
       "type": "object",
       "properties": {
         "eventTags": {
           "type": "array",
           "items": {
             "type": "object",
-            "$ref": "#/definitions/event_tagEventTag"
+            "$ref": "#/definitions/eventtagEventTag"
           }
         }
       }
     },
-    "event_tagFindByEventAndTagIDResponse": {
+    "eventtagFindByEventAndTagIDResponse": {
       "type": "object",
       "properties": {
         "eventTag": {
-          "$ref": "#/definitions/event_tagEventTag"
+          "$ref": "#/definitions/eventtagEventTag"
         }
       }
     },
-    "event_tagFindByEventIDResponse": {
+    "eventtagFindByEventIDResponse": {
       "type": "object",
       "properties": {
         "eventTags": {
           "type": "array",
           "items": {
             "type": "object",
-            "$ref": "#/definitions/event_tagEventTag"
+            "$ref": "#/definitions/eventtagEventTag"
           }
         }
       }
     },
-    "event_tagFindByTagIDResponse": {
+    "eventtagFindByTagIDResponse": {
       "type": "object",
       "properties": {
         "eventTags": {
           "type": "array",
           "items": {
             "type": "object",
-            "$ref": "#/definitions/event_tagEventTag"
+            "$ref": "#/definitions/eventtagEventTag"
           }
         }
       }

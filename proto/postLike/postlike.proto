@@ -1,11 +1,11 @@
 syntax = "proto3";
 
-package postLike;
+package postlike;
 
 import "google/protobuf/timestamp.proto";
 import "google/api/annotations.proto";
 
-option go_package = "proto/postLike";
+option go_package = "proto/postlike";
 
 message PostLike {
     int32 post_id = 1;
@@ -56,12 +56,12 @@ service PostLikeService {
   }
     rpc FindAllPostLikesByPostID(FindAllPostLikesByPostIDRequest) returns (FindAllPostLikesByPostIDResponse){
     option (google.api.http) = {
-      post: "/api/v1/postLikes/{post_id}"
+      get: "/api/v1/postLikes/{post_id}"
     };
   }
     rpc FindAllPostLikesByUserID(FindAllPostLikesByUserIDRequest) returns (FindAllPostLikesByUserIDResponse){
     option (google.api.http) = {
-      post: "/api/v1/postLikes/{user_id}"
+      get: "/api/v1/postLikes/{user_id}"
     };
   }
     rpc DeletePostLike(DeletePostLikeRequest) returns (DeletePostLikeResponse){

@@ -1,7 +1,7 @@
 {
   "swagger": "2.0",
   "info": {
-    "title": "proto/userReport/userreport.proto",
+    "title": "proto/userreport/userreport.proto",
     "version": "version not set"
   },
   "tags": [
@@ -23,7 +23,7 @@
           "200": {
             "description": "A successful response.",
             "schema": {
-              "$ref": "#/definitions/user_reportFindAllUserReportsResponse"
+              "$ref": "#/definitions/userreportFindAllUserReportsResponse"
             }
           },
           "default": {
@@ -43,7 +43,7 @@
           "200": {
             "description": "A successful response.",
             "schema": {
-              "$ref": "#/definitions/user_reportCreateUserReportResponse"
+              "$ref": "#/definitions/userreportCreateUserReportResponse"
             }
           },
           "default": {
@@ -59,7 +59,7 @@
             "in": "body",
             "required": true,
             "schema": {
-              "$ref": "#/definitions/user_reportCreateUserReportRequest"
+              "$ref": "#/definitions/userreportCreateUserReportRequest"
             }
           }
         ],
@@ -75,7 +75,7 @@
           "200": {
             "description": "A successful response.",
             "schema": {
-              "$ref": "#/definitions/user_reportFindUserReportByIDResponse"
+              "$ref": "#/definitions/userreportFindUserReportByIDResponse"
             }
           },
           "default": {
@@ -104,7 +104,7 @@
           "200": {
             "description": "A successful response.",
             "schema": {
-              "$ref": "#/definitions/user_reportDeleteUserReportResponse"
+              "$ref": "#/definitions/userreportDeleteUserReportResponse"
             }
           },
           "default": {
@@ -133,7 +133,7 @@
           "200": {
             "description": "A successful response.",
             "schema": {
-              "$ref": "#/definitions/user_reportPatchUserReportResponse"
+              "$ref": "#/definitions/userreportPatchUserReportResponse"
             }
           },
           "default": {
@@ -172,7 +172,7 @@
           "200": {
             "description": "A successful response.",
             "schema": {
-              "$ref": "#/definitions/user_reportFindAllByReportToResponse"
+              "$ref": "#/definitions/userreportFindAllByReportToResponse"
             }
           },
           "default": {
@@ -202,7 +202,7 @@
           "200": {
             "description": "A successful response.",
             "schema": {
-              "$ref": "#/definitions/user_reportFindAllByReporterResponse"
+              "$ref": "#/definitions/userreportFindAllByReporterResponse"
             }
           },
           "default": {
@@ -266,7 +266,7 @@
         }
       }
     },
-    "user_reportCreateUserReportRequest": {
+    "userreportCreateUserReportRequest": {
       "type": "object",
       "properties": {
         "reporter": {
@@ -283,15 +283,15 @@
         }
       }
     },
-    "user_reportCreateUserReportResponse": {
+    "userreportCreateUserReportResponse": {
       "type": "object",
       "properties": {
         "userReport": {
-          "$ref": "#/definitions/user_reportUserReport"
+          "$ref": "#/definitions/userreportUserReport"
         }
       }
     },
-    "user_reportDeleteUserReportResponse": {
+    "userreportDeleteUserReportResponse": {
       "type": "object",
       "properties": {
         "message": {
@@ -299,59 +299,59 @@
         }
       }
     },
-    "user_reportFindAllByReportToResponse": {
+    "userreportFindAllByReportToResponse": {
       "type": "object",
       "properties": {
         "userReports": {
           "type": "array",
           "items": {
             "type": "object",
-            "$ref": "#/definitions/user_reportUserReport"
+            "$ref": "#/definitions/userreportUserReport"
           }
         }
       }
     },
-    "user_reportFindAllByReporterResponse": {
+    "userreportFindAllByReporterResponse": {
       "type": "object",
       "properties": {
         "userReports": {
           "type": "array",
           "items": {
             "type": "object",
-            "$ref": "#/definitions/user_reportUserReport"
+            "$ref": "#/definitions/userreportUserReport"
           }
         }
       }
     },
-    "user_reportFindAllUserReportsResponse": {
+    "userreportFindAllUserReportsResponse": {
       "type": "object",
       "properties": {
         "userReports": {
           "type": "array",
           "items": {
             "type": "object",
-            "$ref": "#/definitions/user_reportUserReport"
+            "$ref": "#/definitions/userreportUserReport"
           }
         }
       }
     },
-    "user_reportFindUserReportByIDResponse": {
+    "userreportFindUserReportByIDResponse": {
       "type": "object",
       "properties": {
         "userReport": {
-          "$ref": "#/definitions/user_reportUserReport"
+          "$ref": "#/definitions/userreportUserReport"
         }
       }
     },
-    "user_reportPatchUserReportResponse": {
+    "userreportPatchUserReportResponse": {
       "type": "object",
       "properties": {
         "userReport": {
-          "$ref": "#/definitions/user_reportUserReport"
+          "$ref": "#/definitions/userreportUserReport"
         }
       }
     },
-    "user_reportUserReport": {
+    "userreportUserReport": {
       "type": "object",
       "properties": {
         "id": {

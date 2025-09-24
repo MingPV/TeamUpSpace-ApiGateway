@@ -78,7 +78,7 @@ service QuestionService {
   }
     rpc FindAllQuestions(FindAllQuestionsRequest) returns (FindAllQuestionsResponse){
     option (google.api.http) = {
-      get: "/api/v1/userReports"
+      get: "/api/v1/questions"
     };
   }
     rpc FindAllQuestionsByPostID(FindAllQuestionsByPostIDRequest) returns (FindAllQuestionsByPostIDResponse){

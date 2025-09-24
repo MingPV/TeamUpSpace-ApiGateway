@@ -1,10 +1,10 @@
 syntax = "proto3";
 
-package event_tag;
+package eventtag;
 
 import "google/api/annotations.proto";
 
-option go_package = "proto/eventTag";
+option go_package = "proto/eventtag";
 
 message EventTag {
 	uint32 event_id = 1;

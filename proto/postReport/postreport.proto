@@ -5,7 +5,7 @@ package postreport;
 import "google/protobuf/timestamp.proto";
 import "google/api/annotations.proto";
 
-option go_package = "proto/postReport";
+option go_package = "proto/postreport";
 
 message PostReport {
     int32 id = 1;

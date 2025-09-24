@@ -1,11 +1,11 @@
 syntax = "proto3";
 
-package user_report;
+package userreport;
 
 import "google/protobuf/timestamp.proto";
 import "google/api/annotations.proto";
 
-option go_package = "proto/userReport";
+option go_package = "proto/userreport";
 
 message UserReport {
   int32 id = 1;

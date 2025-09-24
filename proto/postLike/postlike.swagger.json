@@ -1,7 +1,7 @@
 {
   "swagger": "2.0",
   "info": {
-    "title": "proto/postLike/postlike.proto",
+    "title": "proto/postlike/postlike.proto",
     "version": "version not set"
   },
   "tags": [
@@ -23,7 +23,7 @@
           "200": {
             "description": "A successful response.",
             "schema": {
-              "$ref": "#/definitions/postLikeCreatePostLikeResponse"
+              "$ref": "#/definitions/postlikeCreatePostLikeResponse"
             }
           },
           "default": {
@@ -39,7 +39,7 @@
             "in": "body",
             "required": true,
             "schema": {
-              "$ref": "#/definitions/postLikeCreatePostLikeRequest"
+              "$ref": "#/definitions/postlikeCreatePostLikeRequest"
             }
           }
         ],
@@ -49,13 +49,13 @@
       }
     },
     "/api/v1/postLikes/{postId}": {
-      "post": {
+      "get": {
         "operationId": "PostLikeService_FindAllPostLikesByPostID",
         "responses": {
           "200": {
             "description": "A successful response.",
             "schema": {
-              "$ref": "#/definitions/postLikeFindAllPostLikesByPostIDResponse"
+              "$ref": "#/definitions/postlikeFindAllPostLikesByPostIDResponse"
             }
           },
           "default": {
@@ -86,7 +86,7 @@
           "200": {
             "description": "A successful response.",
             "schema": {
-              "$ref": "#/definitions/postLikeDeletePostLikeResponse"
+              "$ref": "#/definitions/postlikeDeletePostLikeResponse"
             }
           },
           "default": {
@@ -117,13 +117,13 @@
       }
     },
     "/api/v1/postLikes/{userId}": {
-      "post": {
+      "get": {
         "operationId": "PostLikeService_FindAllPostLikesByUserID",
         "responses": {
           "200": {
             "description": "A successful response.",
             "schema": {
-              "$ref": "#/definitions/postLikeFindAllPostLikesByUserIDResponse"
+              "$ref": "#/definitions/postlikeFindAllPostLikesByUserIDResponse"
             }
           },
           "default": {
@@ -148,7 +148,7 @@
     }
   },
   "definitions": {
-    "postLikeCreatePostLikeRequest": {
+    "postlikeCreatePostLikeRequest": {
       "type": "object",
       "properties": {
         "postId": {
@@ -160,15 +160,15 @@
         }
       }
     },
-    "postLikeCreatePostLikeResponse": {
+    "postlikeCreatePostLikeResponse": {
       "type": "object",
       "properties": {
         "postlike": {
-          "$ref": "#/definitions/postLikePostLike"
+          "$ref": "#/definitions/postlikePostLike"
         }
       }
     },
-    "postLikeDeletePostLikeResponse": {
+    "postlikeDeletePostLikeResponse": {
       "type": "object",
       "properties": {
         "message": {
@@ -176,31 +176,31 @@
         }
       }
     },
-    "postLikeFindAllPostLikesByPostIDResponse": {
+    "postlikeFindAllPostLikesByPostIDResponse": {
       "type": "object",
       "properties": {
         "postlikes": {
           "type": "array",
           "items": {
             "type": "object",
-            "$ref": "#/definitions/postLikePostLike"
+            "$ref": "#/definitions/postlikePostLike"
           }
         }
       }
     },
-    "postLikeFindAllPostLikesByUserIDResponse": {
+    "postlikeFindAllPostLikesByUserIDResponse": {
       "type": "object",
       "properties": {
         "postlikes": {
           "type": "array",
           "items": {
             "type": "object",
-            "$ref": "#/definitions/postLikePostLike"
+            "$ref": "#/definitions/postlikePostLike"
           }
         }
       }
     },
-    "postLikePostLike": {
+    "postlikePostLike": {
       "type": "object",
       "properties": {
         "postId": {
