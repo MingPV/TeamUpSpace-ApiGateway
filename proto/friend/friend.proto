@@ -1,0 +1,127 @@
+syntax = "proto3";
+
+package friend;
+
+import "google/protobuf/timestamp.proto";
+import "google/api/annotations.proto";
+
+option go_package = "proto/friend";
+
+message Friend {
+    int32 id = 1;
+    string user_id = 2;
+    string friend_id = 3;
+    string status = 4;
+    google.protobuf.Timestamp created_at = 5;     
+    google.protobuf.Timestamp updated_at = 6;    
+}
+
+message CreateFriendRequest {
+    string user_id = 1;
+    string friend_id = 2;
+    string status = 3;
+}
+
+message CreateFriendResponse {
+    Friend friend = 1;
+}
+
+message FindAllFriendsRequest {}
+
+message FindAllFriendsResponse {
+    repeated Friend friends = 1;
+}
+
+message FindAllFriendsByUserIDRequest {
+    string user_id = 1;
+}
+
+message FindAllFriendsByUserIDResponse {
+    repeated Friend friends = 1;
+}
+
+message FindAllFriendsByIsFriendRequest {
+    string user_id = 1;
+}
+
+message FindAllFriendsByIsFriendResponse {
+    repeated Friend friends = 1;
+}
+
+message FindAllFriendRequestsRequest {
+    string user_id = 1;
+}
+
+message FindAllFriendRequestsResponse {
+    repeated Friend friends = 1;
+}
+
+message IsMyFriendRequest {
+    string user_id = 1;
+    string friend_id = 2;
+}
+
+message IsMyFriendResponse {
+    string status = 1;
+}
+
+message DeleteFriendRequest {
+    int32 id = 1;
+}
+
+message DeleteFriendResponse {
+    string message = 1;
+}
+
+message AcceptFriendRequest {
+    string user_id = 1;
+    string friend_id = 2;
+}
+
+message AcceptFriendResponse {
+    Friend friend = 1;
+}
+
+service FriendService {
+    rpc CreateFriend(CreateFriendRequest) returns (CreateFriendResponse){
+        option (google.api.http) = {
+            post: "/api/v1/friends"
+            body: "*"
+        };
+    }
+  
+    rpc FindAllFriendRequests(FindAllFriendRequestsRequest) returns (FindAllFriendRequestsResponse){
+        option (google.api.http) = {
+            get: "/api/v1/friends/requested/{user_id}"
+        };
+    }
+    
+    rpc FindAllFriendsByIsFriend(FindAllFriendsByIsFriendRequest) returns (FindAllFriendsByIsFriendResponse){
+        option (google.api.http) = {
+            get: "/api/v1/friends/{user_id}"
+        };
+    }
+    
+    rpc DeleteFriend(DeleteFriendRequest) returns (DeleteFriendResponse){
+        option (google.api.http) = {
+            delete: "/api/v1/friends/{id}"
+        };
+    }
+    
+    rpc IsMyFriend(IsMyFriendRequest) returns (IsMyFriendResponse){
+        option (google.api.http) = {
+            get: "/api/v1/friends/ismyfriends/{user_id}/{friend_id}"
+        };
+    }
+
+    rpc AcceptFriend(AcceptFriendRequest) returns (AcceptFriendResponse){
+        option (google.api.http) = {
+            get: "/api/v1/friends/accepted/{user_id}/{friend_id}"
+        };
+    }
+
+    //not use now, dont know why need to have
+    rpc FindAllFriends(FindAllFriendsRequest) returns (FindAllFriendsResponse);
+    rpc FindAllFriendsByUserID(FindAllFriendsByUserIDRequest) returns (FindAllFriendsByUserIDResponse);
+}
+

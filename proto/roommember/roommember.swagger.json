@@ -1,0 +1,411 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "title": "proto/roommember/roommember.proto",
+    "version": "version not set"
+  },
+  "tags": [
+    {
+      "name": "RoomMemberService"
+    }
+  ],
+  "consumes": [
+    "application/json"
+  ],
+  "produces": [
+    "application/json"
+  ],
+  "paths": {
+    "/api/v1/roommembers": {
+      "post": {
+        "operationId": "RoomMemberService_CreateRoomMembers",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/roommemberCreateRoomMembersResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/roommemberCreateRoomMembersRequest"
+            }
+          }
+        ],
+        "tags": [
+          "RoomMemberService"
+        ]
+      }
+    },
+    "/api/v1/roommembers/room/{roomId}": {
+      "get": {
+        "operationId": "RoomMemberService_FindAllByRoomID",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/roommemberFindAllByRoomIDResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "roomId",
+            "in": "path",
+            "required": true,
+            "type": "integer",
+            "format": "int32"
+          }
+        ],
+        "tags": [
+          "RoomMemberService"
+        ]
+      },
+      "delete": {
+        "operationId": "RoomMemberService_DeleteAllByRoomID",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/roommemberDeleteAllByRoomIDResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "roomId",
+            "in": "path",
+            "required": true,
+            "type": "integer",
+            "format": "int32"
+          }
+        ],
+        "tags": [
+          "RoomMemberService"
+        ]
+      }
+    },
+    "/api/v1/roommembers/room/{roomId}/{userId}": {
+      "get": {
+        "operationId": "RoomMemberService_FindByRoomIDAndUserID",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/roommemberFindByRoomIDAndUserIDResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "roomId",
+            "in": "path",
+            "required": true,
+            "type": "integer",
+            "format": "int32"
+          },
+          {
+            "name": "userId",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "RoomMemberService"
+        ]
+      },
+      "delete": {
+        "operationId": "RoomMemberService_DeleteByRoomIDAndUserID",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/roommemberDeleteByRoomIDAndUserIDResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "roomId",
+            "in": "path",
+            "required": true,
+            "type": "integer",
+            "format": "int32"
+          },
+          {
+            "name": "userId",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "RoomMemberService"
+        ]
+      }
+    },
+    "/api/v1/roommembers/user/{userId}": {
+      "get": {
+        "operationId": "RoomMemberService_FindAllByUserID",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/roommemberFindAllByUserIDResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "userId",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "RoomMemberService"
+        ]
+      }
+    },
+    "/api/v1/roommembers/{id}": {
+      "delete": {
+        "operationId": "RoomMemberService_DeleteRoomMember",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/roommemberDeleteRoomMemberResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "integer",
+            "format": "int32"
+          }
+        ],
+        "tags": [
+          "RoomMemberService"
+        ]
+      }
+    }
+  },
+  "definitions": {
+    "protobufAny": {
+      "type": "object",
+      "properties": {
+        "@type": {
+          "type": "string"
+        }
+      },
+      "additionalProperties": {}
+    },
+    "roommemberChatroom": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "roomName": {
+          "type": "string"
+        },
+        "isGroup": {
+          "type": "boolean"
+        },
+        "owner": {
+          "type": "string"
+        },
+        "createdAt": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "updatedAt": {
+          "type": "string",
+          "format": "date-time"
+        }
+      }
+    },
+    "roommemberCreateRoomMembersRequest": {
+      "type": "object",
+      "properties": {
+        "roomId": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "userIds": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "roommemberCreateRoomMembersResponse": {
+      "type": "object",
+      "properties": {
+        "members": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/roommemberRoomMember"
+          }
+        }
+      }
+    },
+    "roommemberDeleteAllByRoomIDResponse": {
+      "type": "object",
+      "properties": {
+        "message": {
+          "type": "string"
+        }
+      }
+    },
+    "roommemberDeleteByRoomIDAndUserIDResponse": {
+      "type": "object",
+      "properties": {
+        "message": {
+          "type": "string"
+        }
+      }
+    },
+    "roommemberDeleteRoomMemberResponse": {
+      "type": "object",
+      "properties": {
+        "message": {
+          "type": "string"
+        }
+      }
+    },
+    "roommemberFindAllByRoomIDResponse": {
+      "type": "object",
+      "properties": {
+        "members": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/roommemberRoomMember"
+          }
+        }
+      }
+    },
+    "roommemberFindAllByUserIDResponse": {
+      "type": "object",
+      "properties": {
+        "chatrooms": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/roommemberRoomMember"
+          }
+        }
+      }
+    },
+    "roommemberFindByRoomIDAndUserIDResponse": {
+      "type": "object",
+      "properties": {
+        "member": {
+          "$ref": "#/definitions/roommemberRoomMember"
+        }
+      }
+    },
+    "roommemberRoomMember": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "roomId": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "userId": {
+          "type": "string"
+        },
+        "chatroom": {
+          "$ref": "#/definitions/roommemberChatroom"
+        },
+        "createdAt": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "updatedAt": {
+          "type": "string",
+          "format": "date-time"
+        }
+      }
+    },
+    "rpcStatus": {
+      "type": "object",
+      "properties": {
+        "code": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "message": {
+          "type": "string"
+        },
+        "details": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/protobufAny"
+          }
+        }
+      }
+    }
+  }
+}
