@@ -1,0 +1,262 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "title": "proto/chatroom/chatroom.proto",
+    "version": "version not set"
+  },
+  "tags": [
+    {
+      "name": "ChatroomService"
+    }
+  ],
+  "consumes": [
+    "application/json"
+  ],
+  "produces": [
+    "application/json"
+  ],
+  "paths": {
+    "/api/v1/chatrooms": {
+      "post": {
+        "operationId": "ChatroomService_CreateChatroom",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/chatroomCreateChatroomResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/chatroomCreateChatroomRequest"
+            }
+          }
+        ],
+        "tags": [
+          "ChatroomService"
+        ]
+      },
+      "patch": {
+        "operationId": "ChatroomService_PatchChatroom",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/chatroomPatchChatroomResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/chatroomPatchChatroomRequest"
+            }
+          }
+        ],
+        "tags": [
+          "ChatroomService"
+        ]
+      }
+    },
+    "/api/v1/chatrooms/{id}": {
+      "get": {
+        "operationId": "ChatroomService_FindChatroomByID",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/chatroomFindChatroomByIDResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "integer",
+            "format": "int32"
+          }
+        ],
+        "tags": [
+          "ChatroomService"
+        ]
+      },
+      "delete": {
+        "operationId": "ChatroomService_DeleteChatroom",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/chatroomDeleteChatroomResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "integer",
+            "format": "int32"
+          }
+        ],
+        "tags": [
+          "ChatroomService"
+        ]
+      }
+    }
+  },
+  "definitions": {
+    "chatroomChatroom": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "roomName": {
+          "type": "string"
+        },
+        "isGroup": {
+          "type": "boolean"
+        },
+        "owner": {
+          "type": "string"
+        },
+        "createdAt": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "updatedAt": {
+          "type": "string",
+          "format": "date-time"
+        }
+      }
+    },
+    "chatroomCreateChatroomRequest": {
+      "type": "object",
+      "properties": {
+        "roomName": {
+          "type": "string"
+        },
+        "isGroup": {
+          "type": "boolean"
+        },
+        "owner": {
+          "type": "string"
+        }
+      }
+    },
+    "chatroomCreateChatroomResponse": {
+      "type": "object",
+      "properties": {
+        "chatroom": {
+          "$ref": "#/definitions/chatroomChatroom"
+        }
+      }
+    },
+    "chatroomDeleteChatroomResponse": {
+      "type": "object",
+      "properties": {
+        "message": {
+          "type": "string"
+        }
+      }
+    },
+    "chatroomFindChatroomByIDResponse": {
+      "type": "object",
+      "properties": {
+        "chatroom": {
+          "$ref": "#/definitions/chatroomChatroom"
+        }
+      }
+    },
+    "chatroomPatchChatroomRequest": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "roomName": {
+          "type": "string"
+        },
+        "isGroup": {
+          "type": "boolean"
+        },
+        "owner": {
+          "type": "string"
+        }
+      }
+    },
+    "chatroomPatchChatroomResponse": {
+      "type": "object",
+      "properties": {
+        "chatroom": {
+          "$ref": "#/definitions/chatroomChatroom"
+        }
+      }
+    },
+    "protobufAny": {
+      "type": "object",
+      "properties": {
+        "@type": {
+          "type": "string"
+        }
+      },
+      "additionalProperties": {}
+    },
+    "rpcStatus": {
+      "type": "object",
+      "properties": {
+        "code": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "message": {
+          "type": "string"
+        },
+        "details": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/protobufAny"
+          }
+        }
+      }
+    }
+  }
+}

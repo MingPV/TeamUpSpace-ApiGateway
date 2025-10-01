@@ -1,0 +1,141 @@
+syntax = "proto3";
+
+package roominvite;
+
+import "google/api/annotations.proto";
+
+option go_package = "proto/roominvite";
+
+import "google/protobuf/timestamp.proto";
+
+message RoomInvite {
+  int32 id = 1;
+  int32 room_id = 2;
+  string sender = 3;
+  string invite_to = 4;
+  bool is_accepted = 5;
+  bool is_denied = 6;
+  google.protobuf.Timestamp created_at = 7;
+  google.protobuf.Timestamp updated_at = 8;
+}
+
+message CreateRoomInviteRequest {
+  int32 room_id = 1;
+  string sender = 2;
+  string invite_to = 3;
+  bool is_accepted = 4;
+  bool is_denied = 5;
+}
+
+message CreateRoomInviteResponse {
+  RoomInvite invite = 1;
+}
+
+message FindRoomInviteByIDRequest {
+  int32 id = 1;
+}
+
+message FindRoomInviteByIDResponse {
+  RoomInvite invite = 1;
+}
+
+message FindAllRoomInvitesBySenderRequest {
+  string sender = 1;
+}
+
+message FindAllRoomInvitesBySenderResponse {
+  repeated RoomInvite invites = 1;
+}
+
+message FindAllRoomInvitesByInviteToRequest {
+  string invite_to = 1;
+}
+
+message FindAllRoomInvitesByInviteToResponse {
+  repeated RoomInvite invites = 1;
+}
+
+message PatchRoomInviteRequest {
+  int32 id = 1;
+  int32 room_id = 2;
+  string sender = 3;
+  string invite_to = 4;
+  bool is_accepted = 5;
+  bool is_denied = 6;
+}
+
+message PatchRoomInviteResponse {
+  RoomInvite invite = 1;
+}
+
+message DeleteRoomInviteRequest {
+  int32 id = 1;
+}
+
+message DeleteRoomInviteResponse {
+  string message = 1;
+}
+
+message FindAllRoomInvitesByRoomIDRequest {
+  int32 room_id = 1;
+}
+
+message FindAllRoomInvitesByRoomIDResponse {
+  repeated RoomInvite invites = 1;
+}
+
+message AcceptedRoomInviteRequest {
+  int32 id = 1;
+}
+
+message AcceptedRoomInviteResponse {
+  string message = 1;
+}
+service RoomInviteService {
+  rpc CreateRoomInvite(CreateRoomInviteRequest) returns (CreateRoomInviteResponse){
+    option (google.api.http) = {
+      post: "/api/v1/roominvite"
+      body: "*"
+    };
+  }
+  rpc FindRoomInviteByID(FindRoomInviteByIDRequest) returns (FindRoomInviteByIDResponse){
+    option (google.api.http) = {
+      get: "/api/v1/roominvite/{id}"
+    };
+  }
+  rpc FindAllRoomInvitesBySender(FindAllRoomInvitesBySenderRequest) returns (FindAllRoomInvitesBySenderResponse){
+    option (google.api.http) = {
+      get: "/api/v1/roominvite/sender/{sender}"
+    };
+  }
+  rpc FindAllRoomInvitesByInviteTo(FindAllRoomInvitesByInviteToRequest) returns (FindAllRoomInvitesByInviteToResponse){
+    option (google.api.http) = {
+      get: "/api/v1/roominvite/inviteto/{invite_to}"
+    };
+  }
+  rpc FindAllRoomInvitesByRoomID(FindAllRoomInvitesByRoomIDRequest) returns (FindAllRoomInvitesByRoomIDResponse){
+    option (google.api.http) = {
+      get:  "/api/v1/roominvite/room/{room_id}"
+    };
+  }
+
+  rpc PatchRoomInvite(PatchRoomInviteRequest) returns (PatchRoomInviteResponse){
+    option (google.api.http) = {
+      patch: "/api/v1/roominvite/{id}"
+      body: "*"
+    };
+  }
+
+  rpc DeleteRoomInvite(DeleteRoomInviteRequest) returns (DeleteRoomInviteResponse){
+    option (google.api.http) = {
+      delete: "/api/v1/roominvite/{id}"
+    };
+  }
+
+  rpc AcceptedRoomInvite(AcceptedRoomInviteRequest) returns (AcceptedRoomInviteResponse){
+    option (google.api.http) = {
+      patch: "/api/v1/roominvite/accepted/{id}"
+    };
+  }
+
+}
