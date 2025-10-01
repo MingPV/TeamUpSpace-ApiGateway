@@ -261,7 +261,7 @@ func RegisterPostLikeServiceHandlerServer(ctx context.Context, mux *runtime.Serv
 		}
 		forward_PostLikeService_FindAllPostLikesByUserID_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
 	})
-	mux.Handle(http.MethodPost, pattern_PostLikeService_DeletePostLike_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle(http.MethodDelete, pattern_PostLikeService_DeletePostLike_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		var stream runtime.ServerTransportStream
@@ -372,7 +372,7 @@ func RegisterPostLikeServiceHandlerClient(ctx context.Context, mux *runtime.Serv
 		}
 		forward_PostLikeService_FindAllPostLikesByUserID_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
 	})
-	mux.Handle(http.MethodPost, pattern_PostLikeService_DeletePostLike_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle(http.MethodDelete, pattern_PostLikeService_DeletePostLike_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
