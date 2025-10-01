@@ -26,11 +26,7 @@ import (
 	profilepb "github.com/MingPV/ApiGateway/proto/profile"
 	tagpb "github.com/MingPV/ApiGateway/proto/tag"
 
-	chatroompb "github.com/MingPV/ApiGateway/proto/chatroom"
-	friendpb "github.com/MingPV/ApiGateway/proto/friend"
 	messagepb "github.com/MingPV/ApiGateway/proto/message"
-	roominvitepb "github.com/MingPV/ApiGateway/proto/roominvite"
-	roommemberpb "github.com/MingPV/ApiGateway/proto/roommember"
 
 	answerpb "github.com/MingPV/ApiGateway/proto/answer"
 	commentpb "github.com/MingPV/ApiGateway/proto/comment"
@@ -138,7 +134,7 @@ func corsMiddleware(next http.Handler) http.Handler {
 
 		// allow origin
 		w.Header().Set("Access-Control-Allow-Origin", "http://localhost:3000")
-		w.Header().Set("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE, OPTIONS, PATCH")
+		w.Header().Set("Access-Control-Allow-Methods", "GET, POST, PUT, PATCH, DELETE, OPTIONS")
 		w.Header().Set("Access-Control-Allow-Headers", "Content-Type, Authorization")
 		w.Header().Set("Access-Control-Allow-Credentials", "true")
 
@@ -212,27 +208,6 @@ func run() error {
 	if err := notificationpb.RegisterNotificationServiceHandlerFromEndpoint(ctx, gwMux, notificationServiceEndpoint, opts); err != nil {
 		return err
 	}
-
-	// ===== Register gRPC Chat Service =====
-	if err := chatroompb.RegisterChatroomServiceHandlerFromEndpoint(ctx, gwMux, chatServiceEndpoint, opts); err != nil {
-		return err
-	}
-	if err := friendpb.RegisterFriendServiceHandlerFromEndpoint(ctx, gwMux, chatServiceEndpoint, opts); err != nil {
-		return err
-	}
-	if err := roominvitepb.RegisterRoomInviteServiceHandlerFromEndpoint(ctx, gwMux, chatServiceEndpoint, opts); err != nil {
-		return err
-	}
-
-	if err := roommemberpb.RegisterRoomMemberServiceHandlerFromEndpoint(ctx, gwMux, chatServiceEndpoint, opts); err != nil {
-		return err
-	}
-	
-
-	if err := messagepb.RegisterMessageServiceHandlerFromEndpoint(ctx, gwMux, chatServiceEndpoint, opts); err != nil {
-		return err
-	}
-
 
 	// http.ServeMux for normal routes
 	mux := http.NewServeMux()

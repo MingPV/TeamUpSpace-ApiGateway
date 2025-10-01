@@ -49,6 +49,23 @@ message FindAllAnswersByPostIDResponse {
     repeated Answer answers = 1;
 }
 
+message FindAnswerByPostIDAndUserIDRequest {
+    int32 post_id = 1;
+    string user_id = 2;
+}
+
+message FindAnswerByPostIDAndUserIDResponse {
+    repeated Answer answers = 1;
+}
+
+message FindAllAnswersByUserIDRequest {
+    string user_id = 1;
+}
+
+message FindAllAnswersByUserIDResponse {
+    repeated Answer answers = 1;
+}
+
 message DeleteAnswerRequest {
     int32 id = 1;
 }
@@ -72,6 +89,16 @@ service AnswerService {
     rpc FindAllAnswersByPostID(FindAllAnswersByPostIDRequest) returns (FindAllAnswersByPostIDResponse){
     option (google.api.http) = {
       get: "/api/v1/answers/post/{post_id}"
+    };
+  }
+    rpc FindAnswerByPostIDAndUserID(FindAnswerByPostIDAndUserIDRequest) returns (FindAnswerByPostIDAndUserIDResponse){
+    option (google.api.http) = {
+      get: "/api/v1/answers/post/user/{post_id}/{user_id}"
+    };
+  }
+    rpc FindAllAnswersByUserID(FindAllAnswersByUserIDRequest) returns (FindAllAnswersByUserIDResponse){
+    option (google.api.http) = {
+      get: "/api/v1/answers/user/{user_id}"
     };
   }
     rpc FindAllAnswers(FindAllAnswersRequest) returns (FindAllAnswersResponse){

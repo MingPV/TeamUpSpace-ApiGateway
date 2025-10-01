@@ -68,6 +68,43 @@
         ]
       }
     },
+    "/api/v1/answers/post/user/{postId}/{userId}": {
+      "get": {
+        "operationId": "AnswerService_FindAnswerByPostIDAndUserID",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/answerFindAnswerByPostIDAndUserIDResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "postId",
+            "in": "path",
+            "required": true,
+            "type": "integer",
+            "format": "int32"
+          },
+          {
+            "name": "userId",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "AnswerService"
+        ]
+      }
+    },
     "/api/v1/answers/post/{postId}": {
       "get": {
         "operationId": "AnswerService_FindAllAnswersByPostID",
@@ -92,6 +129,36 @@
             "required": true,
             "type": "integer",
             "format": "int32"
+          }
+        ],
+        "tags": [
+          "AnswerService"
+        ]
+      }
+    },
+    "/api/v1/answers/user/{userId}": {
+      "get": {
+        "operationId": "AnswerService_FindAllAnswersByUserID",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/answerFindAllAnswersByUserIDResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "userId",
+            "in": "path",
+            "required": true,
+            "type": "string"
           }
         ],
         "tags": [
@@ -233,6 +300,18 @@
         }
       }
     },
+    "answerFindAllAnswersByUserIDResponse": {
+      "type": "object",
+      "properties": {
+        "answers": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/answerAnswer"
+          }
+        }
+      }
+    },
     "answerFindAllAnswersResponse": {
       "type": "object",
       "properties": {
@@ -250,6 +329,18 @@
       "properties": {
         "answer": {
           "$ref": "#/definitions/answerAnswer"
+        }
+      }
+    },
+    "answerFindAnswerByPostIDAndUserIDResponse": {
+      "type": "object",
+      "properties": {
+        "answers": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/answerAnswer"
+          }
         }
       }
     },

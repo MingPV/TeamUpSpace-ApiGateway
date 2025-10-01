@@ -110,7 +110,7 @@
       }
     },
     "/api/v1/postLikes/{postId}/{userId}": {
-      "post": {
+      "delete": {
         "operationId": "PostLikeService_DeletePostLike",
         "responses": {
           "200": {
