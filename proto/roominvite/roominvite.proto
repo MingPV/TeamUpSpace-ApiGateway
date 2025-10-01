@@ -134,7 +134,7 @@ service RoomInviteService {
 
   rpc AcceptedRoomInvite(AcceptedRoomInviteRequest) returns (AcceptedRoomInviteResponse){
     option (google.api.http) = {
-      post: "/api/v1/roominvite/accepted/{id}"
+      patch: "/api/v1/roominvite/accepted/{id}"
     };
   }
 

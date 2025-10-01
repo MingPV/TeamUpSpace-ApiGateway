@@ -48,8 +48,8 @@
         ]
       }
     },
-    "/api/v1/friends/accepted/{userId}/{friendId}": {
-      "get": {
+    "/api/v1/friends/accepted/{id}": {
+      "patch": {
         "operationId": "FriendService_AcceptFriend",
         "responses": {
           "200": {
@@ -67,16 +67,11 @@
         },
         "parameters": [
           {
-            "name": "userId",
+            "name": "id",
             "in": "path",
             "required": true,
-            "type": "string"
-          },
-          {
-            "name": "friendId",
-            "in": "path",
-            "required": true,
-            "type": "string"
+            "type": "integer",
+            "format": "int32"
           }
         ],
         "tags": [

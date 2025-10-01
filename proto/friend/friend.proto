@@ -74,8 +74,7 @@ message DeleteFriendResponse {
 }
 
 message AcceptFriendRequest {
-    string user_id = 1;
-    string friend_id = 2;
+    int32 id = 1;
 }
 
 message AcceptFriendResponse {
@@ -116,7 +115,7 @@ service FriendService {
 
     rpc AcceptFriend(AcceptFriendRequest) returns (AcceptFriendResponse){
         option (google.api.http) = {
-            get: "/api/v1/friends/accepted/{user_id}/{friend_id}"
+            patch: "/api/v1/friends/accepted/{id}"
         };
     }
 

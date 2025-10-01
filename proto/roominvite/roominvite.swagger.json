@@ -49,7 +49,7 @@
       }
     },
     "/api/v1/roominvite/accepted/{id}": {
-      "post": {
+      "patch": {
         "operationId": "RoomInviteService_AcceptedRoomInvite",
         "responses": {
           "200": {

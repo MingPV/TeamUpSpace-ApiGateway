@@ -487,7 +487,7 @@ func RegisterRoomInviteServiceHandlerServer(ctx context.Context, mux *runtime.Se
 		}
 		forward_RoomInviteService_DeleteRoomInvite_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
 	})
-	mux.Handle(http.MethodPost, pattern_RoomInviteService_AcceptedRoomInvite_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle(http.MethodPatch, pattern_RoomInviteService_AcceptedRoomInvite_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		var stream runtime.ServerTransportStream
@@ -666,7 +666,7 @@ func RegisterRoomInviteServiceHandlerClient(ctx context.Context, mux *runtime.Se
 		}
 		forward_RoomInviteService_DeleteRoomInvite_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
 	})
-	mux.Handle(http.MethodPost, pattern_RoomInviteService_AcceptedRoomInvite_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle(http.MethodPatch, pattern_RoomInviteService_AcceptedRoomInvite_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
