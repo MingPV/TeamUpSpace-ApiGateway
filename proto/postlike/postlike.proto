@@ -66,7 +66,7 @@ service PostLikeService {
   }
     rpc DeletePostLike(DeletePostLikeRequest) returns (DeletePostLikeResponse){
     option (google.api.http) = {
-      post: "/api/v1/postLikes/{post_id}/{user_id}"
+      delete: "/api/v1/postLikes/{post_id}/{user_id}"
     };
   }
 }

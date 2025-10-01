@@ -475,6 +475,190 @@ func (x *FindAllAnswersByPostIDResponse) GetAnswers() []*Answer {
 	return nil
 }
 
+type FindAnswerByPostIDAndUserIDRequest struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	PostId        int32                  `protobuf:"varint,1,opt,name=post_id,json=postId,proto3" json:"post_id,omitempty"`
+	UserId        string                 `protobuf:"bytes,2,opt,name=user_id,json=userId,proto3" json:"user_id,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *FindAnswerByPostIDAndUserIDRequest) Reset() {
+	*x = FindAnswerByPostIDAndUserIDRequest{}
+	mi := &file_proto_answer_answer_proto_msgTypes[9]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *FindAnswerByPostIDAndUserIDRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*FindAnswerByPostIDAndUserIDRequest) ProtoMessage() {}
+
+func (x *FindAnswerByPostIDAndUserIDRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_proto_answer_answer_proto_msgTypes[9]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use FindAnswerByPostIDAndUserIDRequest.ProtoReflect.Descriptor instead.
+func (*FindAnswerByPostIDAndUserIDRequest) Descriptor() ([]byte, []int) {
+	return file_proto_answer_answer_proto_rawDescGZIP(), []int{9}
+}
+
+func (x *FindAnswerByPostIDAndUserIDRequest) GetPostId() int32 {
+	if x != nil {
+		return x.PostId
+	}
+	return 0
+}
+
+func (x *FindAnswerByPostIDAndUserIDRequest) GetUserId() string {
+	if x != nil {
+		return x.UserId
+	}
+	return ""
+}
+
+type FindAnswerByPostIDAndUserIDResponse struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	Answers       []*Answer              `protobuf:"bytes,1,rep,name=answers,proto3" json:"answers,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *FindAnswerByPostIDAndUserIDResponse) Reset() {
+	*x = FindAnswerByPostIDAndUserIDResponse{}
+	mi := &file_proto_answer_answer_proto_msgTypes[10]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *FindAnswerByPostIDAndUserIDResponse) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*FindAnswerByPostIDAndUserIDResponse) ProtoMessage() {}
+
+func (x *FindAnswerByPostIDAndUserIDResponse) ProtoReflect() protoreflect.Message {
+	mi := &file_proto_answer_answer_proto_msgTypes[10]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use FindAnswerByPostIDAndUserIDResponse.ProtoReflect.Descriptor instead.
+func (*FindAnswerByPostIDAndUserIDResponse) Descriptor() ([]byte, []int) {
+	return file_proto_answer_answer_proto_rawDescGZIP(), []int{10}
+}
+
+func (x *FindAnswerByPostIDAndUserIDResponse) GetAnswers() []*Answer {
+	if x != nil {
+		return x.Answers
+	}
+	return nil
+}
+
+type FindAllAnswersByUserIDRequest struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	UserId        string                 `protobuf:"bytes,1,opt,name=user_id,json=userId,proto3" json:"user_id,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *FindAllAnswersByUserIDRequest) Reset() {
+	*x = FindAllAnswersByUserIDRequest{}
+	mi := &file_proto_answer_answer_proto_msgTypes[11]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *FindAllAnswersByUserIDRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*FindAllAnswersByUserIDRequest) ProtoMessage() {}
+
+func (x *FindAllAnswersByUserIDRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_proto_answer_answer_proto_msgTypes[11]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use FindAllAnswersByUserIDRequest.ProtoReflect.Descriptor instead.
+func (*FindAllAnswersByUserIDRequest) Descriptor() ([]byte, []int) {
+	return file_proto_answer_answer_proto_rawDescGZIP(), []int{11}
+}
+
+func (x *FindAllAnswersByUserIDRequest) GetUserId() string {
+	if x != nil {
+		return x.UserId
+	}
+	return ""
+}
+
+type FindAllAnswersByUserIDResponse struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	Answers       []*Answer              `protobuf:"bytes,1,rep,name=answers,proto3" json:"answers,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *FindAllAnswersByUserIDResponse) Reset() {
+	*x = FindAllAnswersByUserIDResponse{}
+	mi := &file_proto_answer_answer_proto_msgTypes[12]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *FindAllAnswersByUserIDResponse) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*FindAllAnswersByUserIDResponse) ProtoMessage() {}
+
+func (x *FindAllAnswersByUserIDResponse) ProtoReflect() protoreflect.Message {
+	mi := &file_proto_answer_answer_proto_msgTypes[12]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use FindAllAnswersByUserIDResponse.ProtoReflect.Descriptor instead.
+func (*FindAllAnswersByUserIDResponse) Descriptor() ([]byte, []int) {
+	return file_proto_answer_answer_proto_rawDescGZIP(), []int{12}
+}
+
+func (x *FindAllAnswersByUserIDResponse) GetAnswers() []*Answer {
+	if x != nil {
+		return x.Answers
+	}
+	return nil
+}
+
 type DeleteAnswerRequest struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	Id            int32                  `protobuf:"varint,1,opt,name=id,proto3" json:"id,omitempty"`
@@ -484,7 +668,7 @@ type DeleteAnswerRequest struct {
 
 func (x *DeleteAnswerRequest) Reset() {
 	*x = DeleteAnswerRequest{}
-	mi := &file_proto_answer_answer_proto_msgTypes[9]
+	mi := &file_proto_answer_answer_proto_msgTypes[13]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -496,7 +680,7 @@ func (x *DeleteAnswerRequest) String() string {
 func (*DeleteAnswerRequest) ProtoMessage() {}
 
 func (x *DeleteAnswerRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_proto_answer_answer_proto_msgTypes[9]
+	mi := &file_proto_answer_answer_proto_msgTypes[13]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -509,7 +693,7 @@ func (x *DeleteAnswerRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use DeleteAnswerRequest.ProtoReflect.Descriptor instead.
 func (*DeleteAnswerRequest) Descriptor() ([]byte, []int) {
-	return file_proto_answer_answer_proto_rawDescGZIP(), []int{9}
+	return file_proto_answer_answer_proto_rawDescGZIP(), []int{13}
 }
 
 func (x *DeleteAnswerRequest) GetId() int32 {
@@ -528,7 +712,7 @@ type DeleteAnswerResponse struct {
 
 func (x *DeleteAnswerResponse) Reset() {
 	*x = DeleteAnswerResponse{}
-	mi := &file_proto_answer_answer_proto_msgTypes[10]
+	mi := &file_proto_answer_answer_proto_msgTypes[14]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -540,7 +724,7 @@ func (x *DeleteAnswerResponse) String() string {
 func (*DeleteAnswerResponse) ProtoMessage() {}
 
 func (x *DeleteAnswerResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_proto_answer_answer_proto_msgTypes[10]
+	mi := &file_proto_answer_answer_proto_msgTypes[14]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -553,7 +737,7 @@ func (x *DeleteAnswerResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use DeleteAnswerResponse.ProtoReflect.Descriptor instead.
 func (*DeleteAnswerResponse) Descriptor() ([]byte, []int) {
-	return file_proto_answer_answer_proto_rawDescGZIP(), []int{10}
+	return file_proto_answer_answer_proto_rawDescGZIP(), []int{14}
 }
 
 func (x *DeleteAnswerResponse) GetMessage() string {
@@ -593,15 +777,26 @@ const file_proto_answer_answer_proto_rawDesc = "" +
 	"\x1dFindAllAnswersByPostIDRequest\x12\x17\n" +
 	"\apost_id\x18\x01 \x01(\x05R\x06postId\"J\n" +
 	"\x1eFindAllAnswersByPostIDResponse\x12(\n" +
+	"\aanswers\x18\x01 \x03(\v2\x0e.answer.AnswerR\aanswers\"V\n" +
+	"\"FindAnswerByPostIDAndUserIDRequest\x12\x17\n" +
+	"\apost_id\x18\x01 \x01(\x05R\x06postId\x12\x17\n" +
+	"\auser_id\x18\x02 \x01(\tR\x06userId\"O\n" +
+	"#FindAnswerByPostIDAndUserIDResponse\x12(\n" +
+	"\aanswers\x18\x01 \x03(\v2\x0e.answer.AnswerR\aanswers\"8\n" +
+	"\x1dFindAllAnswersByUserIDRequest\x12\x17\n" +
+	"\auser_id\x18\x01 \x01(\tR\x06userId\"J\n" +
+	"\x1eFindAllAnswersByUserIDResponse\x12(\n" +
 	"\aanswers\x18\x01 \x03(\v2\x0e.answer.AnswerR\aanswers\"%\n" +
 	"\x13DeleteAnswerRequest\x12\x0e\n" +
 	"\x02id\x18\x01 \x01(\x05R\x02id\"0\n" +
 	"\x14DeleteAnswerResponse\x12\x18\n" +
-	"\amessage\x18\x01 \x01(\tR\amessage2\xca\x04\n" +
+	"\amessage\x18\x01 \x01(\tR\amessage2\x8c\a\n" +
 	"\rAnswerService\x12e\n" +
 	"\fCreateAnswer\x12\x1b.answer.CreateAnswerRequest\x1a\x1c.answer.CreateAnswerResponse\"\x1a\x82\xd3\xe4\x93\x02\x14:\x01*\"\x0f/api/v1/answers\x12m\n" +
 	"\x0eFindAnswerByID\x12\x1d.answer.FindAnswerByIDRequest\x1a\x1e.answer.FindAnswerByIDResponse\"\x1c\x82\xd3\xe4\x93\x02\x16\x12\x14/api/v1/answers/{id}\x12\x8f\x01\n" +
-	"\x16FindAllAnswersByPostID\x12%.answer.FindAllAnswersByPostIDRequest\x1a&.answer.FindAllAnswersByPostIDResponse\"&\x82\xd3\xe4\x93\x02 \x12\x1e/api/v1/answers/post/{post_id}\x12h\n" +
+	"\x16FindAllAnswersByPostID\x12%.answer.FindAllAnswersByPostIDRequest\x1a&.answer.FindAllAnswersByPostIDResponse\"&\x82\xd3\xe4\x93\x02 \x12\x1e/api/v1/answers/post/{post_id}\x12\xad\x01\n" +
+	"\x1bFindAnswerByPostIDAndUserID\x12*.answer.FindAnswerByPostIDAndUserIDRequest\x1a+.answer.FindAnswerByPostIDAndUserIDResponse\"5\x82\xd3\xe4\x93\x02/\x12-/api/v1/answers/post/user/{post_id}/{user_id}\x12\x8f\x01\n" +
+	"\x16FindAllAnswersByUserID\x12%.answer.FindAllAnswersByUserIDRequest\x1a&.answer.FindAllAnswersByUserIDResponse\"&\x82\xd3\xe4\x93\x02 \x12\x1e/api/v1/answers/user/{user_id}\x12h\n" +
 	"\x0eFindAllAnswers\x12\x1d.answer.FindAllAnswersRequest\x1a\x1e.answer.FindAllAnswersResponse\"\x17\x82\xd3\xe4\x93\x02\x11\x12\x0f/api/v1/answers\x12g\n" +
 	"\fDeleteAnswer\x12\x1b.answer.DeleteAnswerRequest\x1a\x1c.answer.DeleteAnswerResponse\"\x1c\x82\xd3\xe4\x93\x02\x16*\x14/api/v1/answers/{id}B\x0eZ\fproto/answerb\x06proto3"
 
@@ -617,42 +812,52 @@ func file_proto_answer_answer_proto_rawDescGZIP() []byte {
 	return file_proto_answer_answer_proto_rawDescData
 }
 
-var file_proto_answer_answer_proto_msgTypes = make([]protoimpl.MessageInfo, 11)
+var file_proto_answer_answer_proto_msgTypes = make([]protoimpl.MessageInfo, 15)
 var file_proto_answer_answer_proto_goTypes = []any{
-	(*Answer)(nil),                         // 0: answer.Answer
-	(*CreateAnswerRequest)(nil),            // 1: answer.CreateAnswerRequest
-	(*CreateAnswerResponse)(nil),           // 2: answer.CreateAnswerResponse
-	(*FindAnswerByIDRequest)(nil),          // 3: answer.FindAnswerByIDRequest
-	(*FindAnswerByIDResponse)(nil),         // 4: answer.FindAnswerByIDResponse
-	(*FindAllAnswersRequest)(nil),          // 5: answer.FindAllAnswersRequest
-	(*FindAllAnswersResponse)(nil),         // 6: answer.FindAllAnswersResponse
-	(*FindAllAnswersByPostIDRequest)(nil),  // 7: answer.FindAllAnswersByPostIDRequest
-	(*FindAllAnswersByPostIDResponse)(nil), // 8: answer.FindAllAnswersByPostIDResponse
-	(*DeleteAnswerRequest)(nil),            // 9: answer.DeleteAnswerRequest
-	(*DeleteAnswerResponse)(nil),           // 10: answer.DeleteAnswerResponse
-	(*timestamppb.Timestamp)(nil),          // 11: google.protobuf.Timestamp
+	(*Answer)(nil),                              // 0: answer.Answer
+	(*CreateAnswerRequest)(nil),                 // 1: answer.CreateAnswerRequest
+	(*CreateAnswerResponse)(nil),                // 2: answer.CreateAnswerResponse
+	(*FindAnswerByIDRequest)(nil),               // 3: answer.FindAnswerByIDRequest
+	(*FindAnswerByIDResponse)(nil),              // 4: answer.FindAnswerByIDResponse
+	(*FindAllAnswersRequest)(nil),               // 5: answer.FindAllAnswersRequest
+	(*FindAllAnswersResponse)(nil),              // 6: answer.FindAllAnswersResponse
+	(*FindAllAnswersByPostIDRequest)(nil),       // 7: answer.FindAllAnswersByPostIDRequest
+	(*FindAllAnswersByPostIDResponse)(nil),      // 8: answer.FindAllAnswersByPostIDResponse
+	(*FindAnswerByPostIDAndUserIDRequest)(nil),  // 9: answer.FindAnswerByPostIDAndUserIDRequest
+	(*FindAnswerByPostIDAndUserIDResponse)(nil), // 10: answer.FindAnswerByPostIDAndUserIDResponse
+	(*FindAllAnswersByUserIDRequest)(nil),       // 11: answer.FindAllAnswersByUserIDRequest
+	(*FindAllAnswersByUserIDResponse)(nil),      // 12: answer.FindAllAnswersByUserIDResponse
+	(*DeleteAnswerRequest)(nil),                 // 13: answer.DeleteAnswerRequest
+	(*DeleteAnswerResponse)(nil),                // 14: answer.DeleteAnswerResponse
+	(*timestamppb.Timestamp)(nil),               // 15: google.protobuf.Timestamp
 }
 var file_proto_answer_answer_proto_depIdxs = []int32{
-	11, // 0: answer.Answer.created_at:type_name -> google.protobuf.Timestamp
+	15, // 0: answer.Answer.created_at:type_name -> google.protobuf.Timestamp
 	0,  // 1: answer.CreateAnswerResponse.answer:type_name -> answer.Answer
 	0,  // 2: answer.FindAnswerByIDResponse.answer:type_name -> answer.Answer
 	0,  // 3: answer.FindAllAnswersResponse.answers:type_name -> answer.Answer
 	0,  // 4: answer.FindAllAnswersByPostIDResponse.answers:type_name -> answer.Answer
-	1,  // 5: answer.AnswerService.CreateAnswer:input_type -> answer.CreateAnswerRequest
-	3,  // 6: answer.AnswerService.FindAnswerByID:input_type -> answer.FindAnswerByIDRequest
-	7,  // 7: answer.AnswerService.FindAllAnswersByPostID:input_type -> answer.FindAllAnswersByPostIDRequest
-	5,  // 8: answer.AnswerService.FindAllAnswers:input_type -> answer.FindAllAnswersRequest
-	9,  // 9: answer.AnswerService.DeleteAnswer:input_type -> answer.DeleteAnswerRequest
-	2,  // 10: answer.AnswerService.CreateAnswer:output_type -> answer.CreateAnswerResponse
-	4,  // 11: answer.AnswerService.FindAnswerByID:output_type -> answer.FindAnswerByIDResponse
-	8,  // 12: answer.AnswerService.FindAllAnswersByPostID:output_type -> answer.FindAllAnswersByPostIDResponse
-	6,  // 13: answer.AnswerService.FindAllAnswers:output_type -> answer.FindAllAnswersResponse
-	10, // 14: answer.AnswerService.DeleteAnswer:output_type -> answer.DeleteAnswerResponse
-	10, // [10:15] is the sub-list for method output_type
-	5,  // [5:10] is the sub-list for method input_type
-	5,  // [5:5] is the sub-list for extension type_name
-	5,  // [5:5] is the sub-list for extension extendee
-	0,  // [0:5] is the sub-list for field type_name
+	0,  // 5: answer.FindAnswerByPostIDAndUserIDResponse.answers:type_name -> answer.Answer
+	0,  // 6: answer.FindAllAnswersByUserIDResponse.answers:type_name -> answer.Answer
+	1,  // 7: answer.AnswerService.CreateAnswer:input_type -> answer.CreateAnswerRequest
+	3,  // 8: answer.AnswerService.FindAnswerByID:input_type -> answer.FindAnswerByIDRequest
+	7,  // 9: answer.AnswerService.FindAllAnswersByPostID:input_type -> answer.FindAllAnswersByPostIDRequest
+	9,  // 10: answer.AnswerService.FindAnswerByPostIDAndUserID:input_type -> answer.FindAnswerByPostIDAndUserIDRequest
+	11, // 11: answer.AnswerService.FindAllAnswersByUserID:input_type -> answer.FindAllAnswersByUserIDRequest
+	5,  // 12: answer.AnswerService.FindAllAnswers:input_type -> answer.FindAllAnswersRequest
+	13, // 13: answer.AnswerService.DeleteAnswer:input_type -> answer.DeleteAnswerRequest
+	2,  // 14: answer.AnswerService.CreateAnswer:output_type -> answer.CreateAnswerResponse
+	4,  // 15: answer.AnswerService.FindAnswerByID:output_type -> answer.FindAnswerByIDResponse
+	8,  // 16: answer.AnswerService.FindAllAnswersByPostID:output_type -> answer.FindAllAnswersByPostIDResponse
+	10, // 17: answer.AnswerService.FindAnswerByPostIDAndUserID:output_type -> answer.FindAnswerByPostIDAndUserIDResponse
+	12, // 18: answer.AnswerService.FindAllAnswersByUserID:output_type -> answer.FindAllAnswersByUserIDResponse
+	6,  // 19: answer.AnswerService.FindAllAnswers:output_type -> answer.FindAllAnswersResponse
+	14, // 20: answer.AnswerService.DeleteAnswer:output_type -> answer.DeleteAnswerResponse
+	14, // [14:21] is the sub-list for method output_type
+	7,  // [7:14] is the sub-list for method input_type
+	7,  // [7:7] is the sub-list for extension type_name
+	7,  // [7:7] is the sub-list for extension extendee
+	0,  // [0:7] is the sub-list for field type_name
 }
 
 func init() { file_proto_answer_answer_proto_init() }
@@ -666,7 +871,7 @@ func file_proto_answer_answer_proto_init() {
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: unsafe.Slice(unsafe.StringData(file_proto_answer_answer_proto_rawDesc), len(file_proto_answer_answer_proto_rawDesc)),
 			NumEnums:      0,
-			NumMessages:   11,
+			NumMessages:   15,
 			NumExtensions: 0,
 			NumServices:   1,
 		},

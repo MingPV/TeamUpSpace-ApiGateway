@@ -19,11 +19,13 @@ import (
 const _ = grpc.SupportPackageIsVersion9
 
 const (
-	AnswerService_CreateAnswer_FullMethodName           = "/answer.AnswerService/CreateAnswer"
-	AnswerService_FindAnswerByID_FullMethodName         = "/answer.AnswerService/FindAnswerByID"
-	AnswerService_FindAllAnswersByPostID_FullMethodName = "/answer.AnswerService/FindAllAnswersByPostID"
-	AnswerService_FindAllAnswers_FullMethodName         = "/answer.AnswerService/FindAllAnswers"
-	AnswerService_DeleteAnswer_FullMethodName           = "/answer.AnswerService/DeleteAnswer"
+	AnswerService_CreateAnswer_FullMethodName                = "/answer.AnswerService/CreateAnswer"
+	AnswerService_FindAnswerByID_FullMethodName              = "/answer.AnswerService/FindAnswerByID"
+	AnswerService_FindAllAnswersByPostID_FullMethodName      = "/answer.AnswerService/FindAllAnswersByPostID"
+	AnswerService_FindAnswerByPostIDAndUserID_FullMethodName = "/answer.AnswerService/FindAnswerByPostIDAndUserID"
+	AnswerService_FindAllAnswersByUserID_FullMethodName      = "/answer.AnswerService/FindAllAnswersByUserID"
+	AnswerService_FindAllAnswers_FullMethodName              = "/answer.AnswerService/FindAllAnswers"
+	AnswerService_DeleteAnswer_FullMethodName                = "/answer.AnswerService/DeleteAnswer"
 )
 
 // AnswerServiceClient is the client API for AnswerService service.
@@ -33,6 +35,8 @@ type AnswerServiceClient interface {
 	CreateAnswer(ctx context.Context, in *CreateAnswerRequest, opts ...grpc.CallOption) (*CreateAnswerResponse, error)
 	FindAnswerByID(ctx context.Context, in *FindAnswerByIDRequest, opts ...grpc.CallOption) (*FindAnswerByIDResponse, error)
 	FindAllAnswersByPostID(ctx context.Context, in *FindAllAnswersByPostIDRequest, opts ...grpc.CallOption) (*FindAllAnswersByPostIDResponse, error)
+	FindAnswerByPostIDAndUserID(ctx context.Context, in *FindAnswerByPostIDAndUserIDRequest, opts ...grpc.CallOption) (*FindAnswerByPostIDAndUserIDResponse, error)
+	FindAllAnswersByUserID(ctx context.Context, in *FindAllAnswersByUserIDRequest, opts ...grpc.CallOption) (*FindAllAnswersByUserIDResponse, error)
 	FindAllAnswers(ctx context.Context, in *FindAllAnswersRequest, opts ...grpc.CallOption) (*FindAllAnswersResponse, error)
 	DeleteAnswer(ctx context.Context, in *DeleteAnswerRequest, opts ...grpc.CallOption) (*DeleteAnswerResponse, error)
 }
@@ -75,6 +79,26 @@ func (c *answerServiceClient) FindAllAnswersByPostID(ctx context.Context, in *Fi
 	return out, nil
 }
 
+func (c *answerServiceClient) FindAnswerByPostIDAndUserID(ctx context.Context, in *FindAnswerByPostIDAndUserIDRequest, opts ...grpc.CallOption) (*FindAnswerByPostIDAndUserIDResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(FindAnswerByPostIDAndUserIDResponse)
+	err := c.cc.Invoke(ctx, AnswerService_FindAnswerByPostIDAndUserID_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *answerServiceClient) FindAllAnswersByUserID(ctx context.Context, in *FindAllAnswersByUserIDRequest, opts ...grpc.CallOption) (*FindAllAnswersByUserIDResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(FindAllAnswersByUserIDResponse)
+	err := c.cc.Invoke(ctx, AnswerService_FindAllAnswersByUserID_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 func (c *answerServiceClient) FindAllAnswers(ctx context.Context, in *FindAllAnswersRequest, opts ...grpc.CallOption) (*FindAllAnswersResponse, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
 	out := new(FindAllAnswersResponse)
@@ -102,6 +126,8 @@ type AnswerServiceServer interface {
 	CreateAnswer(context.Context, *CreateAnswerRequest) (*CreateAnswerResponse, error)
 	FindAnswerByID(context.Context, *FindAnswerByIDRequest) (*FindAnswerByIDResponse, error)
 	FindAllAnswersByPostID(context.Context, *FindAllAnswersByPostIDRequest) (*FindAllAnswersByPostIDResponse, error)
+	FindAnswerByPostIDAndUserID(context.Context, *FindAnswerByPostIDAndUserIDRequest) (*FindAnswerByPostIDAndUserIDResponse, error)
+	FindAllAnswersByUserID(context.Context, *FindAllAnswersByUserIDRequest) (*FindAllAnswersByUserIDResponse, error)
 	FindAllAnswers(context.Context, *FindAllAnswersRequest) (*FindAllAnswersResponse, error)
 	DeleteAnswer(context.Context, *DeleteAnswerRequest) (*DeleteAnswerResponse, error)
 	mustEmbedUnimplementedAnswerServiceServer()
@@ -122,6 +148,12 @@ func (UnimplementedAnswerServiceServer) FindAnswerByID(context.Context, *FindAns
 }
 func (UnimplementedAnswerServiceServer) FindAllAnswersByPostID(context.Context, *FindAllAnswersByPostIDRequest) (*FindAllAnswersByPostIDResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method FindAllAnswersByPostID not implemented")
+}
+func (UnimplementedAnswerServiceServer) FindAnswerByPostIDAndUserID(context.Context, *FindAnswerByPostIDAndUserIDRequest) (*FindAnswerByPostIDAndUserIDResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method FindAnswerByPostIDAndUserID not implemented")
+}
+func (UnimplementedAnswerServiceServer) FindAllAnswersByUserID(context.Context, *FindAllAnswersByUserIDRequest) (*FindAllAnswersByUserIDResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method FindAllAnswersByUserID not implemented")
 }
 func (UnimplementedAnswerServiceServer) FindAllAnswers(context.Context, *FindAllAnswersRequest) (*FindAllAnswersResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method FindAllAnswers not implemented")
@@ -204,6 +236,42 @@ func _AnswerService_FindAllAnswersByPostID_Handler(srv interface{}, ctx context.
 	return interceptor(ctx, in, info, handler)
 }
 
+func _AnswerService_FindAnswerByPostIDAndUserID_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(FindAnswerByPostIDAndUserIDRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(AnswerServiceServer).FindAnswerByPostIDAndUserID(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: AnswerService_FindAnswerByPostIDAndUserID_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(AnswerServiceServer).FindAnswerByPostIDAndUserID(ctx, req.(*FindAnswerByPostIDAndUserIDRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _AnswerService_FindAllAnswersByUserID_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(FindAllAnswersByUserIDRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(AnswerServiceServer).FindAllAnswersByUserID(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: AnswerService_FindAllAnswersByUserID_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(AnswerServiceServer).FindAllAnswersByUserID(ctx, req.(*FindAllAnswersByUserIDRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 func _AnswerService_FindAllAnswers_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(FindAllAnswersRequest)
 	if err := dec(in); err != nil {
@@ -258,6 +326,14 @@ var AnswerService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "FindAllAnswersByPostID",
 			Handler:    _AnswerService_FindAllAnswersByPostID_Handler,
+		},
+		{
+			MethodName: "FindAnswerByPostIDAndUserID",
+			Handler:    _AnswerService_FindAnswerByPostIDAndUserID_Handler,
+		},
+		{
+			MethodName: "FindAllAnswersByUserID",
+			Handler:    _AnswerService_FindAllAnswersByUserID_Handler,
 		},
 		{
 			MethodName: "FindAllAnswers",
