@@ -1,0 +1,71 @@
+syntax = "proto3";
+
+package userfollow;
+
+import "google/api/annotations.proto";
+
+option go_package = "proto/userfollow";
+
+message UserFollow {
+  string user_id = 1;
+  string follow_to = 2;
+  string created_at = 3;
+}
+
+message FollowUserRequest {
+  string user_id = 1;
+  string follow_to = 2;
+}
+
+message FollowUserResponse {
+  UserFollow user_follow = 1;
+}
+
+message UnfollowUserRequest {
+  string user_id = 1;
+  string follow_to = 2;
+}
+
+message UnfollowUserResponse {
+  string message = 1;
+}
+
+message FindAllFollowersRequest {
+  string follow_to = 1;
+}
+
+message FindAllFollowersResponse {
+  repeated UserFollow user_follows = 1;
+}
+
+message FindAllFollowingsRequest {
+  string user_id = 1;
+}
+
+message FindAllFollowingsResponse {
+  repeated UserFollow user_follows = 1;
+}
+
+service UserFollowService {
+  rpc FollowUser(FollowUserRequest) returns (FollowUserResponse){
+    option (google.api.http) = {
+      post: "/api/v1/userFollows"
+      body: "*"
+    };
+  }
+  rpc UnfollowUser(UnfollowUserRequest) returns (UnfollowUserResponse){
+    option (google.api.http) = {
+      delete: "/api/v1/userFollows/{user_id}/{follow_to}"
+    };
+  }
+  rpc FindAllFollowers(FindAllFollowersRequest) returns (FindAllFollowersResponse){
+    option (google.api.http) = {
+      get: "/api/v1/userFollows/followers/{follow_to}"
+    };
+  }
+  rpc FindAllFollowings(FindAllFollowingsRequest) returns (FindAllFollowingsResponse){
+    option (google.api.http) = {
+      get: "/api/v1/userFollows/followings/{user_id}"
+    };
+  }
+}

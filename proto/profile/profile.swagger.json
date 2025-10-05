@@ -201,6 +201,9 @@
         },
         "country": {
           "type": "string"
+        },
+        "resume": {
+          "type": "string"
         }
       }
     },
@@ -243,6 +246,9 @@
           "type": "string"
         },
         "country": {
+          "type": "string"
+        },
+        "resume": {
           "type": "string"
         }
       }
@@ -330,6 +336,9 @@
           "type": "string"
         },
         "country": {
+          "type": "string"
+        },
+        "resume": {
           "type": "string"
         },
         "createdAt": {

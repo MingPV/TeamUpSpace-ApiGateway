@@ -37,6 +37,8 @@ import (
 	postlikepb "github.com/MingPV/ApiGateway/proto/postlike"
 	postreportpb "github.com/MingPV/ApiGateway/proto/postreport"
 	questionpb "github.com/MingPV/ApiGateway/proto/question"
+	savedeventpb "github.com/MingPV/ApiGateway/proto/savedevent"
+	userfollowpb "github.com/MingPV/ApiGateway/proto/userfollow"
 	userreportpb "github.com/MingPV/ApiGateway/proto/userreport"
 
 	"github.com/gorilla/websocket"
@@ -176,6 +178,9 @@ func run() error {
 	if err := userreportpb.RegisterUserReportServiceHandlerFromEndpoint(ctx, gwMux, userServiceEndpoint, opts); err != nil {
 		return err
 	}
+	if err := userfollowpb.RegisterUserFollowServiceHandlerFromEndpoint(ctx, gwMux, userServiceEndpoint, opts); err != nil {
+		return err
+	}
 
 	// ===== Register gRPC Post Service =====
 	if err := postpb.RegisterPostServiceHandlerFromEndpoint(ctx, gwMux, postServiceEndpoint, opts); err != nil {
@@ -211,7 +216,6 @@ func run() error {
 	if err := roommemberpb.RegisterRoomMemberServiceHandlerFromEndpoint(ctx, gwMux, chatServiceEndpoint, opts); err != nil {
 		return err
 	}
-	
 
 	if err := messagepb.RegisterMessageServiceHandlerFromEndpoint(ctx, gwMux, chatServiceEndpoint, opts); err != nil {
 		return err
@@ -225,6 +229,9 @@ func run() error {
 		return err
 	}
 	if err := tagpb.RegisterTagServiceHandlerFromEndpoint(ctx, gwMux, eventServiceEndpoint, opts); err != nil {
+		return err
+	}
+	if err := savedeventpb.RegisterSavedEventServiceHandlerFromEndpoint(ctx, gwMux, eventServiceEndpoint, opts); err != nil {
 		return err
 	}
 

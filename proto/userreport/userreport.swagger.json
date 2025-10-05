@@ -369,6 +369,9 @@
         },
         "status": {
           "type": "string"
+        },
+        "createdAt": {
+          "type": "string"
         }
       }
     }
