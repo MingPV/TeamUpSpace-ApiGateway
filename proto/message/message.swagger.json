@@ -16,6 +16,37 @@
     "application/json"
   ],
   "paths": {
+    "/api/v1/message/latest/{roomId}": {
+      "get": {
+        "operationId": "MessageService_FindLatestMessageByRoomId",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/messageFIndLastestMessageByRoomIdResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "roomId",
+            "in": "path",
+            "required": true,
+            "type": "integer",
+            "format": "int32"
+          }
+        ],
+        "tags": [
+          "MessageService"
+        ]
+      }
+    },
     "/api/v1/messages/{roomId}": {
       "get": {
         "operationId": "MessageService_FindAllMessageByRoomID",
@@ -54,6 +85,14 @@
       "properties": {
         "message": {
           "type": "string"
+        }
+      }
+    },
+    "messageFIndLastestMessageByRoomIdResponse": {
+      "type": "object",
+      "properties": {
+        "message": {
+          "$ref": "#/definitions/messageMessage"
         }
       }
     },
