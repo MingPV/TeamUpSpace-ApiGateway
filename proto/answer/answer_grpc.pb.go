@@ -25,6 +25,7 @@ const (
 	AnswerService_FindAnswerByPostIDAndUserID_FullMethodName = "/answer.AnswerService/FindAnswerByPostIDAndUserID"
 	AnswerService_FindAllAnswersByUserID_FullMethodName      = "/answer.AnswerService/FindAllAnswersByUserID"
 	AnswerService_FindAllAnswers_FullMethodName              = "/answer.AnswerService/FindAllAnswers"
+	AnswerService_PatchAnswer_FullMethodName                 = "/answer.AnswerService/PatchAnswer"
 	AnswerService_DeleteAnswer_FullMethodName                = "/answer.AnswerService/DeleteAnswer"
 )
 
@@ -38,6 +39,7 @@ type AnswerServiceClient interface {
 	FindAnswerByPostIDAndUserID(ctx context.Context, in *FindAnswerByPostIDAndUserIDRequest, opts ...grpc.CallOption) (*FindAnswerByPostIDAndUserIDResponse, error)
 	FindAllAnswersByUserID(ctx context.Context, in *FindAllAnswersByUserIDRequest, opts ...grpc.CallOption) (*FindAllAnswersByUserIDResponse, error)
 	FindAllAnswers(ctx context.Context, in *FindAllAnswersRequest, opts ...grpc.CallOption) (*FindAllAnswersResponse, error)
+	PatchAnswer(ctx context.Context, in *PatchAnswerRequest, opts ...grpc.CallOption) (*PatchAnswerResponse, error)
 	DeleteAnswer(ctx context.Context, in *DeleteAnswerRequest, opts ...grpc.CallOption) (*DeleteAnswerResponse, error)
 }
 
@@ -109,6 +111,16 @@ func (c *answerServiceClient) FindAllAnswers(ctx context.Context, in *FindAllAns
 	return out, nil
 }
 
+func (c *answerServiceClient) PatchAnswer(ctx context.Context, in *PatchAnswerRequest, opts ...grpc.CallOption) (*PatchAnswerResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(PatchAnswerResponse)
+	err := c.cc.Invoke(ctx, AnswerService_PatchAnswer_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 func (c *answerServiceClient) DeleteAnswer(ctx context.Context, in *DeleteAnswerRequest, opts ...grpc.CallOption) (*DeleteAnswerResponse, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
 	out := new(DeleteAnswerResponse)
@@ -129,6 +141,7 @@ type AnswerServiceServer interface {
 	FindAnswerByPostIDAndUserID(context.Context, *FindAnswerByPostIDAndUserIDRequest) (*FindAnswerByPostIDAndUserIDResponse, error)
 	FindAllAnswersByUserID(context.Context, *FindAllAnswersByUserIDRequest) (*FindAllAnswersByUserIDResponse, error)
 	FindAllAnswers(context.Context, *FindAllAnswersRequest) (*FindAllAnswersResponse, error)
+	PatchAnswer(context.Context, *PatchAnswerRequest) (*PatchAnswerResponse, error)
 	DeleteAnswer(context.Context, *DeleteAnswerRequest) (*DeleteAnswerResponse, error)
 	mustEmbedUnimplementedAnswerServiceServer()
 }
@@ -157,6 +170,9 @@ func (UnimplementedAnswerServiceServer) FindAllAnswersByUserID(context.Context, 
 }
 func (UnimplementedAnswerServiceServer) FindAllAnswers(context.Context, *FindAllAnswersRequest) (*FindAllAnswersResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method FindAllAnswers not implemented")
+}
+func (UnimplementedAnswerServiceServer) PatchAnswer(context.Context, *PatchAnswerRequest) (*PatchAnswerResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method PatchAnswer not implemented")
 }
 func (UnimplementedAnswerServiceServer) DeleteAnswer(context.Context, *DeleteAnswerRequest) (*DeleteAnswerResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method DeleteAnswer not implemented")
@@ -290,6 +306,24 @@ func _AnswerService_FindAllAnswers_Handler(srv interface{}, ctx context.Context,
 	return interceptor(ctx, in, info, handler)
 }
 
+func _AnswerService_PatchAnswer_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(PatchAnswerRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(AnswerServiceServer).PatchAnswer(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: AnswerService_PatchAnswer_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(AnswerServiceServer).PatchAnswer(ctx, req.(*PatchAnswerRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 func _AnswerService_DeleteAnswer_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(DeleteAnswerRequest)
 	if err := dec(in); err != nil {
@@ -338,6 +372,10 @@ var AnswerService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "FindAllAnswers",
 			Handler:    _AnswerService_FindAllAnswers_Handler,
+		},
+		{
+			MethodName: "PatchAnswer",
+			Handler:    _AnswerService_PatchAnswer_Handler,
 		},
 		{
 			MethodName: "DeleteAnswer",

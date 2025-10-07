@@ -44,6 +44,14 @@ message FindPostByIDResponse {
 
 message FindAllPostsRequest {}
 
+message FindPostsByUserIDRequest {
+    string user_id = 1;
+}
+
+message FindPostsByUserIDResponse {
+    repeated Post posts = 1;
+}
+
 message FindAllPostsResponse {
     repeated Post posts = 1;
 }
@@ -87,6 +95,11 @@ service PostService {
   rpc FindAllPosts(FindAllPostsRequest) returns (FindAllPostsResponse) {
     option (google.api.http) = {
       get: "/api/v1/posts"
+    };
+  }
+  rpc FindPostsByUserID(FindPostsByUserIDRequest) returns (FindPostsByUserIDResponse) {
+    option (google.api.http) = {
+      get: "/api/v1/posts/user/{user_id}"
     };
   }
   rpc PatchPost(PatchPostRequest) returns (PatchPostResponse) {
