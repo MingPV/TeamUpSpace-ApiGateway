@@ -68,6 +68,66 @@
         ]
       }
     },
+    "/api/v1/notifications/read/{userId}": {
+      "patch": {
+        "operationId": "NotificationService_MarkAsReadByUserID",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/notificationMarkAsReadByUserIDResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "userId",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "NotificationService"
+        ]
+      }
+    },
+    "/api/v1/notifications/user/{userId}": {
+      "get": {
+        "operationId": "NotificationService_FindNotificationsByUserID",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/notificationFindNotificationsByUserIDResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "userId",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "NotificationService"
+        ]
+      }
+    },
     "/api/v1/notifications/{id}": {
       "get": {
         "operationId": "NotificationService_FindNotificationByID",
@@ -178,6 +238,9 @@
         },
         "message": {
           "type": "string"
+        },
+        "isRead": {
+          "type": "boolean"
         }
       }
     },
@@ -231,6 +294,26 @@
         }
       }
     },
+    "notificationFindNotificationsByUserIDResponse": {
+      "type": "object",
+      "properties": {
+        "notifications": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/notificationNotification"
+          }
+        }
+      }
+    },
+    "notificationMarkAsReadByUserIDResponse": {
+      "type": "object",
+      "properties": {
+        "message": {
+          "type": "string"
+        }
+      }
+    },
     "notificationNotification": {
       "type": "object",
       "properties": {
@@ -246,6 +329,9 @@
         },
         "message": {
           "type": "string"
+        },
+        "isRead": {
+          "type": "boolean"
         },
         "createdAt": {
           "type": "string",
