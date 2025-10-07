@@ -19,11 +19,12 @@ import (
 const _ = grpc.SupportPackageIsVersion9
 
 const (
-	PostService_CreatePost_FullMethodName   = "/post.PostService/CreatePost"
-	PostService_FindPostByID_FullMethodName = "/post.PostService/FindPostByID"
-	PostService_FindAllPosts_FullMethodName = "/post.PostService/FindAllPosts"
-	PostService_PatchPost_FullMethodName    = "/post.PostService/PatchPost"
-	PostService_DeletePost_FullMethodName   = "/post.PostService/DeletePost"
+	PostService_CreatePost_FullMethodName        = "/post.PostService/CreatePost"
+	PostService_FindPostByID_FullMethodName      = "/post.PostService/FindPostByID"
+	PostService_FindAllPosts_FullMethodName      = "/post.PostService/FindAllPosts"
+	PostService_FindPostsByUserID_FullMethodName = "/post.PostService/FindPostsByUserID"
+	PostService_PatchPost_FullMethodName         = "/post.PostService/PatchPost"
+	PostService_DeletePost_FullMethodName        = "/post.PostService/DeletePost"
 )
 
 // PostServiceClient is the client API for PostService service.
@@ -33,6 +34,7 @@ type PostServiceClient interface {
 	CreatePost(ctx context.Context, in *CreatePostRequest, opts ...grpc.CallOption) (*CreatePostResponse, error)
 	FindPostByID(ctx context.Context, in *FindPostByIDRequest, opts ...grpc.CallOption) (*FindPostByIDResponse, error)
 	FindAllPosts(ctx context.Context, in *FindAllPostsRequest, opts ...grpc.CallOption) (*FindAllPostsResponse, error)
+	FindPostsByUserID(ctx context.Context, in *FindPostsByUserIDRequest, opts ...grpc.CallOption) (*FindPostsByUserIDResponse, error)
 	PatchPost(ctx context.Context, in *PatchPostRequest, opts ...grpc.CallOption) (*PatchPostResponse, error)
 	DeletePost(ctx context.Context, in *DeletePostRequest, opts ...grpc.CallOption) (*DeletePostResponse, error)
 }
@@ -75,6 +77,16 @@ func (c *postServiceClient) FindAllPosts(ctx context.Context, in *FindAllPostsRe
 	return out, nil
 }
 
+func (c *postServiceClient) FindPostsByUserID(ctx context.Context, in *FindPostsByUserIDRequest, opts ...grpc.CallOption) (*FindPostsByUserIDResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(FindPostsByUserIDResponse)
+	err := c.cc.Invoke(ctx, PostService_FindPostsByUserID_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 func (c *postServiceClient) PatchPost(ctx context.Context, in *PatchPostRequest, opts ...grpc.CallOption) (*PatchPostResponse, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
 	out := new(PatchPostResponse)
@@ -102,6 +114,7 @@ type PostServiceServer interface {
 	CreatePost(context.Context, *CreatePostRequest) (*CreatePostResponse, error)
 	FindPostByID(context.Context, *FindPostByIDRequest) (*FindPostByIDResponse, error)
 	FindAllPosts(context.Context, *FindAllPostsRequest) (*FindAllPostsResponse, error)
+	FindPostsByUserID(context.Context, *FindPostsByUserIDRequest) (*FindPostsByUserIDResponse, error)
 	PatchPost(context.Context, *PatchPostRequest) (*PatchPostResponse, error)
 	DeletePost(context.Context, *DeletePostRequest) (*DeletePostResponse, error)
 	mustEmbedUnimplementedPostServiceServer()
@@ -122,6 +135,9 @@ func (UnimplementedPostServiceServer) FindPostByID(context.Context, *FindPostByI
 }
 func (UnimplementedPostServiceServer) FindAllPosts(context.Context, *FindAllPostsRequest) (*FindAllPostsResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method FindAllPosts not implemented")
+}
+func (UnimplementedPostServiceServer) FindPostsByUserID(context.Context, *FindPostsByUserIDRequest) (*FindPostsByUserIDResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method FindPostsByUserID not implemented")
 }
 func (UnimplementedPostServiceServer) PatchPost(context.Context, *PatchPostRequest) (*PatchPostResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method PatchPost not implemented")
@@ -204,6 +220,24 @@ func _PostService_FindAllPosts_Handler(srv interface{}, ctx context.Context, dec
 	return interceptor(ctx, in, info, handler)
 }
 
+func _PostService_FindPostsByUserID_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(FindPostsByUserIDRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(PostServiceServer).FindPostsByUserID(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: PostService_FindPostsByUserID_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(PostServiceServer).FindPostsByUserID(ctx, req.(*FindPostsByUserIDRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 func _PostService_PatchPost_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(PatchPostRequest)
 	if err := dec(in); err != nil {
@@ -258,6 +292,10 @@ var PostService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "FindAllPosts",
 			Handler:    _PostService_FindAllPosts_Handler,
+		},
+		{
+			MethodName: "FindPostsByUserID",
+			Handler:    _PostService_FindPostsByUserID_Handler,
 		},
 		{
 			MethodName: "PatchPost",

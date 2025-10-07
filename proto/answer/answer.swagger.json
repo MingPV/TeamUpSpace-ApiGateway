@@ -224,10 +224,65 @@
         "tags": [
           "AnswerService"
         ]
+      },
+      "patch": {
+        "operationId": "AnswerService_PatchAnswer",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/answerPatchAnswerResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "integer",
+            "format": "int32"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/AnswerServicePatchAnswerBody"
+            }
+          }
+        ],
+        "tags": [
+          "AnswerService"
+        ]
       }
     }
   },
   "definitions": {
+    "AnswerServicePatchAnswerBody": {
+      "type": "object",
+      "properties": {
+        "postId": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "userId": {
+          "type": "string"
+        },
+        "question": {
+          "type": "string"
+        },
+        "answer": {
+          "type": "string"
+        }
+      }
+    },
     "answerAnswer": {
       "type": "object",
       "properties": {
@@ -341,6 +396,14 @@
             "type": "object",
             "$ref": "#/definitions/answerAnswer"
           }
+        }
+      }
+    },
+    "answerPatchAnswerResponse": {
+      "type": "object",
+      "properties": {
+        "answer": {
+          "$ref": "#/definitions/answerAnswer"
         }
       }
     },

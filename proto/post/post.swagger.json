@@ -68,6 +68,36 @@
         ]
       }
     },
+    "/api/v1/posts/user/{userId}": {
+      "get": {
+        "operationId": "PostService_FindPostsByUserID",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/postFindPostsByUserIDResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "userId",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "PostService"
+        ]
+      }
+    },
     "/api/v1/posts/{id}": {
       "get": {
         "operationId": "PostService_FindPostByID",
@@ -256,6 +286,18 @@
       "properties": {
         "post": {
           "$ref": "#/definitions/postPost"
+        }
+      }
+    },
+    "postFindPostsByUserIDResponse": {
+      "type": "object",
+      "properties": {
+        "posts": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/postPost"
+          }
         }
       }
     },
