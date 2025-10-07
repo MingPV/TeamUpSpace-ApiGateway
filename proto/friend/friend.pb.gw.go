@@ -278,9 +278,6 @@ func request_FriendService_FindAllFriends_0(ctx context.Context, marshaler runti
 		protoReq FindAllFriendsRequest
 		metadata runtime.ServerMetadata
 	)
-	if err := marshaler.NewDecoder(req.Body).Decode(&protoReq); err != nil && !errors.Is(err, io.EOF) {
-		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
-	}
 	if req.Body != nil {
 		_, _ = io.Copy(io.Discard, req.Body)
 	}
@@ -293,9 +290,6 @@ func local_request_FriendService_FindAllFriends_0(ctx context.Context, marshaler
 		protoReq FindAllFriendsRequest
 		metadata runtime.ServerMetadata
 	)
-	if err := marshaler.NewDecoder(req.Body).Decode(&protoReq); err != nil && !errors.Is(err, io.EOF) {
-		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
-	}
 	msg, err := server.FindAllFriends(ctx, &protoReq)
 	return msg, metadata, err
 }
@@ -453,13 +447,13 @@ func RegisterFriendServiceHandlerServer(ctx context.Context, mux *runtime.ServeM
 		}
 		forward_FriendService_AcceptFriend_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
 	})
-	mux.Handle(http.MethodPost, pattern_FriendService_FindAllFriends_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle(http.MethodGet, pattern_FriendService_FindAllFriends_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		var stream runtime.ServerTransportStream
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/friend.FriendService/FindAllFriends", runtime.WithHTTPPathPattern("/friend.FriendService/FindAllFriends"))
+		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/friend.FriendService/FindAllFriends", runtime.WithHTTPPathPattern("/api/v1/allfriends"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -635,11 +629,11 @@ func RegisterFriendServiceHandlerClient(ctx context.Context, mux *runtime.ServeM
 		}
 		forward_FriendService_AcceptFriend_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
 	})
-	mux.Handle(http.MethodPost, pattern_FriendService_FindAllFriends_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle(http.MethodGet, pattern_FriendService_FindAllFriends_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/friend.FriendService/FindAllFriends", runtime.WithHTTPPathPattern("/friend.FriendService/FindAllFriends"))
+		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/friend.FriendService/FindAllFriends", runtime.WithHTTPPathPattern("/api/v1/allfriends"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -679,7 +673,7 @@ var (
 	pattern_FriendService_DeleteFriend_0             = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 1, 0, 4, 1, 5, 3}, []string{"api", "v1", "friends", "id"}, ""))
 	pattern_FriendService_IsMyFriend_0               = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 2, 3, 1, 0, 4, 1, 5, 4, 1, 0, 4, 1, 5, 5}, []string{"api", "v1", "friends", "ismyfriends", "user_id", "friend_id"}, ""))
 	pattern_FriendService_AcceptFriend_0             = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 2, 3, 1, 0, 4, 1, 5, 4}, []string{"api", "v1", "friends", "accepted", "id"}, ""))
-	pattern_FriendService_FindAllFriends_0           = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1}, []string{"friend.FriendService", "FindAllFriends"}, ""))
+	pattern_FriendService_FindAllFriends_0           = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2}, []string{"api", "v1", "allfriends"}, ""))
 	pattern_FriendService_FindAllFriendsByUserID_0   = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1}, []string{"friend.FriendService", "FindAllFriendsByUserID"}, ""))
 )
 
