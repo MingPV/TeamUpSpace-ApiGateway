@@ -21,6 +21,7 @@ message Profile {
   string background_url = 9;
   string location = 10;
   string country = 11;
+  string resume = 15;
   google.protobuf.Timestamp created_at = 12;
   google.protobuf.Timestamp updated_at = 13;
 }
@@ -38,6 +39,7 @@ message CreateProfileRequest {
   string background_url = 9;
   string location = 10;
   string country = 11;
+  string resume = 15;
 }
 
 message CreateProfileResponse {
@@ -71,6 +73,7 @@ message PatchProfileRequest {
   string background_url = 9;
   string location = 10;
   string country = 11;
+  string resume = 15;
 }
 
 message PatchProfileResponse {

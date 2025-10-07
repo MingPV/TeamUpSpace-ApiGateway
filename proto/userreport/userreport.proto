@@ -13,6 +13,7 @@ message UserReport {
   string report_to = 3;
   string detail = 4;
   string status = 5;
+  string created_at = 6;
 }
 
 message CreateUserReportRequest {

@@ -26,13 +26,19 @@ import (
 	profilepb "github.com/MingPV/ApiGateway/proto/profile"
 	tagpb "github.com/MingPV/ApiGateway/proto/tag"
 
+	chatroompb "github.com/MingPV/ApiGateway/proto/chatroom"
+	friendpb "github.com/MingPV/ApiGateway/proto/friend"
 	messagepb "github.com/MingPV/ApiGateway/proto/message"
+	roominvitepb "github.com/MingPV/ApiGateway/proto/roominvite"
+	roommemberpb "github.com/MingPV/ApiGateway/proto/roommember"
 
 	answerpb "github.com/MingPV/ApiGateway/proto/answer"
 	commentpb "github.com/MingPV/ApiGateway/proto/comment"
 	postlikepb "github.com/MingPV/ApiGateway/proto/postlike"
 	postreportpb "github.com/MingPV/ApiGateway/proto/postreport"
 	questionpb "github.com/MingPV/ApiGateway/proto/question"
+	savedeventpb "github.com/MingPV/ApiGateway/proto/savedevent"
+	userfollowpb "github.com/MingPV/ApiGateway/proto/userfollow"
 	userreportpb "github.com/MingPV/ApiGateway/proto/userreport"
 
 	"github.com/gorilla/websocket"
@@ -172,6 +178,9 @@ func run() error {
 	if err := userreportpb.RegisterUserReportServiceHandlerFromEndpoint(ctx, gwMux, userServiceEndpoint, opts); err != nil {
 		return err
 	}
+	if err := userfollowpb.RegisterUserFollowServiceHandlerFromEndpoint(ctx, gwMux, userServiceEndpoint, opts); err != nil {
+		return err
+	}
 
 	// ===== Register gRPC Post Service =====
 	if err := postpb.RegisterPostServiceHandlerFromEndpoint(ctx, gwMux, postServiceEndpoint, opts); err != nil {
@@ -193,6 +202,25 @@ func run() error {
 		return err
 	}
 
+	// ===== Register gRPC Chat Service ======
+	if err := chatroompb.RegisterChatroomServiceHandlerFromEndpoint(ctx, gwMux, chatServiceEndpoint, opts); err != nil {
+		return err
+	}
+	if err := friendpb.RegisterFriendServiceHandlerFromEndpoint(ctx, gwMux, chatServiceEndpoint, opts); err != nil {
+		return err
+	}
+	if err := roominvitepb.RegisterRoomInviteServiceHandlerFromEndpoint(ctx, gwMux, chatServiceEndpoint, opts); err != nil {
+		return err
+	}
+
+	if err := roommemberpb.RegisterRoomMemberServiceHandlerFromEndpoint(ctx, gwMux, chatServiceEndpoint, opts); err != nil {
+		return err
+	}
+
+	if err := messagepb.RegisterMessageServiceHandlerFromEndpoint(ctx, gwMux, chatServiceEndpoint, opts); err != nil {
+		return err
+	}
+
 	// ===== Register gRPC Event Service =====
 	if err := eventpb.RegisterEventServiceHandlerFromEndpoint(ctx, gwMux, eventServiceEndpoint, opts); err != nil {
 		return err
@@ -201,6 +229,9 @@ func run() error {
 		return err
 	}
 	if err := tagpb.RegisterTagServiceHandlerFromEndpoint(ctx, gwMux, eventServiceEndpoint, opts); err != nil {
+		return err
+	}
+	if err := savedeventpb.RegisterSavedEventServiceHandlerFromEndpoint(ctx, gwMux, eventServiceEndpoint, opts); err != nil {
 		return err
 	}
 

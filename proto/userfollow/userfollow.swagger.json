@@ -1,0 +1,243 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "title": "proto/userfollow/userfollow.proto",
+    "version": "version not set"
+  },
+  "tags": [
+    {
+      "name": "UserFollowService"
+    }
+  ],
+  "consumes": [
+    "application/json"
+  ],
+  "produces": [
+    "application/json"
+  ],
+  "paths": {
+    "/api/v1/userFollows": {
+      "post": {
+        "operationId": "UserFollowService_FollowUser",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/userfollowFollowUserResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/userfollowFollowUserRequest"
+            }
+          }
+        ],
+        "tags": [
+          "UserFollowService"
+        ]
+      }
+    },
+    "/api/v1/userFollows/followers/{followTo}": {
+      "get": {
+        "operationId": "UserFollowService_FindAllFollowers",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/userfollowFindAllFollowersResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "followTo",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "UserFollowService"
+        ]
+      }
+    },
+    "/api/v1/userFollows/followings/{userId}": {
+      "get": {
+        "operationId": "UserFollowService_FindAllFollowings",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/userfollowFindAllFollowingsResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "userId",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "UserFollowService"
+        ]
+      }
+    },
+    "/api/v1/userFollows/{userId}/{followTo}": {
+      "delete": {
+        "operationId": "UserFollowService_UnfollowUser",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/userfollowUnfollowUserResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "userId",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "followTo",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "UserFollowService"
+        ]
+      }
+    }
+  },
+  "definitions": {
+    "protobufAny": {
+      "type": "object",
+      "properties": {
+        "@type": {
+          "type": "string"
+        }
+      },
+      "additionalProperties": {}
+    },
+    "rpcStatus": {
+      "type": "object",
+      "properties": {
+        "code": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "message": {
+          "type": "string"
+        },
+        "details": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/protobufAny"
+          }
+        }
+      }
+    },
+    "userfollowFindAllFollowersResponse": {
+      "type": "object",
+      "properties": {
+        "userFollows": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/userfollowUserFollow"
+          }
+        }
+      }
+    },
+    "userfollowFindAllFollowingsResponse": {
+      "type": "object",
+      "properties": {
+        "userFollows": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/userfollowUserFollow"
+          }
+        }
+      }
+    },
+    "userfollowFollowUserRequest": {
+      "type": "object",
+      "properties": {
+        "userId": {
+          "type": "string"
+        },
+        "followTo": {
+          "type": "string"
+        }
+      }
+    },
+    "userfollowFollowUserResponse": {
+      "type": "object",
+      "properties": {
+        "userFollow": {
+          "$ref": "#/definitions/userfollowUserFollow"
+        }
+      }
+    },
+    "userfollowUnfollowUserResponse": {
+      "type": "object",
+      "properties": {
+        "message": {
+          "type": "string"
+        }
+      }
+    },
+    "userfollowUserFollow": {
+      "type": "object",
+      "properties": {
+        "userId": {
+          "type": "string"
+        },
+        "followTo": {
+          "type": "string"
+        },
+        "createdAt": {
+          "type": "string"
+        }
+      }
+    }
+  }
+}

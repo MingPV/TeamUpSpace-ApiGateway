@@ -1,0 +1,130 @@
+syntax = "proto3";
+
+package roommember;
+
+import "google/protobuf/timestamp.proto";
+import "google/api/annotations.proto";
+
+
+option go_package = "proto/roommember";
+
+message Chatroom {
+    int32 id = 1;
+    string room_name = 2;
+    bool is_group = 3;
+    string owner = 4;
+    google.protobuf.Timestamp created_at = 5;     
+    google.protobuf.Timestamp updated_at = 6;   
+}
+
+message RoomMember {
+    int32 id = 1;
+    int32 room_id = 2;
+    string user_id = 3;
+    Chatroom chatroom = 4;
+    google.protobuf.Timestamp created_at = 5;     
+    google.protobuf.Timestamp updated_at = 6;   
+}
+
+message CreateRoomMembersRequest {
+    int32 room_id = 1;
+    repeated string user_ids = 2;
+}
+
+message CreateRoomMembersResponse {
+  repeated RoomMember members = 1;
+}
+
+message FindAllByRoomIDRequest {
+  int32 room_id = 1;
+}
+
+message FindAllByRoomIDResponse {
+  repeated RoomMember members = 1;
+}
+
+message FindAllByUserIDRequest {
+  string user_id = 1;
+}
+
+message FindAllByUserIDResponse {
+  repeated RoomMember chatrooms = 1;
+}
+
+message FindByRoomIDAndUserIDRequest {
+  int32 room_id = 1;
+  string user_id = 2;
+}
+
+message FindByRoomIDAndUserIDResponse {
+  RoomMember member = 1;
+}
+
+message DeleteByRoomIDAndUserIDRequest {
+  int32 room_id = 1;
+  string user_id = 2;
+}
+
+message DeleteByRoomIDAndUserIDResponse {
+  string message = 1;
+}
+
+message DeleteAllByRoomIDRequest {
+  int32 room_id = 1;
+}
+
+message DeleteAllByRoomIDResponse {
+  string message = 1;
+}
+
+message DeleteRoomMemberRequest {
+  int32 id = 1;
+}
+
+message DeleteRoomMemberResponse {
+  string message = 1;
+}
+
+
+
+service RoomMemberService {
+  rpc CreateRoomMembers(CreateRoomMembersRequest) returns (CreateRoomMembersResponse){
+    option (google.api.http) = {
+        post: "/api/v1/roommembers"
+        body: "*"
+    };
+  }
+  rpc FindAllByRoomID(FindAllByRoomIDRequest) returns (FindAllByRoomIDResponse){
+    option (google.api.http) = {
+        get: "/api/v1/roommembers/room/{room_id}"
+    };
+  }
+  rpc FindAllByUserID(FindAllByUserIDRequest) returns (FindAllByUserIDResponse){
+    option (google.api.http) = {
+        get: "/api/v1/roommembers/user/{user_id}"
+    };
+  }
+  rpc FindByRoomIDAndUserID(FindByRoomIDAndUserIDRequest) returns (FindByRoomIDAndUserIDResponse){
+    option (google.api.http) = {
+        get: "/api/v1/roommembers/room/{room_id}/{user_id}"
+    };
+  }
+  rpc DeleteByRoomIDAndUserID(DeleteByRoomIDAndUserIDRequest) returns (DeleteByRoomIDAndUserIDResponse){
+    option (google.api.http) = {
+        delete: "/api/v1/roommembers/room/{room_id}/{user_id}"
+    };
+  }
+  rpc DeleteAllByRoomID(DeleteAllByRoomIDRequest) returns (DeleteAllByRoomIDResponse){
+    option (google.api.http) = {
+        delete: "/api/v1/roommembers/room/{room_id}"
+    };
+  }
+
+  rpc DeleteRoomMember(DeleteRoomMemberRequest) returns (DeleteRoomMemberResponse){
+    option (google.api.http) = {
+      delete: "/api/v1/roommembers/{id}"
+    };
+  }
+
+}
+

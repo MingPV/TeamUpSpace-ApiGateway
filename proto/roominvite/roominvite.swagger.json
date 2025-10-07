@@ -1,12 +1,12 @@
 {
   "swagger": "2.0",
   "info": {
-    "title": "proto/userreport/userreport.proto",
+    "title": "proto/roominvite/roominvite.proto",
     "version": "version not set"
   },
   "tags": [
     {
-      "name": "UserReportService"
+      "name": "RoomInviteService"
     }
   ],
   "consumes": [
@@ -16,34 +16,14 @@
     "application/json"
   ],
   "paths": {
-    "/api/v1/userReports": {
-      "get": {
-        "operationId": "UserReportService_FindAllUserReports",
-        "responses": {
-          "200": {
-            "description": "A successful response.",
-            "schema": {
-              "$ref": "#/definitions/userreportFindAllUserReportsResponse"
-            }
-          },
-          "default": {
-            "description": "An unexpected error response.",
-            "schema": {
-              "$ref": "#/definitions/rpcStatus"
-            }
-          }
-        },
-        "tags": [
-          "UserReportService"
-        ]
-      },
+    "/api/v1/roominvite": {
       "post": {
-        "operationId": "UserReportService_CreateUserReport",
+        "operationId": "RoomInviteService_CreateRoomInvite",
         "responses": {
           "200": {
             "description": "A successful response.",
             "schema": {
-              "$ref": "#/definitions/userreportCreateUserReportResponse"
+              "$ref": "#/definitions/roominviteCreateRoomInviteResponse"
             }
           },
           "default": {
@@ -59,83 +39,23 @@
             "in": "body",
             "required": true,
             "schema": {
-              "$ref": "#/definitions/userreportCreateUserReportRequest"
+              "$ref": "#/definitions/roominviteCreateRoomInviteRequest"
             }
           }
         ],
         "tags": [
-          "UserReportService"
+          "RoomInviteService"
         ]
       }
     },
-    "/api/v1/userReports/reportTo/{reportTo}": {
-      "get": {
-        "operationId": "UserReportService_FindAllByReportTo",
+    "/api/v1/roominvite/accepted/{id}": {
+      "patch": {
+        "operationId": "RoomInviteService_AcceptedRoomInvite",
         "responses": {
           "200": {
             "description": "A successful response.",
             "schema": {
-              "$ref": "#/definitions/userreportFindAllByReportToResponse"
-            }
-          },
-          "default": {
-            "description": "An unexpected error response.",
-            "schema": {
-              "$ref": "#/definitions/rpcStatus"
-            }
-          }
-        },
-        "parameters": [
-          {
-            "name": "reportTo",
-            "in": "path",
-            "required": true,
-            "type": "string"
-          }
-        ],
-        "tags": [
-          "UserReportService"
-        ]
-      }
-    },
-    "/api/v1/userReports/reporter/{reporter}": {
-      "get": {
-        "operationId": "UserReportService_FindAllByReporter",
-        "responses": {
-          "200": {
-            "description": "A successful response.",
-            "schema": {
-              "$ref": "#/definitions/userreportFindAllByReporterResponse"
-            }
-          },
-          "default": {
-            "description": "An unexpected error response.",
-            "schema": {
-              "$ref": "#/definitions/rpcStatus"
-            }
-          }
-        },
-        "parameters": [
-          {
-            "name": "reporter",
-            "in": "path",
-            "required": true,
-            "type": "string"
-          }
-        ],
-        "tags": [
-          "UserReportService"
-        ]
-      }
-    },
-    "/api/v1/userReports/{id}": {
-      "get": {
-        "operationId": "UserReportService_FindUserReportByID",
-        "responses": {
-          "200": {
-            "description": "A successful response.",
-            "schema": {
-              "$ref": "#/definitions/userreportFindUserReportByIDResponse"
+              "$ref": "#/definitions/roominviteAcceptedRoomInviteResponse"
             }
           },
           "default": {
@@ -155,16 +75,138 @@
           }
         ],
         "tags": [
-          "UserReportService"
+          "RoomInviteService"
+        ]
+      }
+    },
+    "/api/v1/roominvite/inviteto/{inviteTo}": {
+      "get": {
+        "operationId": "RoomInviteService_FindAllRoomInvitesByInviteTo",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/roominviteFindAllRoomInvitesByInviteToResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "inviteTo",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "RoomInviteService"
+        ]
+      }
+    },
+    "/api/v1/roominvite/room/{roomId}": {
+      "get": {
+        "operationId": "RoomInviteService_FindAllRoomInvitesByRoomID",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/roominviteFindAllRoomInvitesByRoomIDResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "roomId",
+            "in": "path",
+            "required": true,
+            "type": "integer",
+            "format": "int32"
+          }
+        ],
+        "tags": [
+          "RoomInviteService"
+        ]
+      }
+    },
+    "/api/v1/roominvite/sender/{sender}": {
+      "get": {
+        "operationId": "RoomInviteService_FindAllRoomInvitesBySender",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/roominviteFindAllRoomInvitesBySenderResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "sender",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "RoomInviteService"
+        ]
+      }
+    },
+    "/api/v1/roominvite/{id}": {
+      "get": {
+        "operationId": "RoomInviteService_FindRoomInviteByID",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/roominviteFindRoomInviteByIDResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "integer",
+            "format": "int32"
+          }
+        ],
+        "tags": [
+          "RoomInviteService"
         ]
       },
       "delete": {
-        "operationId": "UserReportService_DeleteUserReport",
+        "operationId": "RoomInviteService_DeleteRoomInvite",
         "responses": {
           "200": {
             "description": "A successful response.",
             "schema": {
-              "$ref": "#/definitions/userreportDeleteUserReportResponse"
+              "$ref": "#/definitions/roominviteDeleteRoomInviteResponse"
             }
           },
           "default": {
@@ -184,16 +226,16 @@
           }
         ],
         "tags": [
-          "UserReportService"
+          "RoomInviteService"
         ]
       },
       "patch": {
-        "operationId": "UserReportService_PatchUserReport",
+        "operationId": "RoomInviteService_PatchRoomInvite",
         "responses": {
           "200": {
             "description": "A successful response.",
             "schema": {
-              "$ref": "#/definitions/userreportPatchUserReportResponse"
+              "$ref": "#/definitions/roominvitePatchRoomInviteResponse"
             }
           },
           "default": {
@@ -216,25 +258,35 @@
             "in": "body",
             "required": true,
             "schema": {
-              "$ref": "#/definitions/UserReportServicePatchUserReportBody"
+              "$ref": "#/definitions/RoomInviteServicePatchRoomInviteBody"
             }
           }
         ],
         "tags": [
-          "UserReportService"
+          "RoomInviteService"
         ]
       }
     }
   },
   "definitions": {
-    "UserReportServicePatchUserReportBody": {
+    "RoomInviteServicePatchRoomInviteBody": {
       "type": "object",
       "properties": {
-        "detail": {
+        "roomId": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "sender": {
           "type": "string"
         },
-        "status": {
+        "inviteTo": {
           "type": "string"
+        },
+        "isAccepted": {
+          "type": "boolean"
+        },
+        "isDenied": {
+          "type": "boolean"
         }
       }
     },
@@ -246,6 +298,136 @@
         }
       },
       "additionalProperties": {}
+    },
+    "roominviteAcceptedRoomInviteResponse": {
+      "type": "object",
+      "properties": {
+        "message": {
+          "type": "string"
+        }
+      }
+    },
+    "roominviteCreateRoomInviteRequest": {
+      "type": "object",
+      "properties": {
+        "roomId": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "sender": {
+          "type": "string"
+        },
+        "inviteTo": {
+          "type": "string"
+        },
+        "isAccepted": {
+          "type": "boolean"
+        },
+        "isDenied": {
+          "type": "boolean"
+        }
+      }
+    },
+    "roominviteCreateRoomInviteResponse": {
+      "type": "object",
+      "properties": {
+        "invite": {
+          "$ref": "#/definitions/roominviteRoomInvite"
+        }
+      }
+    },
+    "roominviteDeleteRoomInviteResponse": {
+      "type": "object",
+      "properties": {
+        "message": {
+          "type": "string"
+        }
+      }
+    },
+    "roominviteFindAllRoomInvitesByInviteToResponse": {
+      "type": "object",
+      "properties": {
+        "invites": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/roominviteRoomInvite"
+          }
+        }
+      }
+    },
+    "roominviteFindAllRoomInvitesByRoomIDResponse": {
+      "type": "object",
+      "properties": {
+        "invites": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/roominviteRoomInvite"
+          }
+        }
+      }
+    },
+    "roominviteFindAllRoomInvitesBySenderResponse": {
+      "type": "object",
+      "properties": {
+        "invites": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/roominviteRoomInvite"
+          }
+        }
+      }
+    },
+    "roominviteFindRoomInviteByIDResponse": {
+      "type": "object",
+      "properties": {
+        "invite": {
+          "$ref": "#/definitions/roominviteRoomInvite"
+        }
+      }
+    },
+    "roominvitePatchRoomInviteResponse": {
+      "type": "object",
+      "properties": {
+        "invite": {
+          "$ref": "#/definitions/roominviteRoomInvite"
+        }
+      }
+    },
+    "roominviteRoomInvite": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "roomId": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "sender": {
+          "type": "string"
+        },
+        "inviteTo": {
+          "type": "string"
+        },
+        "isAccepted": {
+          "type": "boolean"
+        },
+        "isDenied": {
+          "type": "boolean"
+        },
+        "createdAt": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "updatedAt": {
+          "type": "string",
+          "format": "date-time"
+        }
+      }
     },
     "rpcStatus": {
       "type": "object",
@@ -263,115 +445,6 @@
             "type": "object",
             "$ref": "#/definitions/protobufAny"
           }
-        }
-      }
-    },
-    "userreportCreateUserReportRequest": {
-      "type": "object",
-      "properties": {
-        "reporter": {
-          "type": "string"
-        },
-        "reportTo": {
-          "type": "string"
-        },
-        "detail": {
-          "type": "string"
-        },
-        "status": {
-          "type": "string"
-        }
-      }
-    },
-    "userreportCreateUserReportResponse": {
-      "type": "object",
-      "properties": {
-        "userReport": {
-          "$ref": "#/definitions/userreportUserReport"
-        }
-      }
-    },
-    "userreportDeleteUserReportResponse": {
-      "type": "object",
-      "properties": {
-        "message": {
-          "type": "string"
-        }
-      }
-    },
-    "userreportFindAllByReportToResponse": {
-      "type": "object",
-      "properties": {
-        "userReports": {
-          "type": "array",
-          "items": {
-            "type": "object",
-            "$ref": "#/definitions/userreportUserReport"
-          }
-        }
-      }
-    },
-    "userreportFindAllByReporterResponse": {
-      "type": "object",
-      "properties": {
-        "userReports": {
-          "type": "array",
-          "items": {
-            "type": "object",
-            "$ref": "#/definitions/userreportUserReport"
-          }
-        }
-      }
-    },
-    "userreportFindAllUserReportsResponse": {
-      "type": "object",
-      "properties": {
-        "userReports": {
-          "type": "array",
-          "items": {
-            "type": "object",
-            "$ref": "#/definitions/userreportUserReport"
-          }
-        }
-      }
-    },
-    "userreportFindUserReportByIDResponse": {
-      "type": "object",
-      "properties": {
-        "userReport": {
-          "$ref": "#/definitions/userreportUserReport"
-        }
-      }
-    },
-    "userreportPatchUserReportResponse": {
-      "type": "object",
-      "properties": {
-        "userReport": {
-          "$ref": "#/definitions/userreportUserReport"
-        }
-      }
-    },
-    "userreportUserReport": {
-      "type": "object",
-      "properties": {
-        "id": {
-          "type": "integer",
-          "format": "int32"
-        },
-        "reporter": {
-          "type": "string"
-        },
-        "reportTo": {
-          "type": "string"
-        },
-        "detail": {
-          "type": "string"
-        },
-        "status": {
-          "type": "string"
-        },
-        "createdAt": {
-          "type": "string"
         }
       }
     }

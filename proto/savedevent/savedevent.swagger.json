@@ -1,0 +1,290 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "title": "proto/savedevent/savedevent.proto",
+    "version": "version not set"
+  },
+  "tags": [
+    {
+      "name": "SavedEventService"
+    }
+  ],
+  "consumes": [
+    "application/json"
+  ],
+  "produces": [
+    "application/json"
+  ],
+  "paths": {
+    "/api/v1/savedEvents": {
+      "post": {
+        "operationId": "SavedEventService_SaveEvent",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/savedeventSaveEventResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/savedeventSaveEventRequest"
+            }
+          }
+        ],
+        "tags": [
+          "SavedEventService"
+        ]
+      }
+    },
+    "/api/v1/savedEvents/event/{eventId}": {
+      "get": {
+        "operationId": "SavedEventService_FindAllByEvent",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/savedeventFindAllByEventResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "eventId",
+            "in": "path",
+            "required": true,
+            "type": "integer",
+            "format": "int32"
+          }
+        ],
+        "tags": [
+          "SavedEventService"
+        ]
+      }
+    },
+    "/api/v1/savedEvents/user/{userId}": {
+      "get": {
+        "operationId": "SavedEventService_FindAllByUser",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/savedeventFindAllByUserResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "userId",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "SavedEventService"
+        ]
+      }
+    },
+    "/api/v1/savedEvents/{userId}/{eventId}": {
+      "get": {
+        "operationId": "SavedEventService_FindSavedEvent",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/savedeventFindSavedEventResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "userId",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "eventId",
+            "in": "path",
+            "required": true,
+            "type": "integer",
+            "format": "int32"
+          }
+        ],
+        "tags": [
+          "SavedEventService"
+        ]
+      },
+      "delete": {
+        "operationId": "SavedEventService_DeleteSavedEvent",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/savedeventDeleteSavedEventResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "userId",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "eventId",
+            "in": "path",
+            "required": true,
+            "type": "integer",
+            "format": "int32"
+          }
+        ],
+        "tags": [
+          "SavedEventService"
+        ]
+      }
+    }
+  },
+  "definitions": {
+    "protobufAny": {
+      "type": "object",
+      "properties": {
+        "@type": {
+          "type": "string"
+        }
+      },
+      "additionalProperties": {}
+    },
+    "rpcStatus": {
+      "type": "object",
+      "properties": {
+        "code": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "message": {
+          "type": "string"
+        },
+        "details": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/protobufAny"
+          }
+        }
+      }
+    },
+    "savedeventDeleteSavedEventResponse": {
+      "type": "object",
+      "properties": {
+        "message": {
+          "type": "string"
+        }
+      }
+    },
+    "savedeventFindAllByEventResponse": {
+      "type": "object",
+      "properties": {
+        "savedEvents": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/savedeventSavedEvent"
+          }
+        }
+      }
+    },
+    "savedeventFindAllByUserResponse": {
+      "type": "object",
+      "properties": {
+        "savedEvents": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/savedeventSavedEvent"
+          }
+        }
+      }
+    },
+    "savedeventFindSavedEventResponse": {
+      "type": "object",
+      "properties": {
+        "savedEvent": {
+          "$ref": "#/definitions/savedeventSavedEvent"
+        }
+      }
+    },
+    "savedeventSaveEventRequest": {
+      "type": "object",
+      "properties": {
+        "userId": {
+          "type": "string"
+        },
+        "eventId": {
+          "type": "integer",
+          "format": "int32"
+        }
+      }
+    },
+    "savedeventSaveEventResponse": {
+      "type": "object",
+      "properties": {
+        "savedEvent": {
+          "$ref": "#/definitions/savedeventSavedEvent"
+        }
+      }
+    },
+    "savedeventSavedEvent": {
+      "type": "object",
+      "properties": {
+        "userId": {
+          "type": "string"
+        },
+        "eventId": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "createdAt": {
+          "type": "string"
+        }
+      }
+    }
+  }
+}

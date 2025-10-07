@@ -37,6 +37,7 @@ type Profile struct {
 	BackgroundUrl string                 `protobuf:"bytes,9,opt,name=background_url,json=backgroundUrl,proto3" json:"background_url,omitempty"`
 	Location      string                 `protobuf:"bytes,10,opt,name=location,proto3" json:"location,omitempty"`
 	Country       string                 `protobuf:"bytes,11,opt,name=country,proto3" json:"country,omitempty"`
+	Resume        string                 `protobuf:"bytes,15,opt,name=resume,proto3" json:"resume,omitempty"`
 	CreatedAt     *timestamppb.Timestamp `protobuf:"bytes,12,opt,name=created_at,json=createdAt,proto3" json:"created_at,omitempty"`
 	UpdatedAt     *timestamppb.Timestamp `protobuf:"bytes,13,opt,name=updated_at,json=updatedAt,proto3" json:"updated_at,omitempty"`
 	unknownFields protoimpl.UnknownFields
@@ -157,6 +158,13 @@ func (x *Profile) GetCountry() string {
 	return ""
 }
 
+func (x *Profile) GetResume() string {
+	if x != nil {
+		return x.Resume
+	}
+	return ""
+}
+
 func (x *Profile) GetCreatedAt() *timestamppb.Timestamp {
 	if x != nil {
 		return x.CreatedAt
@@ -185,6 +193,7 @@ type CreateProfileRequest struct {
 	BackgroundUrl string                 `protobuf:"bytes,9,opt,name=background_url,json=backgroundUrl,proto3" json:"background_url,omitempty"`
 	Location      string                 `protobuf:"bytes,10,opt,name=location,proto3" json:"location,omitempty"`
 	Country       string                 `protobuf:"bytes,11,opt,name=country,proto3" json:"country,omitempty"`
+	Resume        string                 `protobuf:"bytes,15,opt,name=resume,proto3" json:"resume,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -299,6 +308,13 @@ func (x *CreateProfileRequest) GetLocation() string {
 func (x *CreateProfileRequest) GetCountry() string {
 	if x != nil {
 		return x.Country
+	}
+	return ""
+}
+
+func (x *CreateProfileRequest) GetResume() string {
+	if x != nil {
+		return x.Resume
 	}
 	return ""
 }
@@ -529,6 +545,7 @@ type PatchProfileRequest struct {
 	BackgroundUrl string                 `protobuf:"bytes,9,opt,name=background_url,json=backgroundUrl,proto3" json:"background_url,omitempty"`
 	Location      string                 `protobuf:"bytes,10,opt,name=location,proto3" json:"location,omitempty"`
 	Country       string                 `protobuf:"bytes,11,opt,name=country,proto3" json:"country,omitempty"`
+	Resume        string                 `protobuf:"bytes,15,opt,name=resume,proto3" json:"resume,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -643,6 +660,13 @@ func (x *PatchProfileRequest) GetLocation() string {
 func (x *PatchProfileRequest) GetCountry() string {
 	if x != nil {
 		return x.Country
+	}
+	return ""
+}
+
+func (x *PatchProfileRequest) GetResume() string {
+	if x != nil {
+		return x.Resume
 	}
 	return ""
 }
@@ -783,7 +807,7 @@ var File_proto_profile_profile_proto protoreflect.FileDescriptor
 
 const file_proto_profile_profile_proto_rawDesc = "" +
 	"\n" +
-	"\x1bproto/profile/profile.proto\x12\aprofile\x1a\x1fgoogle/protobuf/timestamp.proto\x1a\x1cgoogle/api/annotations.proto\"\xda\x03\n" +
+	"\x1bproto/profile/profile.proto\x12\aprofile\x1a\x1fgoogle/protobuf/timestamp.proto\x1a\x1cgoogle/api/annotations.proto\"\xf2\x03\n" +
 	"\aProfile\x12\x17\n" +
 	"\auser_id\x18\x01 \x01(\tR\x06userId\x12!\n" +
 	"\fdisplay_name\x18\x02 \x01(\tR\vdisplayName\x12 \n" +
@@ -800,11 +824,12 @@ const file_proto_profile_profile_proto_rawDesc = "" +
 	"\x0ebackground_url\x18\t \x01(\tR\rbackgroundUrl\x12\x1a\n" +
 	"\blocation\x18\n" +
 	" \x01(\tR\blocation\x12\x18\n" +
-	"\acountry\x18\v \x01(\tR\acountry\x129\n" +
+	"\acountry\x18\v \x01(\tR\acountry\x12\x16\n" +
+	"\x06resume\x18\x0f \x01(\tR\x06resume\x129\n" +
 	"\n" +
 	"created_at\x18\f \x01(\v2\x1a.google.protobuf.TimestampR\tcreatedAt\x129\n" +
 	"\n" +
-	"updated_at\x18\r \x01(\v2\x1a.google.protobuf.TimestampR\tupdatedAt\"\xf1\x02\n" +
+	"updated_at\x18\r \x01(\v2\x1a.google.protobuf.TimestampR\tupdatedAt\"\x89\x03\n" +
 	"\x14CreateProfileRequest\x12\x17\n" +
 	"\auser_id\x18\x01 \x01(\tR\x06userId\x12!\n" +
 	"\fdisplay_name\x18\x02 \x01(\tR\vdisplayName\x12 \n" +
@@ -821,7 +846,8 @@ const file_proto_profile_profile_proto_rawDesc = "" +
 	"\x0ebackground_url\x18\t \x01(\tR\rbackgroundUrl\x12\x1a\n" +
 	"\blocation\x18\n" +
 	" \x01(\tR\blocation\x12\x18\n" +
-	"\acountry\x18\v \x01(\tR\acountry\"C\n" +
+	"\acountry\x18\v \x01(\tR\acountry\x12\x16\n" +
+	"\x06resume\x18\x0f \x01(\tR\x06resume\"C\n" +
 	"\x15CreateProfileResponse\x12*\n" +
 	"\aprofile\x18\x01 \x01(\v2\x10.profile.ProfileR\aprofile\"1\n" +
 	"\x16FindProfileByIDRequest\x12\x17\n" +
@@ -830,7 +856,7 @@ const file_proto_profile_profile_proto_rawDesc = "" +
 	"\aprofile\x18\x01 \x01(\v2\x10.profile.ProfileR\aprofile\"\x18\n" +
 	"\x16FindAllProfilesRequest\"G\n" +
 	"\x17FindAllProfilesResponse\x12,\n" +
-	"\bprofiles\x18\x01 \x03(\v2\x10.profile.ProfileR\bprofiles\"\xf0\x02\n" +
+	"\bprofiles\x18\x01 \x03(\v2\x10.profile.ProfileR\bprofiles\"\x88\x03\n" +
 	"\x13PatchProfileRequest\x12\x17\n" +
 	"\auser_id\x18\x01 \x01(\tR\x06userId\x12!\n" +
 	"\fdisplay_name\x18\x02 \x01(\tR\vdisplayName\x12 \n" +
@@ -847,7 +873,8 @@ const file_proto_profile_profile_proto_rawDesc = "" +
 	"\x0ebackground_url\x18\t \x01(\tR\rbackgroundUrl\x12\x1a\n" +
 	"\blocation\x18\n" +
 	" \x01(\tR\blocation\x12\x18\n" +
-	"\acountry\x18\v \x01(\tR\acountry\"B\n" +
+	"\acountry\x18\v \x01(\tR\acountry\x12\x16\n" +
+	"\x06resume\x18\x0f \x01(\tR\x06resume\"B\n" +
 	"\x14PatchProfileResponse\x12*\n" +
 	"\aprofile\x18\x01 \x01(\v2\x10.profile.ProfileR\aprofile\"/\n" +
 	"\x14DeleteProfileRequest\x12\x17\n" +

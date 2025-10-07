@@ -30,6 +30,7 @@ type UserReport struct {
 	ReportTo      string                 `protobuf:"bytes,3,opt,name=report_to,json=reportTo,proto3" json:"report_to,omitempty"`
 	Detail        string                 `protobuf:"bytes,4,opt,name=detail,proto3" json:"detail,omitempty"`
 	Status        string                 `protobuf:"bytes,5,opt,name=status,proto3" json:"status,omitempty"`
+	CreatedAt     string                 `protobuf:"bytes,6,opt,name=created_at,json=createdAt,proto3" json:"created_at,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -95,6 +96,13 @@ func (x *UserReport) GetDetail() string {
 func (x *UserReport) GetStatus() string {
 	if x != nil {
 		return x.Status
+	}
+	return ""
+}
+
+func (x *UserReport) GetCreatedAt() string {
+	if x != nil {
+		return x.CreatedAt
 	}
 	return ""
 }
@@ -752,14 +760,16 @@ var File_proto_userreport_userreport_proto protoreflect.FileDescriptor
 const file_proto_userreport_userreport_proto_rawDesc = "" +
 	"\n" +
 	"!proto/userreport/userreport.proto\x12\n" +
-	"userreport\x1a\x1fgoogle/protobuf/timestamp.proto\x1a\x1cgoogle/api/annotations.proto\"\x85\x01\n" +
+	"userreport\x1a\x1fgoogle/protobuf/timestamp.proto\x1a\x1cgoogle/api/annotations.proto\"\xa4\x01\n" +
 	"\n" +
 	"UserReport\x12\x0e\n" +
 	"\x02id\x18\x01 \x01(\x05R\x02id\x12\x1a\n" +
 	"\breporter\x18\x02 \x01(\tR\breporter\x12\x1b\n" +
 	"\treport_to\x18\x03 \x01(\tR\breportTo\x12\x16\n" +
 	"\x06detail\x18\x04 \x01(\tR\x06detail\x12\x16\n" +
-	"\x06status\x18\x05 \x01(\tR\x06status\"\x82\x01\n" +
+	"\x06status\x18\x05 \x01(\tR\x06status\x12\x1d\n" +
+	"\n" +
+	"created_at\x18\x06 \x01(\tR\tcreatedAt\"\x82\x01\n" +
 	"\x17CreateUserReportRequest\x12\x1a\n" +
 	"\breporter\x18\x01 \x01(\tR\breporter\x12\x1b\n" +
 	"\treport_to\x18\x02 \x01(\tR\breportTo\x12\x16\n" +
