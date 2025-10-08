@@ -125,6 +125,10 @@ service FriendService {
         };
     };
     //not use now, dont know why need to have
-    rpc FindAllFriendsByUserID(FindAllFriendsByUserIDRequest) returns (FindAllFriendsByUserIDResponse);
+    rpc FindAllFriendsByUserID(FindAllFriendsByUserIDRequest) returns (FindAllFriendsByUserIDResponse){
+        option (google.api.http) = {
+            get: "/api/v1/friends/user/{user_id}"
+        };
+    }
 }
 

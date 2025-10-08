@@ -167,6 +167,37 @@
         ]
       }
     },
+    "/api/v1/friends/user/{userId}": {
+      "get": {
+        "summary": "not use now, dont know why need to have",
+        "operationId": "FriendService_FindAllFriendsByUserID",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/friendFindAllFriendsByUserIDResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "userId",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "FriendService"
+        ]
+      }
+    },
     "/api/v1/friends/{id}": {
       "delete": {
         "operationId": "FriendService_DeleteFriend",
