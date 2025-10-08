@@ -12,6 +12,7 @@ message Notification {
   string send_to = 2;
   string type = 3;
   string message = 4;
+  bool is_read = 7;
   google.protobuf.Timestamp created_at = 5;
   google.protobuf.Timestamp updated_at = 6;
 }
@@ -30,9 +31,27 @@ message FindNotificationByIDRequest {
   int32 id = 1;
 }
 
+message FindNotificationsByUserIDRequest {
+  string user_id = 1;
+}
+
+message MarkAsReadByUserIDRequest {
+  string user_id = 1;
+}
+
 message FindNotificationByIDResponse {
   Notification notification = 1;
 }
+
+
+message FindNotificationsByUserIDResponse {
+  repeated Notification notifications = 1;
+}
+
+message MarkAsReadByUserIDResponse {
+  string message = 1;
+}
+
 
 message FindAllNotificationsRequest {}
 
@@ -45,6 +64,7 @@ message PatchNotificationRequest {
   string send_to = 2;
   string type = 3;
   string message = 4;
+  bool is_read = 7;
 }
 
 message PatchNotificationResponse {
@@ -71,9 +91,19 @@ service NotificationService {
       get: "/api/v1/notifications/{id}"
     };
   }
+  rpc FindNotificationsByUserID(FindNotificationsByUserIDRequest) returns (FindNotificationsByUserIDResponse){
+    option (google.api.http) = {
+      get: "/api/v1/notifications/user/{user_id}"
+    };
+  }
   rpc FindAllNotifications(FindAllNotificationsRequest) returns (FindAllNotificationsResponse){
     option (google.api.http) = {
       get: "/api/v1/notifications"
+    };
+  }
+  rpc MarkAsReadByUserID(MarkAsReadByUserIDRequest) returns (MarkAsReadByUserIDResponse){
+    option (google.api.http) = {
+      patch: "/api/v1/notifications/read/{user_id}"
     };
   }
   rpc PatchNotification(PatchNotificationRequest) returns (PatchNotificationResponse){

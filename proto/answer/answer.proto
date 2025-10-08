@@ -66,6 +66,19 @@ message FindAllAnswersByUserIDResponse {
     repeated Answer answers = 1;
 }
 
+
+message PatchAnswerRequest {
+    int32 id = 1;
+    int32 post_id = 2;
+    string user_id = 3;
+    string question = 4;
+    string answer = 5;
+}
+
+message PatchAnswerResponse {
+    Answer answer = 1;
+}
+
 message DeleteAnswerRequest {
     int32 id = 1;
 }
@@ -104,6 +117,12 @@ service AnswerService {
     rpc FindAllAnswers(FindAllAnswersRequest) returns (FindAllAnswersResponse){
     option (google.api.http) = {
       get: "/api/v1/answers"
+    };
+  }
+    rpc PatchAnswer(PatchAnswerRequest) returns (PatchAnswerResponse){
+    option (google.api.http) = {
+      patch: "/api/v1/answers/{id}"
+      body: "*"
     };
   }
     rpc DeleteAnswer(DeleteAnswerRequest) returns (DeleteAnswerResponse){
