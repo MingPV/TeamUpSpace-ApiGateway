@@ -3,14 +3,13 @@ package main
 import (
 	"context"
 	"encoding/json"
+	"fmt"
 	"log"
 	"net/http"
 	"net/http/httputil"
 	"net/url"
 	"os"
 	"os/signal"
-	"strconv"
-	"strings"
 	"syscall"
 	"time"
 
@@ -45,83 +44,184 @@ import (
 )
 
 // handleWebSocketConnection manages a single WebSocket connection for a chat room
-func handleWebSocketConnection(conn *websocket.Conn, roomID int, chatClient messagepb.MessageServiceClient) {
-	defer func() {
-		log.Printf("WS: room=%d disconnect", roomID)
-		conn.Close()
-	}()
+// func handleWebSocketConnection(conn *websocket.Conn, roomID int, chatClient messagepb.MessageServiceClient) {
+// 	defer func() {
+// 		log.Printf("WS: room=%d disconnect", roomID)
+// 		conn.Close()
+// 	}()
 
-	ictx, icancel := context.WithCancel(context.Background())
-	defer icancel()
+// 	ictx, icancel := context.WithCancel(context.Background())
+// 	defer icancel()
 
-	stream, err := chatClient.Chat(ictx)
+// 	stream, err := chatClient.Chat(ictx)
+// 	if err != nil {
+// 		log.Printf("WS: chat connect error: %v", err)
+// 		conn.WriteMessage(websocket.TextMessage, []byte("stream connect error"))
+// 		return
+// 	}
+// 	defer stream.CloseSend()
+
+// 	if err := stream.Send(&messagepb.ClientEvent{Payload: &messagepb.ClientEvent_Join{Join: &messagepb.JoinRoom{RoomId: uint32(roomID)}}}); err != nil {
+// 		log.Printf("WS: join send error: %v", err)
+// 		return
+// 	}
+
+// 	type inbound struct {
+// 		Message string `json:"message"`
+// 		Sender  string `json:"sender"`
+// 		SentAt  int64  `json:"sent_at_unix"`
+// 	}
+
+// 	done := make(chan struct{})
+
+// 	// Goroutine to handle incoming messages from WebSocket
+// 	go func() {
+// 		defer close(done)
+// 		for {
+// 			_, data, err := conn.ReadMessage()
+// 			if err != nil {
+// 				log.Printf("WS: room=%d read error: %v", roomID, err)
+// 				return
+// 			}
+// 			var in inbound
+// 			if err := json.Unmarshal(data, &in); err != nil {
+// 				log.Printf("WS: room=%d unmarshal error: %v", roomID, err)
+// 				continue
+// 			}
+// 			if in.SentAt == 0 {
+// 				in.SentAt = time.Now().Unix()
+// 			}
+// 			if err := stream.Send(&messagepb.ClientEvent{Payload: &messagepb.ClientEvent_Send{Send: &messagepb.SendMessage{
+// 				RoomId:     uint32(roomID),
+// 				Text:       in.Message,
+// 				SenderId:   in.Sender,
+// 				SentAtUnix: in.SentAt,
+// 			}}}); err != nil {
+// 				log.Printf("WS: room=%d send error: %v", roomID, err)
+// 				return
+// 			}
+// 		}
+// 	}()
+
+// 	// Goroutine to handle outgoing messages from gRPC stream
+// 	go func() {
+// 		for {
+// 			ev, err := stream.Recv()
+// 			if err != nil {
+// 				log.Printf("WS: room=%d stream recv error: %v", roomID, err)
+// 				conn.WriteMessage(websocket.TextMessage, []byte("stream closed"))
+// 				return
+// 			}
+// 			b, _ := json.Marshal(ev)
+// 			if err := conn.WriteMessage(websocket.TextMessage, b); err != nil {
+// 				log.Printf("WS: room=%d write error: %v", roomID, err)
+// 				return
+// 			}
+// 		}
+// 	}()
+
+// 	// Wait for either goroutine to finish, then clean up
+// 	<-done
+// }
+
+func handleWebSocketConnection(conn *websocket.Conn, chatClient messagepb.MessageServiceClient) {
+	defer conn.Close()
+
+	ctx, cancel := context.WithCancel(context.Background())
+	defer cancel()
+
+	stream, err := chatClient.Chat(ctx)
 	if err != nil {
 		log.Printf("WS: chat connect error: %v", err)
 		conn.WriteMessage(websocket.TextMessage, []byte("stream connect error"))
 		return
 	}
 	defer stream.CloseSend()
-
-	if err := stream.Send(&messagepb.ClientEvent{Payload: &messagepb.ClientEvent_Join{Join: &messagepb.JoinRoom{RoomId: uint32(roomID)}}}); err != nil {
-		log.Printf("WS: join send error: %v", err)
-		return
-	}
-
 	type inbound struct {
+		Type    string `json:"type"`     // "join", "leave", or "send"
+		RoomID  int    `json:"room_id"`
 		Message string `json:"message"`
 		Sender  string `json:"sender"`
 		SentAt  int64  `json:"sent_at_unix"`
 	}
-
+	joinedRooms := make(map[int]bool)
 	done := make(chan struct{})
-
-	// Goroutine to handle incoming messages from WebSocket
+	// Incoming messages
 	go func() {
 		defer close(done)
 		for {
 			_, data, err := conn.ReadMessage()
 			if err != nil {
-				log.Printf("WS: room=%d read error: %v", roomID, err)
+				log.Printf("WS: read error: %v", err)
 				return
 			}
 			var in inbound
 			if err := json.Unmarshal(data, &in); err != nil {
-				log.Printf("WS: room=%d unmarshal error: %v", roomID, err)
+				log.Printf("WS: unmarshal error: %v", err)
 				continue
 			}
-			if in.SentAt == 0 {
-				in.SentAt = time.Now().Unix()
-			}
-			if err := stream.Send(&messagepb.ClientEvent{Payload: &messagepb.ClientEvent_Send{Send: &messagepb.SendMessage{
-				RoomId:     uint32(roomID),
-				Text:       in.Message,
-				SenderId:   in.Sender,
-				SentAtUnix: in.SentAt,
-			}}}); err != nil {
-				log.Printf("WS: room=%d send error: %v", roomID, err)
-				return
+			fmt.Println("in", in)
+
+			switch in.Type {
+			case "join":
+				fmt.Println("join", in)
+				fmt.Println("join room id", in.RoomID)
+				fmt.Println("join user id", in.Sender)
+				if in.RoomID == 0 {
+					continue
+				}
+				if !joinedRooms[in.RoomID] {
+					joinedRooms[in.RoomID] = true
+					log.Printf("WS: joined room %d", in.RoomID)
+					_ = stream.Send(&messagepb.ClientEvent{
+						Payload: &messagepb.ClientEvent_Join{
+							Join: &messagepb.JoinRoom{
+								RoomId: uint32(in.RoomID),
+								UserId: in.Sender,
+							},
+						},
+					})
+				}
+
+			case "send":
+				if !joinedRooms[in.RoomID] {
+					conn.WriteMessage(websocket.TextMessage, []byte("not joined to this room"))
+					continue
+				}
+				if in.SentAt == 0 {
+					in.SentAt = time.Now().Unix()
+				}
+				_ = stream.Send(&messagepb.ClientEvent{
+					Payload: &messagepb.ClientEvent_Send{
+						Send: &messagepb.SendMessage{
+							RoomId:     uint32(in.RoomID),
+							Text:       in.Message,
+							SenderId:   in.Sender,
+							SentAtUnix: in.SentAt,
+						},
+					},
+				})
 			}
 		}
 	}()
 
-	// Goroutine to handle outgoing messages from gRPC stream
+	// Outgoing messages
 	go func() {
 		for {
 			ev, err := stream.Recv()
 			if err != nil {
-				log.Printf("WS: room=%d stream recv error: %v", roomID, err)
+				log.Printf("WS: stream recv error: %v", err)
 				conn.WriteMessage(websocket.TextMessage, []byte("stream closed"))
 				return
 			}
 			b, _ := json.Marshal(ev)
 			if err := conn.WriteMessage(websocket.TextMessage, b); err != nil {
-				log.Printf("WS: room=%d write error: %v", roomID, err)
+				log.Printf("WS: write error: %v", err)
 				return
 			}
 		}
 	}()
 
-	// Wait for either goroutine to finish, then clean up
 	<-done
 }
 
@@ -290,12 +390,12 @@ func run() error {
 
 	mux.HandleFunc("/api/v1/ws/rooms/", func(w http.ResponseWriter, r *http.Request) {
 		// Expect /api/v1/ws/rooms/{roomId}
-		suffix := strings.TrimPrefix(r.URL.Path, "/api/v1/ws/rooms/")
-		roomID, _ := strconv.Atoi(suffix)
-		if roomID <= 0 {
-			http.Error(w, "invalid room id", http.StatusBadRequest)
-			return
-		}
+		// suffix := strings.TrimPrefix(r.URL.Path, "/api/v1/ws/rooms/")
+		// roomID, _ := strconv.Atoi(suffix)
+		// if roomID <= 0 {
+		// 	http.Error(w, "invalid room id", http.StatusBadRequest)
+		// 	return
+		// }
 		upgrader := websocket.Upgrader{CheckOrigin: func(r *http.Request) bool { return true }}
 		conn, err := upgrader.Upgrade(w, r, nil)
 		if err != nil {
@@ -303,11 +403,12 @@ func run() error {
 			return
 		}
 
-		log.Printf("WS: room=%d connect", roomID)
+		log.Printf("WS: new user connected from %s", r.RemoteAddr)
 
 		// Start the WebSocket connection in a separate goroutine
 		// This prevents the handler from blocking the HTTP server
-		go handleWebSocketConnection(conn, roomID, chatClient)
+		// go handleWebSocketConnection(conn, roomID, chatClient)
+		go handleWebSocketConnection(conn, chatClient)
 	})
 
 	// ========== gRPC ==========
