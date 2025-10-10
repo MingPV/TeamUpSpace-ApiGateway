@@ -52,6 +52,14 @@ func request_LastvisitService_FindByUserID_0(ctx context.Context, marshaler runt
 	if err != nil {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "user_id", err)
 	}
+	val, ok = pathParams["room_id"]
+	if !ok {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "room_id")
+	}
+	protoReq.RoomId, err = runtime.Int32(val)
+	if err != nil {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "room_id", err)
+	}
 	msg, err := client.FindByUserID(ctx, &protoReq, grpc.Header(&metadata.HeaderMD), grpc.Trailer(&metadata.TrailerMD))
 	return msg, metadata, err
 }
@@ -69,6 +77,14 @@ func local_request_LastvisitService_FindByUserID_0(ctx context.Context, marshale
 	protoReq.UserId, err = runtime.String(val)
 	if err != nil {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "user_id", err)
+	}
+	val, ok = pathParams["room_id"]
+	if !ok {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "room_id")
+	}
+	protoReq.RoomId, err = runtime.Int32(val)
+	if err != nil {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "room_id", err)
 	}
 	msg, err := server.FindByUserID(ctx, &protoReq)
 	return msg, metadata, err
@@ -113,7 +129,7 @@ func RegisterLastvisitServiceHandlerServer(ctx context.Context, mux *runtime.Ser
 		var stream runtime.ServerTransportStream
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/lastvisit.LastvisitService/FindByUserID", runtime.WithHTTPPathPattern("/api/v1/lastvisit/{user_id}"))
+		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/lastvisit.LastvisitService/FindByUserID", runtime.WithHTTPPathPattern("/api/v1/lastvisit/{user_id}/{room_id}"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -191,7 +207,7 @@ func RegisterLastvisitServiceHandlerClient(ctx context.Context, mux *runtime.Ser
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/lastvisit.LastvisitService/FindByUserID", runtime.WithHTTPPathPattern("/api/v1/lastvisit/{user_id}"))
+		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/lastvisit.LastvisitService/FindByUserID", runtime.WithHTTPPathPattern("/api/v1/lastvisit/{user_id}/{room_id}"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -225,7 +241,7 @@ func RegisterLastvisitServiceHandlerClient(ctx context.Context, mux *runtime.Ser
 }
 
 var (
-	pattern_LastvisitService_FindByUserID_0    = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 1, 0, 4, 1, 5, 3}, []string{"api", "v1", "lastvisit", "user_id"}, ""))
+	pattern_LastvisitService_FindByUserID_0    = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 1, 0, 4, 1, 5, 3, 1, 0, 4, 1, 5, 4}, []string{"api", "v1", "lastvisit", "user_id", "room_id"}, ""))
 	pattern_LastvisitService_UpdateLastvisit_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2}, []string{"api", "v1", "lastvisit"}, ""))
 )
 

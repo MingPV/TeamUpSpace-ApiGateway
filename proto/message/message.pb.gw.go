@@ -173,6 +173,14 @@ func request_MessageService_FindAllMessageUnread_0(ctx context.Context, marshale
 	if err != nil {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "user_id", err)
 	}
+	val, ok = pathParams["room_id"]
+	if !ok {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "room_id")
+	}
+	protoReq.RoomId, err = runtime.Int32(val)
+	if err != nil {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "room_id", err)
+	}
 	msg, err := client.FindAllMessageUnread(ctx, &protoReq, grpc.Header(&metadata.HeaderMD), grpc.Trailer(&metadata.TrailerMD))
 	return msg, metadata, err
 }
@@ -190,6 +198,14 @@ func local_request_MessageService_FindAllMessageUnread_0(ctx context.Context, ma
 	protoReq.UserId, err = runtime.String(val)
 	if err != nil {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "user_id", err)
+	}
+	val, ok = pathParams["room_id"]
+	if !ok {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "room_id")
+	}
+	protoReq.RoomId, err = runtime.Int32(val)
+	if err != nil {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "room_id", err)
 	}
 	msg, err := server.FindAllMessageUnread(ctx, &protoReq)
 	return msg, metadata, err
@@ -253,7 +269,7 @@ func RegisterMessageServiceHandlerServer(ctx context.Context, mux *runtime.Serve
 		var stream runtime.ServerTransportStream
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/message.MessageService/FindAllMessageUnread", runtime.WithHTTPPathPattern("/api/v1/messages/unread/{user_id}"))
+		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/message.MessageService/FindAllMessageUnread", runtime.WithHTTPPathPattern("/api/v1/messages/unread/{user_id}/{room_id}"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -362,7 +378,7 @@ func RegisterMessageServiceHandlerClient(ctx context.Context, mux *runtime.Serve
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/message.MessageService/FindAllMessageUnread", runtime.WithHTTPPathPattern("/api/v1/messages/unread/{user_id}"))
+		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/message.MessageService/FindAllMessageUnread", runtime.WithHTTPPathPattern("/api/v1/messages/unread/{user_id}/{room_id}"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -382,7 +398,7 @@ var (
 	pattern_MessageService_Chat_0                      = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1}, []string{"message.MessageService", "Chat"}, ""))
 	pattern_MessageService_FindAllMessageByRoomID_0    = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 1, 0, 4, 1, 5, 3}, []string{"api", "v1", "messages", "room_id"}, ""))
 	pattern_MessageService_FindLatestMessageByRoomId_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 2, 3, 1, 0, 4, 1, 5, 4}, []string{"api", "v1", "message", "latest", "room_id"}, ""))
-	pattern_MessageService_FindAllMessageUnread_0      = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 2, 3, 1, 0, 4, 1, 5, 4}, []string{"api", "v1", "messages", "unread", "user_id"}, ""))
+	pattern_MessageService_FindAllMessageUnread_0      = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 2, 3, 1, 0, 4, 1, 5, 4, 1, 0, 4, 1, 5, 5}, []string{"api", "v1", "messages", "unread", "user_id", "room_id"}, ""))
 )
 
 var (
