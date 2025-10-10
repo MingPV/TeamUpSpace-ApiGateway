@@ -24,7 +24,8 @@ const _ = grpc.SupportPackageIsVersion7
 type MessageServiceClient interface {
 	Chat(ctx context.Context, opts ...grpc.CallOption) (MessageService_ChatClient, error)
 	FindAllMessageByRoomID(ctx context.Context, in *FindAllMessageByRoomIDRequest, opts ...grpc.CallOption) (*FindAllMessageByRoomIDResponse, error)
-	FindLatestMessageByRoomId(ctx context.Context, in *FindLatestMessageByRoomIdRequest, opts ...grpc.CallOption) (*FIndLastestMessageByRoomIdResponse, error)
+	FindLatestMessageByRoomId(ctx context.Context, in *FindLatestMessageByRoomIdRequest, opts ...grpc.CallOption) (*FindLastestMessageByRoomIdResponse, error)
+	FindAllMessageUnread(ctx context.Context, in *FindAllMessageUnreadRequest, opts ...grpc.CallOption) (*FindAllMessageUnreadResponse, error)
 }
 
 type messageServiceClient struct {
@@ -75,9 +76,18 @@ func (c *messageServiceClient) FindAllMessageByRoomID(ctx context.Context, in *F
 	return out, nil
 }
 
-func (c *messageServiceClient) FindLatestMessageByRoomId(ctx context.Context, in *FindLatestMessageByRoomIdRequest, opts ...grpc.CallOption) (*FIndLastestMessageByRoomIdResponse, error) {
-	out := new(FIndLastestMessageByRoomIdResponse)
+func (c *messageServiceClient) FindLatestMessageByRoomId(ctx context.Context, in *FindLatestMessageByRoomIdRequest, opts ...grpc.CallOption) (*FindLastestMessageByRoomIdResponse, error) {
+	out := new(FindLastestMessageByRoomIdResponse)
 	err := c.cc.Invoke(ctx, "/message.MessageService/FindLatestMessageByRoomId", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *messageServiceClient) FindAllMessageUnread(ctx context.Context, in *FindAllMessageUnreadRequest, opts ...grpc.CallOption) (*FindAllMessageUnreadResponse, error) {
+	out := new(FindAllMessageUnreadResponse)
+	err := c.cc.Invoke(ctx, "/message.MessageService/FindAllMessageUnread", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -90,7 +100,8 @@ func (c *messageServiceClient) FindLatestMessageByRoomId(ctx context.Context, in
 type MessageServiceServer interface {
 	Chat(MessageService_ChatServer) error
 	FindAllMessageByRoomID(context.Context, *FindAllMessageByRoomIDRequest) (*FindAllMessageByRoomIDResponse, error)
-	FindLatestMessageByRoomId(context.Context, *FindLatestMessageByRoomIdRequest) (*FIndLastestMessageByRoomIdResponse, error)
+	FindLatestMessageByRoomId(context.Context, *FindLatestMessageByRoomIdRequest) (*FindLastestMessageByRoomIdResponse, error)
+	FindAllMessageUnread(context.Context, *FindAllMessageUnreadRequest) (*FindAllMessageUnreadResponse, error)
 	mustEmbedUnimplementedMessageServiceServer()
 }
 
@@ -104,8 +115,11 @@ func (UnimplementedMessageServiceServer) Chat(MessageService_ChatServer) error {
 func (UnimplementedMessageServiceServer) FindAllMessageByRoomID(context.Context, *FindAllMessageByRoomIDRequest) (*FindAllMessageByRoomIDResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method FindAllMessageByRoomID not implemented")
 }
-func (UnimplementedMessageServiceServer) FindLatestMessageByRoomId(context.Context, *FindLatestMessageByRoomIdRequest) (*FIndLastestMessageByRoomIdResponse, error) {
+func (UnimplementedMessageServiceServer) FindLatestMessageByRoomId(context.Context, *FindLatestMessageByRoomIdRequest) (*FindLastestMessageByRoomIdResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method FindLatestMessageByRoomId not implemented")
+}
+func (UnimplementedMessageServiceServer) FindAllMessageUnread(context.Context, *FindAllMessageUnreadRequest) (*FindAllMessageUnreadResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method FindAllMessageUnread not implemented")
 }
 func (UnimplementedMessageServiceServer) mustEmbedUnimplementedMessageServiceServer() {}
 
@@ -182,6 +196,24 @@ func _MessageService_FindLatestMessageByRoomId_Handler(srv interface{}, ctx cont
 	return interceptor(ctx, in, info, handler)
 }
 
+func _MessageService_FindAllMessageUnread_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(FindAllMessageUnreadRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(MessageServiceServer).FindAllMessageUnread(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/message.MessageService/FindAllMessageUnread",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(MessageServiceServer).FindAllMessageUnread(ctx, req.(*FindAllMessageUnreadRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 // MessageService_ServiceDesc is the grpc.ServiceDesc for MessageService service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -196,6 +228,10 @@ var MessageService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "FindLatestMessageByRoomId",
 			Handler:    _MessageService_FindLatestMessageByRoomId_Handler,
+		},
+		{
+			MethodName: "FindAllMessageUnread",
+			Handler:    _MessageService_FindAllMessageUnread_Handler,
 		},
 	},
 	Streams: []grpc.StreamDesc{

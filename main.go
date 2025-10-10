@@ -27,6 +27,7 @@ import (
 
 	chatroompb "github.com/MingPV/ApiGateway/proto/chatroom"
 	friendpb "github.com/MingPV/ApiGateway/proto/friend"
+	lastvisitpb "github.com/MingPV/ApiGateway/proto/lastvisit"
 	messagepb "github.com/MingPV/ApiGateway/proto/message"
 	roominvitepb "github.com/MingPV/ApiGateway/proto/roominvite"
 	roommemberpb "github.com/MingPV/ApiGateway/proto/roommember"
@@ -314,6 +315,10 @@ func run() error {
 	}
 
 	if err := roommemberpb.RegisterRoomMemberServiceHandlerFromEndpoint(ctx, gwMux, chatServiceEndpoint, opts); err != nil {
+		return err
+	}
+
+	if err := lastvisitpb.RegisterLastvisitServiceHandlerFromEndpoint(ctx, gwMux, chatServiceEndpoint, opts); err != nil {
 		return err
 	}
 

@@ -67,8 +67,16 @@ message FindLatestMessageByRoomIdRequest {
   int32 room_id = 1;
 }
 
-message FIndLastestMessageByRoomIdResponse {
+message FindLastestMessageByRoomIdResponse {
   Message message = 1;
+}
+
+message FindAllMessageUnreadRequest {
+  string user_id = 1;
+}
+
+message FindAllMessageUnreadResponse {
+  repeated Message messages = 1;
 }
 
 service MessageService {
@@ -79,11 +87,17 @@ service MessageService {
     };
   }
 
-  rpc FindLatestMessageByRoomId(FindLatestMessageByRoomIdRequest) returns (FIndLastestMessageByRoomIdResponse){
+  rpc FindLatestMessageByRoomId(FindLatestMessageByRoomIdRequest) returns (FindLastestMessageByRoomIdResponse){
     option (google.api.http) = {
       get: "/api/v1/message/latest/{room_id}"
     };
   }
+
+  rpc FindAllMessageUnread(FindAllMessageUnreadRequest) returns (FindAllMessageUnreadResponse){
+    option (google.api.http) = {
+      get: "/api/v1/messages/unread/{user_id}"
+    };
+  };
 
 }
 
