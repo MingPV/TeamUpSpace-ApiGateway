@@ -62,7 +62,7 @@ message IsMyFriendRequest {
 }
 
 message IsMyFriendResponse {
-    string status = 1;
+    Friend friend = 1;
 }
 
 message DeleteFriendRequest {

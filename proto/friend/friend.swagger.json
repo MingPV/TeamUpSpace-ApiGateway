@@ -376,8 +376,8 @@
     "friendIsMyFriendResponse": {
       "type": "object",
       "properties": {
-        "status": {
-          "type": "string"
+        "friend": {
+          "$ref": "#/definitions/friendFriend"
         }
       }
     },
