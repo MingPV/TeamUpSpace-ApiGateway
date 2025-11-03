@@ -139,7 +139,7 @@ func handleWebSocketConnection(conn *websocket.Conn, chatClient messagepb.Messag
 	}
 	defer stream.CloseSend()
 	type inbound struct {
-		Type    string `json:"type"`     // "join", "leave", or "send"
+		Type    string `json:"type"` // "join", "leave", or "send"
 		RoomID  int    `json:"room_id"`
 		Message string `json:"message"`
 		Sender  string `json:"sender"`
@@ -234,13 +234,20 @@ func getEnv(key, fallback string) string {
 }
 
 func corsMiddleware(next http.Handler) http.Handler {
+	origin := os.Getenv("ALLOWED_ORIGIN")
+	if origin == "" {
+		origin = "http://localhost:3000" // default fallback
+	}
+	// w.Header().Set("Access-Control-Allow-Origin", origin)
+
 	return http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 
 		// Remove any existing CORS headers to prevent duplication
 		w.Header().Del("Access-Control-Allow-Origin")
 
 		// allow origin
-		w.Header().Set("Access-Control-Allow-Origin", "http://localhost:3000")
+		fmt.Println("Allowed Origin:", origin)
+		w.Header().Set("Access-Control-Allow-Origin", origin)
 		w.Header().Set("Access-Control-Allow-Methods", "GET, POST, PUT, PATCH, DELETE, OPTIONS")
 		w.Header().Set("Access-Control-Allow-Headers", "Content-Type, Authorization")
 		w.Header().Set("Access-Control-Allow-Credentials", "true")
