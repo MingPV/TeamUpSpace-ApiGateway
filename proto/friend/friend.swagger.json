@@ -16,6 +16,28 @@
     "application/json"
   ],
   "paths": {
+    "/api/v1/allfriends": {
+      "get": {
+        "operationId": "FriendService_FindAllFriends",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/friendFindAllFriendsResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "tags": [
+          "FriendService"
+        ]
+      }
+    },
     "/api/v1/friends": {
       "post": {
         "operationId": "FriendService_CreateFriend",
@@ -123,6 +145,37 @@
             "description": "A successful response.",
             "schema": {
               "$ref": "#/definitions/friendFindAllFriendRequestsResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "userId",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "FriendService"
+        ]
+      }
+    },
+    "/api/v1/friends/user/{userId}": {
+      "get": {
+        "summary": "not use now, dont know why need to have",
+        "operationId": "FriendService_FindAllFriendsByUserID",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/friendFindAllFriendsByUserIDResponse"
             }
           },
           "default": {
@@ -323,8 +376,8 @@
     "friendIsMyFriendResponse": {
       "type": "object",
       "properties": {
-        "status": {
-          "type": "string"
+        "friend": {
+          "$ref": "#/definitions/friendFriend"
         }
       }
     },

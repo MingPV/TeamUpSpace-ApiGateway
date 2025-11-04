@@ -62,7 +62,7 @@ message IsMyFriendRequest {
 }
 
 message IsMyFriendResponse {
-    string status = 1;
+    Friend friend = 1;
 }
 
 message DeleteFriendRequest {
@@ -119,8 +119,16 @@ service FriendService {
         };
     }
 
+    rpc FindAllFriends(FindAllFriendsRequest) returns (FindAllFriendsResponse){
+        option (google.api.http) = {
+            get: "/api/v1/allfriends"
+        };
+    };
     //not use now, dont know why need to have
-    rpc FindAllFriends(FindAllFriendsRequest) returns (FindAllFriendsResponse);
-    rpc FindAllFriendsByUserID(FindAllFriendsByUserIDRequest) returns (FindAllFriendsByUserIDResponse);
+    rpc FindAllFriendsByUserID(FindAllFriendsByUserIDRequest) returns (FindAllFriendsByUserIDResponse){
+        option (google.api.http) = {
+            get: "/api/v1/friends/user/{user_id}"
+        };
+    }
 }
 

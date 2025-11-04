@@ -1,0 +1,164 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "title": "proto/lastvisit/lastvisit.proto",
+    "version": "version not set"
+  },
+  "tags": [
+    {
+      "name": "LastvisitService"
+    }
+  ],
+  "consumes": [
+    "application/json"
+  ],
+  "produces": [
+    "application/json"
+  ],
+  "paths": {
+    "/api/v1/lastvisit": {
+      "post": {
+        "operationId": "LastvisitService_UpdateLastvisit",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/lastvisitUpdateLastvisitResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/lastvisitUpdateLastvisitRequest"
+            }
+          }
+        ],
+        "tags": [
+          "LastvisitService"
+        ]
+      }
+    },
+    "/api/v1/lastvisit/{userId}/{roomId}": {
+      "get": {
+        "summary": "rpc CreateLastvisit(CreateLastvisitRequest) returns (CreateLastvisitResponse);",
+        "operationId": "LastvisitService_FindByUserID",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/lastvisitFindByUserIDResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "userId",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "roomId",
+            "in": "path",
+            "required": true,
+            "type": "integer",
+            "format": "int32"
+          }
+        ],
+        "tags": [
+          "LastvisitService"
+        ]
+      }
+    }
+  },
+  "definitions": {
+    "lastvisitFindByUserIDResponse": {
+      "type": "object",
+      "properties": {
+        "lastvisit": {
+          "$ref": "#/definitions/lastvisitLastvisit"
+        }
+      }
+    },
+    "lastvisitLastvisit": {
+      "type": "object",
+      "properties": {
+        "userId": {
+          "type": "string"
+        },
+        "lastvisit": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "roomId": {
+          "type": "integer",
+          "format": "int32"
+        }
+      }
+    },
+    "lastvisitUpdateLastvisitRequest": {
+      "type": "object",
+      "properties": {
+        "userId": {
+          "type": "string"
+        },
+        "roomId": {
+          "type": "integer",
+          "format": "int32"
+        }
+      }
+    },
+    "lastvisitUpdateLastvisitResponse": {
+      "type": "object",
+      "properties": {
+        "lastvisit": {
+          "$ref": "#/definitions/lastvisitLastvisit"
+        }
+      }
+    },
+    "protobufAny": {
+      "type": "object",
+      "properties": {
+        "@type": {
+          "type": "string"
+        }
+      },
+      "additionalProperties": {}
+    },
+    "rpcStatus": {
+      "type": "object",
+      "properties": {
+        "code": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "message": {
+          "type": "string"
+        },
+        "details": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/protobufAny"
+          }
+        }
+      }
+    }
+  }
+}

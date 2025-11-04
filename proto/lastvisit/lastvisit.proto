@@ -1,0 +1,56 @@
+syntax = "proto3";
+
+package lastvisit;
+import "google/protobuf/timestamp.proto";
+import "google/api/annotations.proto";
+
+
+option go_package = "proto/lastvisit";
+
+message Lastvisit {
+    string user_id = 1;
+    google.protobuf.Timestamp lastvisit = 2; 
+    int32 room_id = 3;
+}
+
+// message CreateLastvisitRequest {
+//     string user_id = 1;
+// }
+
+// message CreateLastvisitResponse {
+//     Lastvisit lastvisit = 1;
+// }
+
+message FindByUserIDRequest {
+    string user_id = 1;
+    int32 room_id = 2;
+}
+
+message FindByUserIDResponse {
+    Lastvisit lastvisit = 1;
+}
+
+message UpdateLastvisitRequest {
+    string user_id = 1;
+    int32 room_id = 2;
+}
+
+message UpdateLastvisitResponse {
+    Lastvisit lastvisit = 1;
+}
+
+service LastvisitService {
+    // rpc CreateLastvisit(CreateLastvisitRequest) returns (CreateLastvisitResponse);
+    rpc FindByUserID(FindByUserIDRequest) returns (FindByUserIDResponse){
+        option (google.api.http) = {
+            get: "/api/v1/lastvisit/{user_id}/{room_id}"
+        };
+    }
+    rpc UpdateLastvisit(UpdateLastvisitRequest) returns (UpdateLastvisitResponse){
+        option (google.api.http) = {
+            post: "/api/v1/lastvisit"
+            body: "*"
+        };
+    }
+}
+

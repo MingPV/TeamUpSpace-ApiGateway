@@ -16,6 +16,74 @@
     "application/json"
   ],
   "paths": {
+    "/api/v1/message/latest/{roomId}": {
+      "get": {
+        "operationId": "MessageService_FindLatestMessageByRoomId",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/messageFindLastestMessageByRoomIdResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "roomId",
+            "in": "path",
+            "required": true,
+            "type": "integer",
+            "format": "int32"
+          }
+        ],
+        "tags": [
+          "MessageService"
+        ]
+      }
+    },
+    "/api/v1/messages/unread/{userId}/{roomId}": {
+      "get": {
+        "operationId": "MessageService_FindAllMessageUnread",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/messageFindAllMessageUnreadResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "userId",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "roomId",
+            "in": "path",
+            "required": true,
+            "type": "integer",
+            "format": "int32"
+          }
+        ],
+        "tags": [
+          "MessageService"
+        ]
+      }
+    },
     "/api/v1/messages/{roomId}": {
       "get": {
         "operationId": "MessageService_FindAllMessageByRoomID",
@@ -66,6 +134,26 @@
             "type": "object",
             "$ref": "#/definitions/messageMessage"
           }
+        }
+      }
+    },
+    "messageFindAllMessageUnreadResponse": {
+      "type": "object",
+      "properties": {
+        "messages": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/messageMessage"
+          }
+        }
+      }
+    },
+    "messageFindLastestMessageByRoomIdResponse": {
+      "type": "object",
+      "properties": {
+        "message": {
+          "$ref": "#/definitions/messageMessage"
         }
       }
     },

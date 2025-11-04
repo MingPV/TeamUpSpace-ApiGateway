@@ -28,8 +28,8 @@ type FriendServiceClient interface {
 	DeleteFriend(ctx context.Context, in *DeleteFriendRequest, opts ...grpc.CallOption) (*DeleteFriendResponse, error)
 	IsMyFriend(ctx context.Context, in *IsMyFriendRequest, opts ...grpc.CallOption) (*IsMyFriendResponse, error)
 	AcceptFriend(ctx context.Context, in *AcceptFriendRequest, opts ...grpc.CallOption) (*AcceptFriendResponse, error)
-	// not use now, dont know why need to have
 	FindAllFriends(ctx context.Context, in *FindAllFriendsRequest, opts ...grpc.CallOption) (*FindAllFriendsResponse, error)
+	// not use now, dont know why need to have
 	FindAllFriendsByUserID(ctx context.Context, in *FindAllFriendsByUserIDRequest, opts ...grpc.CallOption) (*FindAllFriendsByUserIDResponse, error)
 }
 
@@ -123,8 +123,8 @@ type FriendServiceServer interface {
 	DeleteFriend(context.Context, *DeleteFriendRequest) (*DeleteFriendResponse, error)
 	IsMyFriend(context.Context, *IsMyFriendRequest) (*IsMyFriendResponse, error)
 	AcceptFriend(context.Context, *AcceptFriendRequest) (*AcceptFriendResponse, error)
-	// not use now, dont know why need to have
 	FindAllFriends(context.Context, *FindAllFriendsRequest) (*FindAllFriendsResponse, error)
+	// not use now, dont know why need to have
 	FindAllFriendsByUserID(context.Context, *FindAllFriendsByUserIDRequest) (*FindAllFriendsByUserIDResponse, error)
 	mustEmbedUnimplementedFriendServiceServer()
 }
